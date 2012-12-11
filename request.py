@@ -151,17 +151,17 @@ def getItemFromNode(itemNode):
 	return m
 
 def itemCriteria(item):
-	if item.priceDifference < 20:
+	if item.priceDifference < 15:
 		return False
-	if item.priceDifference > 200:
+	if item.priceDifference > 100:
 		return False
-	elif item.totalOrders < 200:
+	elif item.totalOrders < 100:
 		return False
 	elif item.volumeDifference > 70:
 		return False
-	elif item.buyPrice < 30000:
+	elif item.buyPrice < 20000:
 		return False
-	elif item.soldOrders < 40:
+	elif item.soldOrders < 80:
 		return False
 	elif 'Blueprint' in item.name:
 		return False
@@ -169,7 +169,7 @@ def itemCriteria(item):
 		return True
 
 def sortCriteria(item):
-	return item.priceDifference
+	return item.soldOrders
 
 def main():
 	initTypeToNameDB()
