@@ -30,7 +30,7 @@ def formatNum(price):
 		return str(price)
 	if price < 1000000:
 		return '%.1fk' % (price / 1000)
-	
+
 	return '%.1fM' % (price / 1000000)
 
 class MarketItem:
@@ -60,11 +60,11 @@ class MarketItem:
 
 	def __str__(self):
 		return self.__repr__()
-		
+
 	def fromEveMarketData(self, orderDict):
 		# Getting the stuff from eve-marketdata.com. Effin messy.
 		orderDict = orderDict['emd']['result']
-		
+
 		# Again, bit awkward, adding the total order history
 		self.soldOrderHistory = []
 		sumOrders = 0
@@ -74,27 +74,27 @@ class MarketItem:
 				numOrders = int(entry['row']['orders'])
 				sumOrders += numOrders
 				numDataPoints += 1
-		
+
 		if numDataPoints <> 0:
 			self.soldOrders = float(sumOrders) / numDataPoints
-		
+
 	def fromEveMarketDataPerItem(self, orderDict):
 		if self.typeId == None:
 			return
-	
+
 		url = evemPriceHistory
 		url += 'region_ids=%d&type_ids=%d' % (regions['the_forge'], self.typeId)
 		print url
-		
+
 		data = urllib2.urlopen(url).read()
 		orderDict = json.loads(data)
-		
+
 		self.fromEveMarketData2(orderDict)
-	
+
 	def fromEveCentral(self, itemNode):
 		self.typeId = int(itemNode.attrib['id'])
 		self.name = getItemName(self.typeId)
-		
+
 		if self.name == None:
 			return
 
@@ -134,18 +134,18 @@ def _getItems(typeIds, region):
 	# Generate the url to use for the query
 	urlCentral = evecMarketstat
 	urlData = evemPriceHistory
-	
+
 	if region <> None:					# Set the region if we have one
 		urlCentral += 'regionlimit=%d&' % regions[region]
 		urlData += 'region_ids=%d&' % regions[region]
-	
+
 	urlData += 'type_ids='
-	
+
 	for typeId in typeIds:				# Add all the typeids
 		if getItemName(typeId) <> None:	# Check to make sure the thing actually exists.
 			urlCentral += 'typeid=%d&' % typeId
 			urlData += '%d,' % typeId
-			
+
 	urlCentral = urlCentral[:-1]		# Strip the ending &
 	urlData = urlData[:-1]
 
@@ -154,10 +154,10 @@ def _getItems(typeIds, region):
 
 	htmlReply = urllib2.urlopen(urlCentral).read()
 	root = ET.fromstring(htmlReply)[0]
-	
+
 	eveMarketDataReply = urllib2.urlopen(urlData).read()
 	eveMarketDataDict = json.loads(eveMarketDataReply)
-	
+
 	items = []
 	for typeNode in root:
 		item = MarketItem()
@@ -166,12 +166,12 @@ def _getItems(typeIds, region):
 		items.append(item)
 
 	return items
-	
+
 def getItems(typeIds, region):
 	totalItems = []
 	for chunk in chunks(typeIds, 1000):
 		totalItems += _getItems(chunk, region)
-		
+
 	return totalItems
 
 def itemCriteria(item):
