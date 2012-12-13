@@ -1,5 +1,6 @@
 #/usr/bin/python
 import json
+import yaml
 import xml.etree.ElementTree as ET
 import urllib2
 from pprint import pprint
@@ -195,7 +196,34 @@ def itemCriteria(item):
 def sortCriteria(item):
 	return item.soldOrders
 
+def grabItemNames():
+	templateUrl = 'http://api.eve-central.com/api/quicklook?usesystem=30000142&typeid=%d'
+	f = open('testtypes.txt', 'w')
+	
+	for typeId in range(1, 37000):
+		url = templateUrl % typeId
+		#print url
+		html = urllib2.urlopen(url).read()
+		
+		if 'Type not found' in html:
+			print str(typeId)
+			continue
+		
+		#print html
+		
+		try:
+			root = ET.fromstring(html)
+		except:
+			print 'Item:', typeId, 'doesn\'t exist'
+		
+		root = root[0]
+		result = str(typeId) + '\t' + root.find('itemname').text 
+		print result
+		f.write(result + '\n')
+		f.flush()
+
 def main():
+
 	initTypeToNameDB()
 
 	typeIds = range(34, 41) + range(178, 202) + range(377, 551) + range(551, 1357) + range(16305, 16536)

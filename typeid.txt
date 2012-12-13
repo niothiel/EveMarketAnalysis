@@ -40,14 +40,14 @@
 200	Phased Plasma L
 201	EMP L
 202	Mjolnir Cruise Missile
-203	Trauma Cruise Missile
+203	Scourge Cruise Missile
 204	Inferno Cruise Missile
 205	Nova Cruise Missile
 206	Nova Heavy Missile
 207	Mjolnir Heavy Missile
 208	Inferno Heavy Missile
-209	Trauma Heavy Missile
-210	Trauma Light Missile
+209	Scourge Heavy Missile
+210	Scourge Light Missile
 211	Inferno Light Missile
 212	Mjolnir Light Missile
 213	Nova Light Missile
@@ -101,10 +101,10 @@
 262	Multifrequency L
 263	Cap Booster 25
 264	Cap Booster 50
-265	Defender I
-266	Trauma Rocket
-267	Trauma Torpedo
-269	Seeker F.O.F. Light Missile I
+265	Heavy Defender Missile I
+266	Scourge Rocket
+267	Scourge Torpedo
+269	Mjolnir Auto-Targeting Light Missile I
 377	Small Shield Extender I
 380	Small Shield Extender II
 393	Shield Recharger I
@@ -114,10 +114,10 @@
 405	Micro Shield Transporter I
 406	Micro Shield Transporter II
 421	Basic Capacitor Recharger
-434	1MN MicroWarpdrive I
+434	1MN Microwarpdrive I
 438	1MN Afterburner II
 439	1MN Afterburner I
-440	1MN MicroWarpdrive II
+440	1MN Microwarpdrive II
 442	Cargo Scanner I
 443	Ship Scanner I
 444	Survey Scanner I
@@ -126,8 +126,8 @@
 450	Gatling Pulse Laser I
 451	Dual Light Pulse Laser I
 452	Dual Light Beam Laser I
-453	Medium Pulse Laser I
-454	Medium Beam Laser I
+453	Small Focused Pulse Laser I
+454	Small Focused Beam Laser I
 455	Quad Light Beam Laser I
 456	Focused Medium Pulse Laser I
 457	Focused Medium Beam Laser I
@@ -155,9 +155,9 @@
 496	800mm Repeating Artillery I
 497	1200mm Artillery Cannon I
 498	1400mm Howitzer Artillery I
-499	Standard Missile Launcher I
+499	Light Missile Launcher I
 501	Heavy Missile Launcher I
-503	Siege Missile Launcher I
+503	Torpedo Launcher I
 506	Basic Capacitor Power Relay
 508	Basic Shield Flux Coil
 509	Basic Capacitor Flux Coil
@@ -189,7 +189,7 @@
 574	425mm Railgun I
 575	Ion Blaster Cannon I
 577	Medium Capacitor Booster I
-578	Invulnerability Field I
+578	Adaptive Invulnerability Field I
 580	ECM Burst I
 581	Passive Targeter I
 582	Bantam
@@ -261,18 +261,18 @@
 693	Tempest Blueprint
 784	Miner II Blueprint
 785	Miner I Blueprint
-786	Standard Missile Launcher I Blueprint
+786	Light Missile Launcher I Blueprint
 788	Heavy Missile Launcher I Blueprint
-790	Siege Missile Launcher I Blueprint
+790	Torpedo Launcher I Blueprint
 803	Mjolnir Cruise Missile Blueprint
-804	Trauma Cruise Missile Blueprint
+804	Scourge Cruise Missile Blueprint
 805	Inferno Cruise Missile Blueprint
 806	Nova Cruise Missile Blueprint
 807	Nova Heavy Missile Blueprint
 808	Mjolnir Heavy Missile Blueprint
 809	Inferno Heavy Missile Blueprint
-810	Trauma Heavy Missile Blueprint
-811	Trauma Light Missile Blueprint
+810	Scourge Heavy Missile Blueprint
+811	Scourge Light Missile Blueprint
 812	Inferno Light Missile Blueprint
 813	Mjolnir Light Missile Blueprint
 814	Nova Light Missile Blueprint
@@ -294,8 +294,8 @@
 834	Gatling Pulse Laser I Blueprint
 835	Dual Light Pulse Laser I Blueprint
 836	Dual Light Beam Laser I Blueprint
-837	Medium Pulse Laser I Blueprint
-838	Medium Beam Laser I Blueprint
+837	Small Focused Pulse Laser I Blueprint
+838	Small Focused Beam Laser I Blueprint
 839	Quad Light Beam Laser I Blueprint
 840	Focused Medium Pulse Laser I Blueprint
 841	Focused Medium Beam Laser I Blueprint
@@ -380,7 +380,7 @@
 1026	Shield Recharger I Blueprint
 1027	Shield Recharger II Blueprint
 1032	Small Shield Booster I Blueprint
-1067	1MN MicroWarpdrive I Blueprint
+1067	1MN Microwarpdrive I Blueprint
 1071	1MN Afterburner II Blueprint
 1072	1MN Afterburner I Blueprint
 1073	1MN MicroWarpdrive II Blueprint
@@ -412,7 +412,7 @@
 1125	425mm Railgun I Blueprint
 1126	Ion Blaster Cannon I Blueprint
 1128	Medium Capacitor Booster I Blueprint
-1129	Invulnerability Field I Blueprint
+1129	Adaptive Invulnerability Field I Blueprint
 1130	Iron Charge S Blueprint
 1131	Tungsten Charge S Blueprint
 1132	Iridium Charge S Blueprint
@@ -469,24 +469,24 @@
 1186	Small Capacitor Battery I Blueprint
 1190	Small Energy Transfer Array II
 1192	Basic Overdrive Injector System
-1193	Basic Reflective Plating
+1193	Basic EM Plating
 1195	Cap Recharger I
 1196	Cap Recharger I Blueprint
-1197	Reflective Plating I
-1198	Reflective Plating II
+1197	EM Plating I
+1198	EM Plating II
 1201	Wasp I
 1202	Civilian Mining Drone
-1204	Reflective Plating I Blueprint
+1204	EM Plating I Blueprint
 1205	Reflective Plating II Blueprint
 1208	Auto Targeting System I Blueprint
 1210	ECM Burst I Blueprint
 1212	Passive Targeter I Blueprint
 1214	Wasp I Blueprint
-1215	Defender I Blueprint
-1216	Seeker F.O.F. Light Missile I Blueprint
+1215	Heavy Defender Missile I Blueprint
+1216	Mjolnir Auto-Targeting Light Missile I Blueprint
 1218	Civilian Mining Drone Blueprint
-1220	Trauma Rocket Blueprint
-1221	Trauma Torpedo Blueprint
+1220	Scourge Rocket Blueprint
+1221	Scourge Torpedo Blueprint
 1223	Bistot
 1224	Pyroxeres
 1225	Crokite
@@ -508,20 +508,20 @@
 1254	Shield Flux Coil I
 1255	Shield Flux Coil I Blueprint
 1256	Shield Flux Coil II
-1262	Basic Reactive Plating
-1264	Reactive Plating I
-1265	Reactive Plating I Blueprint
-1266	Reactive Plating II
+1262	Basic Explosive Plating
+1264	Explosive Plating I
+1265	Explosive Plating I Blueprint
+1266	Explosive Plating II
 1267	Reactive Plating II Blueprint
-1272	Basic Regenerative Plating
-1274	Regenerative Plating I
-1275	Regenerative Plating I Blueprint
-1276	Regenerative Plating II
+1272	Basic Layered Plating
+1274	Layered Plating I
+1275	Layered Plating I Blueprint
+1276	Layered Plating II
 1277	Regenerative Plating II Blueprint
-1282	Basic Magnetic Plating
-1284	Magnetic Plating I
-1285	Magnetic Plating I Blueprint
-1286	Magnetic Plating II
+1282	Basic Kinetic Plating
+1284	Kinetic Plating I
+1285	Kinetic Plating I Blueprint
+1286	Kinetic Plating II
 1287	Magnetic Plating II Blueprint
 1292	Basic Thermic Plating
 1294	Thermic Plating I
@@ -576,38 +576,38 @@
 1564	Small EMP Smartbomb I Blueprint
 1565	Small EMP Smartbomb II
 1566	Small EMP Smartbomb II Blueprint
-1798	Basic Magnetic Scattering Amplifier
-1800	Basic Heat Dissipation Amplifier
+1798	Basic EM Ward Amplifier
+1800	Basic Thermic Dissipation Amplifier
 1802	Basic Kinetic Deflection Amplifier
-1804	Basic Explosion Dampening Amplifier
-1808	Magnetic Scattering Amplifier I
-1809	Magnetic Scattering Amplifier I Blueprint
-1810	Serpent F.O.F. Light Missile I
-1811	Serpent F.O.F. Light Missile I Blueprint
-1814	Exterminator F.O.F. Light Missile I
-1815	Exterminator F.O.F. Light Missile I Blueprint
-1816	Firefly F.O.F. Light Missile I
-1817	Firefly F.O.F. Light Missile I Blueprint
-1818	Hydra F.O.F. Heavy Missile I
-1819	Hydra F.O.F. Heavy Missile I Blueprint
-1820	Stalker F.O.F. Heavy Missile I
-1821	Stalker F.O.F. Heavy Missile I Blueprint
-1822	Eradicator F.O.F. Heavy Missile I
-1823	Eradicator F.O.F. Heavy Missile I Blueprint
-1824	Hellhound F.O.F. Heavy Missile I
-1825	Hellhound F.O.F. Heavy Missile I Blueprint
-1826	Dragon F.O.F. Cruise Missile I
-1827	Dragon F.O.F. Cruise Missile I Blueprint
-1828	Hunter F.O.F. Cruise Missile I
-1829	Hunter F.O.F. Cruise Missile I Blueprint
-1830	Obliterator F.O.F. Cruise Missile I
-1831	Obliterator F.O.F. Cruise Missile I Blueprint
-1832	Phoenix F.O.F. Cruise Missile I
-1833	Phoenix F.O.F. Cruise Missile I Blueprint
+1804	Basic Explosive Deflection Amplifier
+1808	EM Ward Amplifier I
+1809	EM Ward Amplifier I Blueprint
+1810	Scourge Auto-Targeting Light Missile I
+1811	Scourge Auto-Targeting Light Missile I Blueprint
+1814	Nova Auto-Targeting Light Missile I
+1815	Nova Auto-Targeting Light Missile I Blueprint
+1816	Inferno Auto-Targeting Light Missile I
+1817	Inferno Auto-Targeting Light Missile I Blueprint
+1818	Scourge Auto-Targeting Heavy Missile I
+1819	Scourge Auto-Targeting Heavy Missile I Blueprint
+1820	Mjolnir Auto-Targeting Heavy Missile I
+1821	Mjolnir Auto-Targeting Heavy Missile I Blueprint
+1822	Nova Auto-Targeting Heavy Missile I
+1823	Nova Auto-Targeting Heavy Missile I Blueprint
+1824	Inferno Auto-Targeting Heavy Missile I
+1825	Inferno Auto-Targeting Heavy Missile I Blueprint
+1826	Scourge Auto-Targeting Cruise Missile I
+1827	Scourge Auto-Targeting Cruise Missile I Blueprint
+1828	Mjolnir Auto-Targeting Cruise Missile I
+1829	Mjolnir Auto-Targeting Cruise Missile I Blueprint
+1830	Nova Auto-Targeting Cruise Missile I
+1831	Nova Auto-Targeting Cruise Missile I Blueprint
+1832	Inferno Auto-Targeting Cruise Missile I
+1833	Inferno Auto-Targeting Cruise Missile I Blueprint
 1855	Ship Scanner II
-1875	Assault Missile Launcher I
-1876	Assault Missile Launcher I Blueprint
-1877	Assault Missile Launcher II
+1875	Rapid Light Missile Launcher I
+1876	Rapid Light Missile Launcher I Blueprint
+1877	Rapid Light Missile Launcher II
 1878	Assault Missile Launcher II Blueprint
 1893	Basic Heat Sink
 1944	Bestower
@@ -698,7 +698,7 @@
 2175	Infiltrator II
 2176	Infiltrator II Blueprint
 2178	Guristas Nova Citadel Cruise Missile
-2180	Guristas Trauma Citadel Cruise Missile
+2180	Guristas Scourge Citadel Cruise Missile
 2182	Guristas Inferno Citadel Cruise Missile
 2183	Hammerhead I
 2184	Hammerhead I Blueprint
@@ -723,26 +723,26 @@
 2268	Aqueous Liquids
 2270	Noble Metals
 2272	Heavy Metals
-2281	Invulnerability Field II
+2281	Adaptive Invulnerability Field II
 2282	Invulnerability Field II Blueprint
 2286	Planktic Colonies
 2287	Complex Organisms
 2288	Carbon Compounds
-2289	Explosion Dampening Field I
-2290	Explosion Dampening Field I Blueprint
-2291	Ballistic Deflection Field I
-2292	Ballistic Deflection Field I Blueprint
-2293	Photon Scattering Field I
-2294	Photon Scattering Field I Blueprint
-2295	Heat Dissipation Field I
-2296	Heat Dissipation Field I Blueprint
-2297	Explosion Dampening Field II
+2289	Explosive Deflection Field I
+2290	Explosive Deflection Field I Blueprint
+2291	Kinetic Deflection Field I
+2292	Kinetic Deflection Field I Blueprint
+2293	EM Ward Field I
+2294	EM Ward Field I Blueprint
+2295	Thermic Dissipation Field I
+2296	Thermic Dissipation Field I Blueprint
+2297	Explosive Deflection Field II
 2298	Explosion Dampening Field II Blueprint
-2299	Ballistic Deflection Field II
+2299	Kinetic Deflection Field II
 2300	Ballistic Deflection Field II Blueprint
-2301	Photon Scattering Field II
+2301	EM Ward Field II
 2302	Photon Scattering Field II Blueprint
-2303	Heat Dissipation Field II
+2303	Thermic Dissipation Field II
 2304	Heat Dissipation Field II Blueprint
 2305	Autotrophs
 2306	Non-CS Crystals
@@ -798,12 +798,12 @@
 2400	Toxic Metals
 2401	Chiral Structures
 2403	Advanced Planetology
-2404	Standard Missile Launcher II
+2404	Light Missile Launcher II
 2405	Standard Missile Launcher II Blueprint
 2406	Planetology
 2410	Heavy Missile Launcher II
 2411	Heavy Missile Launcher II Blueprint
-2420	Siege Missile Launcher II
+2420	Torpedo Launcher II
 2421	Siege Missile Launcher II Blueprint
 2436	Wasp II
 2437	Wasp II Blueprint
@@ -844,21 +844,21 @@
 2517	Nova Rocket Blueprint
 2524	Barren Command Center
 2525	Oceanic Command Center
-2529	Explosion Dampening Amplifier I
-2530	Explosion Dampening Amplifier I Blueprint
-2531	Explosion Dampening Amplifier II
+2529	Explosive Deflection Amplifier I
+2530	Explosive Deflection Amplifier I Blueprint
+2531	Explosive Deflection Amplifier II
 2533	Ice Command Center
 2534	Gas Command Center
-2537	Heat Dissipation Amplifier I
-2538	Heat Dissipation Amplifier I Blueprint
-2539	Heat Dissipation Amplifier II
+2537	Thermic Dissipation Amplifier I
+2538	Thermic Dissipation Amplifier I Blueprint
+2539	Thermic Dissipation Amplifier II
 2545	Kinetic Deflection Amplifier I
 2546	Kinetic Deflection Amplifier I Blueprint
 2547	Kinetic Deflection Amplifier II
 2549	Lava Command Center
 2550	Storm Command Center
 2551	Plasma Command Center
-2553	Magnetic Scattering Amplifier II
+2553	EM Ward Amplifier II
 2559	ECM - Phase Inverter II
 2563	ECM - Ion Field Projector II
 2567	ECM - Multispectral Jammer II
@@ -877,11 +877,11 @@
 2605	Nanofiber Internal Structure II
 2613	Mjolnir Fury Light Missile
 2621	Inferno Fury Cruise Missile
-2629	Trauma Fury Heavy Missile
+2629	Scourge Fury Heavy Missile
 2637	Inferno Precision Cruise Missile
 2647	Inferno Precision Light Missile
 2655	Nova Precision Heavy Missile
-2679	Trauma Rage Assault Missile
+2679	Scourge Rage Heavy Assault Missile
 2735	Infrastructure Hub Blueprint
 2736	Warp Disruption Battery Blueprint
 2737	Territorial Claim Unit Blueprint
@@ -1026,10 +1026,10 @@
 3018	Gatling Pulse Laser II Blueprint
 3025	Heavy Beam Laser II
 3026	Heavy Beam Laser II Blueprint
-3033	Medium Beam Laser II
+3033	Small Focused Beam Laser II
 3034	Medium Beam Laser II Blueprint
 3039	Noctis Blueprint
-3041	Medium Pulse Laser II
+3041	Small Focused Pulse Laser II
 3042	Medium Pulse Laser II Blueprint
 3049	Mega Beam Laser II
 3050	Mega Beam Laser II Blueprint
@@ -1039,218 +1039,218 @@
 3066	Tachyon Beam Laser II Blueprint
 3074	150mm Railgun II
 3075	150mm Railgun II Blueprint
-3077	Hardwiring - Zainou 'Gnome' KUA750
-3078	Hardwiring - Zainou 'Gnome' KUA1500
-3079	Hardwiring - Zainou 'Gnome' KUA3000
-3080	Hardwiring - Zainou 'Gnome' KVA750
-3081	Hardwiring - Zainou 'Gnome' KVA1500
+3077	Zainou 'Gnome' Shield Upgrades SU-602
+3078	Zainou 'Gnome' Shield Upgrades SU-604
+3079	Zainou 'Gnome' Shield Upgrades SU-606
+3080	Zainou 'Gnome' Shield Management SM-702
+3081	Zainou 'Gnome' Shield Management SM-704
 3082	250mm Railgun II
 3083	250mm Railgun II Blueprint
-3084	Hardwiring - Zainou 'Gnome' KVA3000
-3085	Hardwiring - Zainou 'Gnome' KXA750
-3086	Hardwiring - Zainou 'Gnome' KXA1500
-3087	Hardwiring - Zainou 'Gnome' KXA3000
-3088	Hardwiring - Zainou 'Gnome' KYA750
-3089	Hardwiring - Zainou 'Gnome' KYA1500
+3084	Zainou 'Gnome' Shield Management SM-706
+3085	Zainou 'Gnome' Shield Emission Systems SE-802
+3086	Zainou 'Gnome' Shield Emission Systems SE-804
+3087	Zainou 'Gnome' Shield Emission Systems SE-806
+3088	Zainou 'Gnome' Shield Operation SP-902
+3089	Zainou 'Gnome' Shield Operation SP-904
 3090	425mm Railgun II
 3091	425mm Railgun II Blueprint
-3092	Hardwiring - Zainou 'Gnome' KYA3000
-3093	Hardwiring - Eifyr and Co. 'Rogue' AY-0.5
-3094	Hardwiring - Eifyr and Co. 'Rogue' AY-1.5
-3095	Hardwiring - Eifyr and Co. 'Rogue' AY-2.5
-3096	Hardwiring - Eifyr and Co. 'Rogue' CY-0.5
-3097	Hardwiring - Eifyr and Co. 'Rogue' CY-1.5
+3092	Zainou 'Gnome' Shield Operation SP-906
+3093	Eifyr and Co. 'Rogue' Evasive Maneuvering EM-702
+3094	Eifyr and Co. 'Rogue' Evasive Maneuvering EM-704
+3095	Eifyr and Co. 'Rogue' Evasive Maneuvering EM-706
+3096	Eifyr and Co. 'Rogue' Navigation NN-602
+3097	Eifyr and Co. 'Rogue' Navigation NN-604
 3098	75mm Gatling Rail II
 3099	75mm Gatling Rail II Blueprint
-3100	Hardwiring - Eifyr and Co. 'Rogue' CY-2.5
-3101	Hardwiring - Eifyr and Co. 'Rogue' DY-0.5
-3102	Hardwiring - Eifyr and Co. 'Rogue' DY-1.5
-3103	Hardwiring - Eifyr and Co. 'Rogue' DY-2.5
-3104	Hardwiring - Eifyr and Co. 'Rogue' EY-0.5
-3105	Hardwiring - Eifyr and Co. 'Rogue' EY-1.5
+3100	Eifyr and Co. 'Rogue' Navigation NN-606
+3101	Eifyr and Co. 'Rogue' Fuel Conservation FC-802
+3102	Eifyr and Co. 'Rogue' Fuel Conservation FC-804
+3103	Eifyr and Co. 'Rogue' Fuel Conservation FC-806
+3104	Eifyr and Co. 'Rogue' Afterburner AB-604
+3105	Eifyr and Co. 'Rogue' Afterburner AB-608
 3106	Dual 150mm Railgun II
 3107	Dual 150mm Railgun II Blueprint
-3108	Hardwiring - Eifyr and Co. 'Rogue' EY-2.5
-3109	Hardwiring - Eifyr and Co. 'Rogue' FY-0.5
-3110	Hardwiring - Eifyr and Co. 'Rogue' FY-1.5
-3111	Hardwiring - Eifyr and Co. 'Rogue' FY-2.5
-3112	Hardwiring - Eifyr and Co. 'Rogue' GY-0.5
-3113	Hardwiring - Eifyr and Co. 'Rogue' GY-1.5
+3108	Eifyr and Co. 'Rogue' Afterburner AB-612
+3109	Eifyr and Co. 'Rogue' Warp Drive Operation WD-604
+3110	Eifyr and Co. 'Rogue' Warp Drive Operation WD-608
+3111	Eifyr and Co. 'Rogue' Warp Drive Operation WD-612
+3112	Eifyr and Co. 'Rogue' High Speed Maneuvering HS-902
+3113	Eifyr and Co. 'Rogue' High Speed Maneuvering HS-904
 3114	Dual 250mm Railgun II
 3115	Dual 250mm Railgun II Blueprint
-3116	Hardwiring - Eifyr and Co. 'Rogue' GY-2.5
-3117	Hardwiring - Eifyr and Co. 'Rogue' HY-0.5
-3118	Hardwiring - Eifyr and Co. 'Rogue' HY-1.5
-3119	Hardwiring - Eifyr and Co. 'Rogue' HY-2.5
-3120	Hardwiring - Eifyr and Co. 'Rogue' MY-0.5
-3121	Hardwiring - Eifyr and Co. 'Rogue' MY-1.5
+3116	Eifyr and Co. 'Rogue' High Speed Maneuvering HS-906
+3117	Eifyr and Co. 'Rogue' Warp Drive Speed WS-608
+3118	Eifyr and Co. 'Rogue' Warp Drive Speed WS-613
+3119	Eifyr and Co. 'Rogue' Warp Drive Speed WS-618
+3120	Eifyr and Co. 'Rogue' Acceleration Control AC-602
+3121	Eifyr and Co. 'Rogue' Acceleration Control AC-604
 3122	Electron Blaster Cannon II
 3123	Electron Blaster Cannon II Blueprint
-3124	Hardwiring - Eifyr and Co. 'Rogue' MY-2.5
-3125	Hardwiring - Zainou 'Deadeye' ZMA11
-3126	Hardwiring - Zainou 'Deadeye' ZMA110
-3127	Hardwiring - Zainou 'Deadeye' ZMA1100
-3128	Hardwiring - Zainou 'Deadeye' ZMC11
-3129	Hardwiring - Zainou 'Deadeye' ZMC110
+3124	Eifyr and Co. 'Rogue' Acceleration Control AC-606
+3125	Zainou 'Deadeye' Guided Missile Precision GP-802
+3126	Zainou 'Deadeye' Guided Missile Precision GP-804
+3127	Zainou 'Deadeye' Guided Missile Precision GP-806
+3128	Zainou 'Deadeye' Missile Bombardment MB-702
+3129	Zainou 'Deadeye' Missile Bombardment MB-704
 3130	Heavy Electron Blaster II
 3131	Heavy Electron Blaster II Blueprint
-3132	Hardwiring - Zainou 'Deadeye' ZMC1100
-3133	Hardwiring - Zainou 'Deadeye' ZML11
-3134	Hardwiring - Zainou 'Deadeye' ZML110
-3135	Hardwiring - Zainou 'Deadeye' ZML1100
-3136	Hardwiring - Zainou 'Deadeye' ZMM11
-3137	Hardwiring - Zainou 'Deadeye' ZMM110
+3132	Zainou 'Deadeye' Missile Bombardment MB-706
+3133	Zainou 'Deadeye' Missile Projection MP-702
+3134	Zainou 'Deadeye' Missile Projection MP-704
+3135	Zainou 'Deadeye' Missile Projection MP-706
+3136	Zainou 'Deadeye' Rapid Launch RL-1002
+3137	Zainou 'Deadeye' Rapid Launch RL-1004
 3138	Heavy Ion Blaster II
 3139	Heavy Ion Blaster II Blueprint
-3140	Hardwiring - Zainou 'Deadeye' ZMM1100
-3141	Hardwiring - Zainou 'Deadeye' ZMS11
-3142	Hardwiring - Zainou 'Deadeye' ZMS110
-3143	Hardwiring - Zainou 'Deadeye' ZMS1100
-3144	Hardwiring - Zainou 'Gnome' KTA11
-3145	Hardwiring - Zainou 'Gnome' KTA110
+3140	Zainou 'Deadeye' Rapid Launch RL-1006
+3141	Zainou 'Deadeye' Target Navigation Prediction TN-902
+3142	Zainou 'Deadeye' Target Navigation Prediction TN-904
+3143	Zainou 'Deadeye' Target Navigation Prediction TN-906
+3144	Zainou 'Gnome' Launcher CPU Efficiency LE-602
+3145	Zainou 'Gnome' Launcher CPU Efficiency LE-604
 3146	Heavy Neutron Blaster II
 3147	Heavy Neutron Blaster II Blueprint
-3148	Hardwiring - Zainou 'Gnome' KTA1100
-3152	Hardwiring - Zainou 'Snapshot' ZMD750
-3153	Hardwiring - Zainou 'Snapshot' ZMD1500
+3148	Zainou 'Gnome' Launcher CPU Efficiency LE-606
+3152	Zainou 'Snapshot' Defender Missiles DM-802
+3153	Zainou 'Snapshot' Defender Missiles DM-804
 3154	Ion Blaster Cannon II
 3155	Ion Blaster Cannon II Blueprint
-3156	Hardwiring - Zainou 'Snapshot' ZMD3000
-3157	Hardwiring - Zainou 'Snapshot' ZME750
-3158	Hardwiring - Zainou 'Snapshot' ZME1500
-3159	Hardwiring - Zainou 'Snapshot' ZME3000
-3160	Hardwiring - Zainou 'Snapshot' ZMF750
-3161	Hardwiring - Zainou 'Snapshot' ZMF1500
+3156	Zainou 'Snapshot' Defender Missiles DM-806
+3157	Zainou 'Snapshot' Assault Missiles AM-702
+3158	Zainou 'Snapshot' Assault Missiles AM-704
+3159	Zainou 'Snapshot' Assault Missiles AM-706
+3160	Zainou 'Snapshot' FOF Explosion Radius FR-1002
+3161	Zainou 'Snapshot' FOF Explosion Radius FR-1004
 3162	Light Electron Blaster II
 3163	Light Electron Blaster II Blueprint
-3164	Hardwiring - Zainou 'Snapshot' ZMF3000
-3165	Hardwiring - Zainou 'Snapshot' ZMH750
-3166	Hardwiring - Zainou 'Snapshot' ZMH1500
-3167	Hardwiring - Zainou 'Snapshot' ZMH3000
-3168	Hardwiring - Zainou 'Snapshot' ZMN750
-3169	Hardwiring - Zainou 'Snapshot' ZMN1500
+3164	Zainou 'Snapshot' FOF Explosion Radius FR-1006
+3165	Zainou 'Snapshot' Heavy Missiles HM-702
+3166	Zainou 'Snapshot' Heavy Missiles HM-704
+3167	Zainou 'Snapshot' Heavy Missiles HM-706
+3168	Zainou 'Snapshot' Light Missiles LM-902
+3169	Zainou 'Snapshot' Light Missiles LM-904
 3170	Light Ion Blaster II
 3171	Light Ion Blaster II Blueprint
-3172	Hardwiring - Zainou 'Snapshot' ZMN3000
-3173	Hardwiring - Zainou 'Snapshot' ZMR750
-3174	Hardwiring - Zainou 'Snapshot' ZMR1500
-3175	Hardwiring - Zainou 'Snapshot' ZMR3000
-3176	Hardwiring - Zainou 'Snapshot' ZMT750
-3177	Hardwiring - Zainou 'Snapshot' ZMT1500
+3172	Zainou 'Snapshot' Light Missiles LM-906
+3173	Zainou 'Snapshot' Rockets RD-902
+3174	Zainou 'Snapshot' Rockets RD-904
+3175	Zainou 'Snapshot' Rockets RD-906
+3176	Zainou 'Snapshot' Torpedoes TD-602
+3177	Zainou 'Snapshot' Torpedoes TD-604
 3178	Light Neutron Blaster II
 3179	Light Neutron Blaster II Blueprint
-3180	Hardwiring - Zainou 'Snapshot' ZMT3000
-3181	Hardwiring - Zainou 'Snapshot' ZMU750
-3182	Hardwiring - Zainou 'Snapshot' ZMU1500
-3183	Hardwiring - Zainou 'Snapshot' ZMU3000
+3180	Zainou 'Snapshot' Torpedoes TD-606
+3181	Zainou 'Snapshot' Cruise Missiles CM-602
+3182	Zainou 'Snapshot' Cruise Missiles CM-604
+3183	Zainou 'Snapshot' Cruise Missiles CM-606
 3184	ORE Industrial
-3185	Hardwiring - Eifyr and Co. 'Gunslinger' MX-0.5
+3185	Eifyr and Co. 'Gunslinger' Medium Projectile Turret MP-802
 3186	Neutron Blaster Cannon II
 3187	Neutron Blaster Cannon II Blueprint
-3188	Hardwiring - Eifyr and Co. 'Gunslinger' MX-1.5
-3189	Hardwiring - Eifyr and Co. 'Gunslinger' MX-2.5
-3190	Hardwiring - Eifyr and Co. 'Gunslinger' AX-0.5
-3191	Hardwiring - Eifyr and Co. 'Gunslinger' AX-1.5
-3192	Hardwiring - Eifyr and Co. 'Gunslinger' AX-2.5
-3193	Hardwiring - Eifyr and Co. 'Gunslinger' CX-0.5
-3194	Hardwiring - Eifyr and Co. 'Gunslinger' CX-1.5
-3195	Hardwiring - Eifyr and Co. 'Gunslinger' CX-2.5
-3196	Hardwiring - Eifyr and Co. 'Gunslinger' LX-0.5
-3197	Hardwiring - Eifyr and Co. 'Gunslinger' LX-1.5
-3198	Hardwiring - Eifyr and Co. 'Gunslinger' LX-2.5
-3199	Hardwiring - Eifyr and Co. 'Gunslinger' SX-0.5
-3200	Hardwiring - Eifyr and Co. 'Gunslinger' SX-1.5
-3201	Hardwiring - Eifyr and Co. 'Gunslinger' SX-2.5
-3202	Hardwiring - Inherent Implants 'Lancer' G0.5-Alpha
-3203	Hardwiring - Inherent Implants 'Lancer' G0.5-Beta
-3204	Hardwiring - Inherent Implants 'Lancer' G0.5-Delta
-3205	Hardwiring - Inherent Implants 'Lancer' G0.5-Epsilon
-3206	Hardwiring - Inherent Implants 'Lancer' G0.5-Gamma
-3207	Hardwiring - Inherent Implants 'Lancer' G1.5-Alpha
-3208	Hardwiring - Inherent Implants 'Lancer' G1.5-Beta
-3209	Hardwiring - Inherent Implants 'Lancer' G1.5-Delta
-3210	Hardwiring - Inherent Implants 'Lancer' G1.5-Epsilon
-3211	Hardwiring - Inherent Implants 'Lancer' G1.5-Gamma
-3212	Hardwiring - Inherent Implants 'Lancer' G2.5-Alpha
-3213	Hardwiring - Inherent Implants 'Lancer' G2.5-Beta
-3214	Hardwiring - Inherent Implants 'Lancer' G2.5-Delta
-3215	Hardwiring - Inherent Implants 'Lancer' G2.5-Epsilon
-3216	Hardwiring - Inherent Implants 'Lancer' G2.5-Gamma
-3217	Hardwiring - Zainou 'Deadeye' ZGA11
+3188	Eifyr and Co. 'Gunslinger' Medium Projectile Turret MP-804
+3189	Eifyr and Co. 'Gunslinger' Medium Projectile Turret MP-806
+3190	Eifyr and Co. 'Gunslinger' Motion Prediction MR-702
+3191	Eifyr and Co. 'Gunslinger' Motion Prediction MR-704
+3192	Eifyr and Co. 'Gunslinger' Motion Prediction MR-706
+3193	Eifyr and Co. 'Gunslinger' Surgical Strike SS-902
+3194	Eifyr and Co. 'Gunslinger' Surgical Strike SS-904
+3195	Eifyr and Co. 'Gunslinger' Surgical Strike SS-906
+3196	Eifyr and Co. 'Gunslinger' Large Projectile Turret LP-1002
+3197	Eifyr and Co. 'Gunslinger' Large Projectile Turret LP-1004
+3198	Eifyr and Co. 'Gunslinger' Large Projectile Turret LP-1006
+3199	Eifyr and Co. 'Gunslinger' Small Projectile Turret SP-602
+3200	Eifyr and Co. 'Gunslinger' Small Projectile Turret SP-604
+3201	Eifyr and Co. 'Gunslinger' Small Projectile Turret SP-606
+3202	Inherent Implants 'Lancer' Small Energy Turret SE-602
+3203	Inherent Implants 'Lancer' Controlled Bursts CB-702
+3204	Inherent Implants 'Lancer' Gunnery RF-902
+3205	Inherent Implants 'Lancer' Large Energy Turret LE-1002
+3206	Inherent Implants 'Lancer' Medium Energy Turret ME-802
+3207	Inherent Implants 'Lancer' Small Energy Turret SE-604
+3208	Inherent Implants 'Lancer' Controlled Bursts CB-704
+3209	Inherent Implants 'Lancer' Gunnery RF-904
+3210	Inherent Implants 'Lancer' Large Energy Turret LE-1004
+3211	Inherent Implants 'Lancer' Medium Energy Turret ME-804
+3212	Inherent Implants 'Lancer' Small Energy Turret SE-606
+3213	Inherent Implants 'Lancer' Controlled Bursts CB-706
+3214	Inherent Implants 'Lancer' Gunnery RF-906
+3215	Inherent Implants 'Lancer' Large Energy Turret LE-1006
+3216	Inherent Implants 'Lancer' Medium Energy Turret ME-806
+3217	Zainou 'Deadeye' Sharpshooter ST-902
 3218	Harvester Mining Drone
-3220	Hardwiring - Zainou 'Deadeye' ZGC110
-3221	Hardwiring - Zainou 'Deadeye' ZGC1100
-3222	Hardwiring - Zainou 'Deadeye' ZGL11
-3223	Hardwiring - Zainou 'Deadeye' ZGL110
-3224	Hardwiring - Zainou 'Deadeye' ZGL1100
-3225	Hardwiring - Zainou 'Deadeye' ZGS11
-3226	Hardwiring - Zainou 'Deadeye' ZGS110
-3227	Hardwiring - Zainou 'Deadeye' ZGS1100
-3228	Hardwiring - Zainou 'Gnome' KZA750
-3229	Hardwiring - Zainou 'Gnome' KZA1500
-3230	Hardwiring - Zainou 'Gnome' KZA3000
-3231	Hardwiring - Zainou 'Deadeye' ZGM11
-3232	Hardwiring - Zainou 'Deadeye' ZGM110
-3233	Hardwiring - Zainou 'Deadeye' ZGM1100
-3234	Hardwiring - Zainou 'Deadeye' ZGA110
-3235	Hardwiring - Zainou 'Deadeye' ZGA1100
-3236	Hardwiring - Zainou 'Deadeye' ZGC11
-3237	Hardwiring - Inherent Implants 'Squire' CC3
-3238	Hardwiring - Inherent Implants 'Squire' CC6
-3239	Hardwiring - Inherent Implants 'Squire' CC10
-3240	Hardwiring - Inherent Implants 'Squire' CR3
-3241	Hardwiring - Inherent Implants 'Squire' CR6
+3220	Zainou 'Deadeye' Trajectory Analysis TA-704
+3221	Zainou 'Deadeye' Trajectory Analysis TA-706
+3222	Zainou 'Deadeye' Large Hybrid Turret LH-1002
+3223	Zainou 'Deadeye' Large Hybrid Turret LH-1004
+3224	Zainou 'Deadeye' Large Hybrid Turret LH-1006
+3225	Zainou 'Deadeye' Small Hybrid Turret SH-602
+3226	Zainou 'Deadeye' Small Hybrid Turret SH-604
+3227	Zainou 'Deadeye' Small Hybrid Turret SH-606
+3228	Zainou 'Gnome' Weapon Upgrades WU-1002
+3229	Zainou 'Gnome' Weapon Upgrades WU-1004
+3230	Zainou 'Gnome' Weapon Upgrades WU-1006
+3231	Zainou 'Deadeye' Medium Hybrid Turret MH-802
+3232	Zainou 'Deadeye' Medium Hybrid Turret MH-804
+3233	Zainou 'Deadeye' Medium Hybrid Turret MH-806
+3234	Zainou 'Deadeye' Sharpshooter ST-904
+3235	Zainou 'Deadeye' Sharpshooter ST-906
+3236	Zainou 'Deadeye' Trajectory Analysis TA-702
+3237	Inherent Implants 'Squire' Energy Management EM-802
+3238	Inherent Implants 'Squire' Energy Management EM-804
+3239	Inherent Implants 'Squire' Energy Management EM-806
+3240	Inherent Implants 'Squire' Energy Systems Operation EO-602
+3241	Inherent Implants 'Squire' Energy Systems Operation EO-604
 3242	Warp Disruptor I
 3243	Warp Disruptor I Blueprint
 3244	Warp Disruptor II
-3246	Hardwiring - Inherent Implants 'Squire' CR10
-3247	Hardwiring - Inherent Implants 'Squire' EE3
-3248	Hardwiring - Inherent Implants 'Squire' EE6
-3249	Hardwiring - Inherent Implants 'Squire' EE10
-3250	Hardwiring - Inherent Implants 'Squire' EP3
-3251	Hardwiring - Inherent Implants 'Squire' EP6
-3252	Hardwiring - Inherent Implants 'Squire' EP10
-3253	Hardwiring - Inherent Implants 'Squire' GU3
-3254	Hardwiring - Inherent Implants 'Squire' GU6
-3255	Hardwiring - Inherent Implants 'Squire' GU10
-3256	Hardwiring - Inherent Implants 'Squire' PG3
-3257	Hardwiring - Inherent Implants 'Squire' PG6
-3258	Hardwiring - Inherent Implants 'Squire' PG10
-3262	Hardwiring - Zainou 'Gypsy' KLB-38
-3263	Hardwiring - Zainou 'Gypsy' KLB-63
-3264	Hardwiring - Zainou 'Gypsy' KLB-88
-3265	Hardwiring - Zainou 'Gypsy' KMB-38
-3266	Hardwiring - Zainou 'Gypsy' KMB-63
-3267	Hardwiring - Zainou 'Gypsy' KMB-88
-3268	Hardwiring - Zainou 'Gypsy' KNB-38
-3269	Hardwiring - Zainou 'Gypsy' KNB-63
-3270	Hardwiring - Zainou 'Gypsy' KNB-88
-3271	Hardwiring - Zainou 'Gypsy' KOB-38
-3272	Hardwiring - Zainou 'Gypsy' KOB-63
-3273	Hardwiring - Zainou 'Gypsy' KOB-88
-3274	Hardwiring - Zainou 'Gypsy' KPB-38
-3275	Hardwiring - Zainou 'Gypsy' KPB-63
-3276	Hardwiring - Zainou 'Gypsy' KPB-88
-3277	Hardwiring - Zainou 'Gypsy' KQB-38
-3278	Hardwiring - Zainou 'Gypsy' KQB-63
-3279	Hardwiring - Zainou 'Gypsy' KQB-88
-3280	Hardwiring - Zainou 'Gypsy' KRB-38
-3281	Hardwiring - Zainou 'Gypsy' KRB-63
-3282	Hardwiring - Zainou 'Gypsy' KRB-88
-3283	Hardwiring - Zainou 'Gypsy' KSB-38
-3284	Hardwiring - Zainou 'Gypsy' KSB-63
+3246	Inherent Implants 'Squire' Energy Systems Operation EO-606
+3247	Inherent Implants 'Squire' Energy Emission Systems ES-702
+3248	Inherent Implants 'Squire' Energy Emission Systems ES-704
+3249	Inherent Implants 'Squire' Energy Emission Systems ES-706
+3250	Inherent Implants 'Squire' Energy Pulse Weapons EP-702
+3251	Inherent Implants 'Squire' Energy Pulse Weapons EP-704
+3252	Inherent Implants 'Squire' Energy Pulse Weapons EP-706
+3253	Inherent Implants 'Squire' Energy Grid Upgrades EU-702
+3254	Inherent Implants 'Squire' Energy Grid Upgrades EU-704
+3255	Inherent Implants 'Squire' Energy Grid Upgrades EU-706
+3256	Inherent Implants 'Squire' Engineering EG-602
+3257	Inherent Implants 'Squire' Engineering EG-604
+3258	Inherent Implants 'Squire' Engineering EG-606
+3262	Zainou 'Gypsy' Electronics Upgrades EU-602
+3263	Zainou 'Gypsy' Electronics Upgrades EU-604
+3264	Zainou 'Gypsy' Electronics Upgrades EU-606
+3265	Zainou 'Gypsy' Electronics EE-602
+3266	Zainou 'Gypsy' Electronics EE-604
+3267	Zainou 'Gypsy' Electronics EE-606
+3268	Zainou 'Gypsy' Signature Analysis SA-702
+3269	Zainou 'Gypsy' Signature Analysis SA-704
+3270	Zainou 'Gypsy' Signature Analysis SA-706
+3271	Zainou 'Gypsy' Electronic Warfare EW-902
+3272	Zainou 'Gypsy' Electronic Warfare EW-904
+3273	Zainou 'Gypsy' Electronic Warfare EW-906
+3274	Zainou 'Gypsy' Long Range Targeting LT-802
+3275	Zainou 'Gypsy' Long Range Targeting LT-804
+3276	Zainou 'Gypsy' Long Range Targeting LT-806
+3277	Zainou 'Gypsy' Propulsion Jamming PJ-802
+3278	Zainou 'Gypsy' Propulsion Jamming PJ-804
+3279	Zainou 'Gypsy' Propulsion Jamming PJ-806
+3280	Zainou 'Gypsy' Sensor Linking SL-902
+3281	Zainou 'Gypsy' Sensor Linking SL-904
+3282	Zainou 'Gypsy' Sensor Linking SL-906
+3283	Zainou 'Gypsy' Weapon Disruption WD-902
+3284	Zainou 'Gypsy' Weapon Disruption WD-904
 3285	Quad Light Beam Laser II
 3286	Quad Light Beam Laser II Blueprint
-3287	Hardwiring - Zainou 'Gypsy' KSB-88
-3288	Hardwiring - Zainou 'Gypsy' KTB-38
-3289	Hardwiring - Zainou 'Gypsy' KTB-63
-3290	Hardwiring - Zainou 'Gypsy' KTB-88
-3291	Hardwiring - Inherent Implants 'Noble' ZET11
-3292	Hardwiring - Inherent Implants 'Noble' ZET110
+3287	Zainou 'Gypsy' Weapon Disruption WD-906
+3288	Zainou 'Gypsy' Target Painting TG-902
+3289	Zainou 'Gypsy' Target Painting TG-904
+3290	Zainou 'Gypsy' Target Painting TG-906
+3291	Inherent Implants 'Noble' Repair Systems RS-602
+3292	Inherent Implants 'Noble' Repair Systems RS-604
 3293	Medium Standard Container
 3296	Large Standard Container
 3297	Small Standard Container
-3299	Hardwiring - Inherent Implants 'Noble' ZET1100
+3299	Inherent Implants 'Noble' Repair Systems RS-606
 3300	Gunnery
 3301	Small Hybrid Turret
 3302	Small Projectile Turret
@@ -1270,8 +1270,8 @@
 3318	Weapon Upgrades
 3319	Missile Launcher Operation
 3320	Rockets
-3321	Standard Missiles
-3322	FoF Missiles
+3321	Light Missiles
+3322	Auto-Targeting Missiles
 3323	Defender Missiles
 3324	Heavy Missiles
 3325	Torpedoes
@@ -1311,7 +1311,7 @@
 3361	Criminal Connections
 3362	DED Connections
 3363	Corporation Management
-3368	Ethnic Relations
+3368	Diplomatic Relations
 3373	Starbase Defense Management
 3380	Industry
 3385	Refining
@@ -1337,8 +1337,8 @@
 3411	Cybernetics
 3412	Astrometrics
 3413	Engineering
-3414	Hardwiring - Inherent Implants 'Noble' ZET22
-3415	Hardwiring - Inherent Implants 'Noble' ZET220
+3414	Inherent Implants 'Noble' Remote Armor Repair Systems RA-702
+3415	Inherent Implants 'Noble' Remote Armor Repair Systems RA-704
 3416	Shield Operation
 3417	Energy Systems Operation
 3418	Energy Management
@@ -1381,17 +1381,17 @@
 3466	Medium Secure Container
 3467	Small Secure Container
 3469	Basic Co-Processor
-3470	Hardwiring - Inherent Implants 'Noble' ZET2200
-3471	Hardwiring - Inherent Implants 'Noble' ZET33
-3474	Hardwiring - Inherent Implants 'Noble' ZET330
-3475	Hardwiring - Inherent Implants 'Noble' ZET3300
-3476	Hardwiring - Inherent Implants 'Noble' ZET44
-3477	Hardwiring - Inherent Implants 'Noble' ZET440
-3478	Hardwiring - Inherent Implants 'Noble' ZET4400
-3479	Hardwiring - Inherent Implants 'Noble' ZET55
+3470	Inherent Implants 'Noble' Remote Armor Repair Systems RA-706
+3471	Inherent Implants 'Noble' Mechanic MC-802
+3474	Inherent Implants 'Noble' Mechanic MC-804
+3475	Inherent Implants 'Noble' Mechanic MC-806
+3476	Inherent Implants 'Noble' Repair Proficiency RP-902
+3477	Inherent Implants 'Noble' Repair Proficiency RP-904
+3478	Inherent Implants 'Noble' Repair Proficiency RP-906
+3479	Inherent Implants 'Noble' Hull Upgrades HG-1002
 3480	Micro Capacitor Battery II
-3481	Hardwiring - Inherent Implants 'Noble' ZET550
-3482	Hardwiring - Inherent Implants 'Noble' ZET5500
+3481	Inherent Implants 'Noble' Hull Upgrades HG-1004
+3482	Inherent Implants 'Noble' Hull Upgrades HG-1006
 3488	Small Capacitor Battery II
 3496	Medium Capacitor Battery II
 3504	Large Capacitor Battery II
@@ -1540,7 +1540,7 @@
 3954	Medium EMP Smartbomb I Blueprint
 3955	Medium EMP Smartbomb II
 3956	Medium EMP Smartbomb II Blueprint
-3958	GDN-9 Nightstalker Combat Goggles
+3958	GDN-9 "Nightstalker" Combat Goggles
 3962	Customs Office Gantry
 3966	Men's 'Precision' Boots
 3975	Women's 'Structure' Dress (navy)
@@ -1706,17 +1706,17 @@
 4177	Men's 'Trench' Boots (brown)
 4178	Men's 'Trench' Boots (gray)
 4179	Men's 'Trench' Boots (tan)
-4180	Men’s 'Form' Shirt (black)
-4181	Men’s 'Form' Shirt (blue)
-4182	Men’s 'Form' Shirt (brown)
-4183	Men’s 'Form' Shirt (dark blue)
-4184	Men’s 'Form' Shirt (dark red)
-4185	Men’s 'Form' Shirt (khaki)
-4186	Men’s 'Form' Shirt (light gray)
-4187	Men’s 'Form' Shirt (olive)
-4188	Men’s 'Form' Shirt (dark camo)
-4189	Men’s 'Form' Shirt (desert camo)
-4190	Men’s 'Form' Shirt (white)
+4180	Men's 'Form' Shirt (black)
+4181	Men's 'Form' Shirt (blue)
+4182	Men's 'Form' Shirt (brown)
+4183	Men's 'Form' Shirt (dark blue)
+4184	Men's 'Form' Shirt (dark red)
+4185	Men's 'Form' Shirt (khaki)
+4186	Men's 'Form' Shirt (light gray)
+4187	Men's 'Form' Shirt (olive)
+4188	Men's 'Form' Shirt (dark camo)
+4189	Men's 'Form' Shirt (desert camo)
+4190	Men's 'Form' Shirt (white)
 4191	Men's 'Street' Shirt (black)
 4192	Men's 'Street' Shirt (blue)
 4193	Men's 'Street' Shirt (brown)
@@ -1742,23 +1742,23 @@
 4213	Women's 'Function' Shirt (desert camo)
 4214	Women's 'Function' Shirt (red)
 4215	Women's 'Function' Shirt (white)
-4216	Women’s 'Avenue' Shirt (black)
-4217	Women’s 'Avenue' Shirt (black leather)
-4218	Women’s 'Avenue' Shirt (blue)
-4219	Women’s 'Avenue' Shirt (brown)
-4220	Women’s 'Avenue' Shirt (gray)
-4221	Women’s 'Avenue' Shirt (green)
-4222	Women’s 'Avenue' Shirt (orange)
-4223	Women’s 'Avenue' Shirt (gray camo)
-4224	Women’s 'Avenue' Shirt (orange camo)
-4225	Women’s 'Avenue' Shirt (red patterned)
-4226	Women’s 'Avenue' Shirt (camo)
-4227	Women’s 'Avenue' Shirt (lined brown)
-4228	Women’s 'Avenue' Shirt (purple mesh)
-4229	Women’s 'Avenue' Shirt (black and dark red)
-4230	Women’s 'Avenue' Shirt (pink camo)
-4231	Women’s 'Avenue' Shirt (red)
-4232	Women’s 'Avenue' Shirt (white)
+4216	Women's 'Avenue' Shirt (black)
+4217	Women's 'Avenue' Shirt (black leather)
+4218	Women's 'Avenue' Shirt (blue)
+4219	Women's 'Avenue' Shirt (brown)
+4220	Women's 'Avenue' Shirt (gray)
+4221	Women's 'Avenue' Shirt (green)
+4222	Women's 'Avenue' Shirt (orange)
+4223	Women's 'Avenue' Shirt (gray camo)
+4224	Women's 'Avenue' Shirt (orange camo)
+4225	Women's 'Avenue' Shirt (red patterned)
+4226	Women's 'Avenue' Shirt (camo)
+4227	Women's 'Avenue' Shirt (lined brown)
+4228	Women's 'Avenue' Shirt (purple mesh)
+4229	Women's 'Avenue' Shirt (black and dark red)
+4230	Women's 'Avenue' Shirt (pink camo)
+4231	Women's 'Avenue' Shirt (red)
+4232	Women's 'Avenue' Shirt (white)
 4233	Men's 'Esquire' Coat (black)
 4234	Men's 'Esquire' Coat (green/gold)
 4235	Men's 'Esquire' Coat (matte graphite)
@@ -1771,7 +1771,7 @@
 4242	Men's 'Sterling' Dress Shirt (red/black leather)
 4243	Men's 'Sterling' Dress Shirt (white/blue)
 4244	Men's 'Field Marshal' Coat (green)
-4245	Men's 'Field Marshal' Coat (silver)
+4245	'Silvershore' Greatcoat
 4246	Minmatar Fuel Block
 4247	Amarr Fuel Block
 4248	Warp Disruption Field Generator II
@@ -1997,11 +1997,11 @@
 5931	Cross-Lateral Gyrostabilizer I
 5933	Counterbalanced Weapon Mounts I
 5935	F-M3 Munition Inertial Suspensor
-5945	Prototype 100MN MicroWarpdrive I
+5945	Prototype 100MN Microwarpdrive I
 5955	Experimental 100MN Afterburner I
 5971	Upgraded 1MN Microwarpdrive I
-5973	Limited 1MN MicroWarpdrive I
-5975	Experimental 10MN MicroWarpdrive I
+5973	Limited 1MN Microwarpdrive I
+5975	Experimental 10MN Microwarpdrive I
 6001	Limited 1MN Afterburner I
 6003	Experimental 1MN Afterburner I
 6005	Experimental 10MN Afterburner I
@@ -2086,14 +2086,14 @@
 6633	Dual Afocal Light Maser I
 6635	Dual Modulated Light Energy Beam I
 6637	Dual Anode Light Particle Stream I
-6671	Medium Modal Pulse Laser I
-6673	Medium Afocal Pulse Maser I
-6675	Medium Modulated Pulse Energy Beam I
-6677	Medium Anode Pulse Particle Stream I
-6715	Medium Modal Laser I
-6717	Medium Afocal Maser I
-6719	Medium Modulated Energy Beam I
-6721	Medium Anode Particle Stream I
+6671	Small Focused Modal Pulse Laser I
+6673	Small Focused Afocal Pulse Maser I
+6675	Small Focused Modulated Pulse Energy Beam I
+6677	Small Focused Anode Pulse Particle Stream I
+6715	Small Focused Modal Laser I
+6717	Small Focused Afocal Maser I
+6719	Small Focused Modulated Energy Beam I
+6721	Small Focused Anode Particle Stream I
 6757	Quad Modal Light Laser I
 6759	Quad Afocal Light Maser I
 6761	Quad Modulated Light Energy Beam I
@@ -2218,22 +2218,22 @@
 7965	Omni Positional ECCM Sensor System I
 7966	Ladar Positional ECCM Sensor System I
 7970	Magnetometric Positional ECCM Sensor System I
-7993	TE-2100 Standard Missile Bay
+7993	Experimental TE-2100 Light Missile Launcher
 7997	XR-3200 Heavy Missile Bay
-8001	ZW-4100 Siege Missile Bay
-8007	SV-2000 Assault Missile Bay
-8023	'Malkuth' Assault Missile Launcher I
-8025	Compact 'Limos' Assault Missile Bay I
-8027	'Arbalest' Assault Missile Launcher
-8089	'Malkuth' Standard Missile Launcher I
-8091	Upgraded 'Limos' Standard Missile Bay I
-8093	'Arbalest' Standard Missile Launcher
+8001	Experimental ZW-4100 Torpedo Launcher
+8007	Experimental SV-2000 Rapid Light Missile Launcher
+8023	Upgraded 'Malkuth' Rapid Light Missile Launcher
+8025	Limited 'Limos' Rapid Light Missile Launcher
+8027	Prototype 'Arbalest' Rapid Light Missile Launcher
+8089	Upgraded 'Malkuth' Light Missile Launcher
+8091	Limited 'Limos' Light Missile Launcher
+8093	Prototype 'Arbalest' Light Missile Launcher
 8101	'Malkuth' Heavy Missile Launcher I
 8103	Advanced 'Limos' Heavy Missile Bay I
 8105	'Arbalest' Heavy Missile Launcher
-8113	'Malkuth' Siege Missile Launcher I
-8115	Shock 'Limos' Siege Missile Bay I
-8117	'Arbalest' Siege Missile Launcher
+8113	Upgraded 'Malkuth' Torpedo Launcher
+8115	Limited 'Limos' Torpedo Launcher
+8117	Prototype 'Arbalest' Torpedo Launcher
 8131	Local Power Plant Manager: Capacitor Flux I
 8133	Beta Reactor Control: Capacitor Flux I
 8135	Type-D Power Core Modification: Capacitor Flux
@@ -2388,19 +2388,19 @@
 9520	'Penumbra' White Noise ECM
 9521	Initiated Multispectral ECM I
 9522	Faint Phase Inversion ECM I
-9556	F-S8 Relativistic Deflection Shield Induction I
-9562	Azeotropic EM Ward Salubrity
-9566	Supplemental Thermal Barrier Emitter
-9568	Additional Thermal Barrier Emitter I
-9570	F-S9 Regolith Deflection Shield Induction
-9574	Subordinate Ballistic Screen Stabilizer
-9580	Viscoelastic EM Ward Salubrity I
-9582	Ancillary Ballistic Screen Stabilizer I
-9608	Non-Inertial Ballistic Screen Augmentation I
-9622	'Anointed' EM Ward Reinforcement
-9632	V-M15 Braced Multispectral Shield Matrix
-9646	F-S15 Braced Deflection Shield Matrix
-9660	Ditrigonal Thermal Barrier Crystallization I
+9556	Upgraded Explosive Deflection Amplifier I
+9562	Supplemental EM Ward Amplifier
+9566	Supplemental Thermic Dissipation Amplifier
+9568	Upgraded Thermic Dissipation Amplifier I
+9570	Supplemental Kinetic Deflection Amplifier
+9574	Supplemental Explosive Deflection Amplifier
+9580	Upgraded EM Ward Amplifier I
+9582	Upgraded Kinetic Deflection Amplifier I
+9608	Limited Kinetic Deflection Field I
+9622	Limited 'Anointed' EM Ward Field
+9632	Limited Adaptive Invulnerability Field I
+9646	Limited Explosive Deflection Field I
+9660	Limited Thermic Dissipation Field I
 9668	Large Rudimentary Concussion Bomb I
 9670	Small Rudimentary Concussion Bomb I
 9678	Large 'Vehemence' Shockwave Charge
@@ -2440,9 +2440,9 @@
 9947	Standard Crash Booster
 9950	Standard Blue Pill Booster
 9956	Social Adaptation Chip - Basic
-9957	Hardwiring - Eifyr and Co. 'Gunslinger' AX-1
-10039	Civilian Shield Booster I
-10040	Civilian Shield Booster I Blueprint
+9957	Eifyr and Co. 'Gunslinger' Motion Prediction MR-703
+10039	Civilian Shield Booster
+10040	Civilian Shield Booster Blueprint
 10151	Improved Crash Booster
 10152	Strong Crash Booster
 10155	Improved Blue Pill Booster
@@ -2453,7 +2453,7 @@
 10188	Basic Magnetic Field Stabilizer
 10190	Magnetic Field Stabilizer II
 10191	Magnetic Field Stabilizer II Blueprint
-10204	Hardwiring - Zainou 'Deadeye' ZGA100
+10204	Zainou 'Deadeye' Sharpshooter ST-903
 10208	Memory Augmentation - Standard
 10209	Memory Augmentation - Improved
 10212	Neural Boost - Standard
@@ -2464,8 +2464,8 @@
 10222	Cybernetic Subprocessor - Improved
 10225	Social Adaptation Chip - Standard
 10226	Social Adaptation Chip - Improved
-10228	Hardwiring - Zainou 'Gnome' KVA1000
-10244	Hardwiring - Zainou 'Gypsy' KNB-50
+10228	Zainou 'Gnome' Shield Management SM-703
+10244	Zainou 'Gypsy' Signature Analysis SA-703
 10246	Mining Drone I
 10247	Mining Drone I Blueprint
 10250	Mining Drone II
@@ -2555,38 +2555,38 @@
 11202	Ares
 11203	Ares Blueprint
 11207	Advanced Weapon Upgrades
-11215	Energized Basic Reflective Plating
-11216	Energized Basic Reflective Plating Blueprint
-11217	Energized Reflective Membrane I
-11218	Energized Reflective Membrane I Blueprint
-11219	Energized Reflective Membrane II
+11215	Basic Energized EM Membrane
+11216	Basic Energized EM Membrane Blueprint
+11217	Energized EM Membrane I
+11218	Energized EM Membrane I Blueprint
+11219	Energized EM Membrane II
 11220	Energized Reflective Membrane II Blueprint
-11225	Energized Basic Reactive Plating
-11226	Energized Basic Reactive Plating Blueprint
-11227	Energized Reactive Membrane I
-11228	Energized Reactive Membrane I Blueprint
-11229	Energized Reactive Membrane II
+11225	Basic Energized Explosive Membrane
+11226	Basic Energized Explosive Membrane Blueprint
+11227	Energized Explosive Membrane I
+11228	Energized Explosive Membrane I Blueprint
+11229	Energized Explosive Membrane II
 11230	Energized Reactive Membrane II Blueprint
-11235	Energized Basic Regenerative Plating
-11236	Energized Basic Regenerative Plating Blueprint
-11237	Energized Regenerative Membrane I
-11238	Energized Regenerative Membrane I Blueprint
-11239	Energized Regenerative Membrane II
+11235	Basic Energized Armor Layering Membrane
+11236	Basic Energized Armor Layering Membrane Blueprint
+11237	Energized Armor Layering Membrane I
+11238	Energized Armor Layering Membrane I Blueprint
+11239	Energized Armor Layering Membrane II
 11240	Energized Regenerative Membrane II Blueprint
-11245	Energized Basic Magnetic Plating
-11246	Energized Basic Magnetic Plating Blueprint
-11247	Energized Magnetic Membrane I
-11248	Energized Magnetic Membrane I Blueprint
-11249	Energized Magnetic Membrane II
+11245	Basic Energized Kinetic Membrane
+11246	Basic Energized Kinetic Membrane Blueprint
+11247	Energized Kinetic Membrane I
+11248	Energized Kinetic Membrane I Blueprint
+11249	Energized Kinetic Membrane II
 11250	Energized Magnetic Membrane II Blueprint
-11255	Energized Basic Thermic Plating
-11256	Energized Basic Thermic Plating Blueprint
+11255	Basic Energized Thermic Membrane
+11256	Basic Energized Thermic Membrane Blueprint
 11257	Energized Thermic Membrane I
 11258	Energized Thermic Membrane I Blueprint
 11259	Energized Thermic Membrane II
 11260	Energized Thermic Membrane II Blueprint
-11265	Energized Basic Adaptive Nano Plating
-11266	Energized Basic Adaptive Nano Plating Blueprint
+11265	Basic Energized Adaptive Nano Membrane
+11266	Basic Energized Adaptive Nano Membrane Blueprint
 11267	Energized Adaptive Nano Membrane I
 11268	Energized Adaptive Nano Membrane I Blueprint
 11269	Energized Adaptive Nano Membrane II
@@ -2902,10 +2902,10 @@
 12044	Enyo
 12045	Enyo Blueprint
 12049	Slaver
-12052	10MN MicroWarpdrive I
-12053	10MN MicroWarpdrive I Blueprint
-12054	100MN MicroWarpdrive I
-12055	100MN MicroWarpdrive I Blueprint
+12052	10MN Microwarpdrive I
+12053	10MN Microwarpdrive I Blueprint
+12054	100MN Microwarpdrive I
+12055	100MN Microwarpdrive I Blueprint
 12056	10MN Afterburner I
 12057	10MN Afterburner I Blueprint
 12058	10MN Afterburner II
@@ -2914,8 +2914,8 @@
 12067	100MN Afterburner I Blueprint
 12068	100MN Afterburner II
 12069	100MN Afterburner II Blueprint
-12076	10MN MicroWarpdrive II
-12084	100MN MicroWarpdrive II
+12076	10MN Microwarpdrive II
+12084	100MN Microwarpdrive II
 12092	Interceptors
 12093	Covert Ops
 12095	Assault Ships
@@ -3104,57 +3104,57 @@
 13001	Small Nosferatu II
 13003	Small Energy Neutralizer II
 13119	Mjolnir Javelin Rocket
-13166	Hardwiring - Inherent Implants 'Lancer' G1-Delta
+13166	Inherent Implants 'Lancer' Gunnery RF-903
 13209	Armored Warfare Mindlink
-13216	Hardwiring - Zainou 'Gypsy' KMB-50
-13217	Hardwiring - Inherent Implants 'Lancer' G1-Epsilon
-13218	Hardwiring - Zainou 'Deadeye' ZGL100
-13219	Hardwiring - Eifyr and Co. 'Gunslinger' LX-1
-13220	Hardwiring - Inherent Implants 'Lancer' G1-Gamma
-13221	Hardwiring - Zainou 'Deadeye' ZGM100
-13222	Hardwiring - Eifyr and Co. 'Gunslinger' MX-1
-13223	Hardwiring - Inherent Implants 'Lancer' G1-Alpha
-13224	Hardwiring - Zainou 'Deadeye' ZGS100
-13225	Hardwiring - Eifyr and Co. 'Gunslinger' SX-1
-13226	Hardwiring - Zainou 'Snapshot' ZMU1000
-13227	Hardwiring - Zainou 'Snapshot' ZMD1000
-13228	Hardwiring - Zainou 'Snapshot' ZMF1000
-13229	Hardwiring - Zainou 'Snapshot' ZMH1000
-13230	Hardwiring - Zainou 'Snapshot' ZMR1000
-13231	Hardwiring - Zainou 'Snapshot' ZMT1000
-13232	Hardwiring - Zainou 'Gypsy' KOB-50
-13233	Hardwiring - Zainou 'Gypsy' KPB-50
-13234	Hardwiring - Zainou 'Gypsy' KQB-50
-13235	Hardwiring - Zainou 'Gypsy' KRB-50
-13236	Hardwiring - Zainou 'Gypsy' KSB-50
-13237	Hardwiring - Eifyr and Co. 'Rogue' CY-1
-13238	Hardwiring - Eifyr and Co. 'Rogue' DY-1
-13239	Hardwiring - Eifyr and Co. 'Rogue' EY-1
-13240	Hardwiring - Eifyr and Co. 'Rogue' AY-1
-13241	Hardwiring - Eifyr and Co. 'Rogue' FY-1
-13242	Hardwiring - Eifyr and Co. 'Rogue' HY-1
-13243	Hardwiring - Eifyr and Co. 'Rogue' GY-1
-13244	Hardwiring - Eifyr and Co. 'Gunslinger' CX-1
-13245	Hardwiring - Zainou 'Deadeye' ZGC100
-13246	Hardwiring - Inherent Implants 'Lancer' G1-Beta
-13247	Hardwiring - Zainou 'Deadeye' ZMC100
-13248	Hardwiring - Zainou 'Deadeye' ZML100
-13249	Hardwiring - Zainou 'Deadeye' ZMM100
-13250	Hardwiring - Zainou 'Deadeye' ZMS100
-13251	Hardwiring - Inherent Implants 'Squire' EP4
-13252	Hardwiring - Zainou 'Gnome' KZA1000
-13253	Hardwiring - Zainou 'Gnome' KUA1000
-13254	Hardwiring - Zainou 'Gypsy' KLB-50
-13255	Hardwiring - Inherent Implants 'Squire' GU4
-13256	Hardwiring - Inherent Implants 'Noble' ZET500
-13257	Hardwiring - Inherent Implants 'Noble' ZET300
-13258	Hardwiring - Inherent Implants 'Noble' ZET100
-13259	Hardwiring - Inherent Implants 'Squire' CC4
-13260	Hardwiring - Inherent Implants 'Squire' CR4
-13261	Hardwiring - Inherent Implants 'Squire' PG4
-13262	Hardwiring - Zainou 'Gnome' KXA1000
-13263	Hardwiring - Zainou 'Gnome' KYA1000
-13265	Hardwiring - Inherent Implants 'Squire' EE4
+13216	Zainou 'Gypsy' Electronics EE-603
+13217	Inherent Implants 'Lancer' Large Energy Turret LE-1003
+13218	Zainou 'Deadeye' Large Hybrid Turret LH-1003
+13219	Eifyr and Co. 'Gunslinger' Large Projectile Turret LP-1003
+13220	Inherent Implants 'Lancer' Medium Energy Turret ME-803
+13221	Zainou 'Deadeye' Medium Hybrid Turret MH-803
+13222	Eifyr and Co. 'Gunslinger' Medium Projectile Turret MP-803
+13223	Inherent Implants 'Lancer' Small Energy Turret SE-603
+13224	Zainou 'Deadeye' Small Hybrid Turret SH-603
+13225	Eifyr and Co. 'Gunslinger' Small Projectile Turret SP-603
+13226	Zainou 'Snapshot' Cruise Missiles CM-603
+13227	Zainou 'Snapshot' Defender Missiles DM-803
+13228	Zainou 'Snapshot' FOF Explosion Radius FR-1003
+13229	Zainou 'Snapshot' Heavy Missiles HM-703
+13230	Zainou 'Snapshot' Rockets RD-903
+13231	Zainou 'Snapshot' Torpedoes TD-603
+13232	Zainou 'Gypsy' Electronic Warfare EW-903
+13233	Zainou 'Gypsy' Long Range Targeting LT-803
+13234	Zainou 'Gypsy' Propulsion Jamming PJ-803
+13235	Zainou 'Gypsy' Sensor Linking SL-903
+13236	Zainou 'Gypsy' Weapon Disruption WD-903
+13237	Eifyr and Co. 'Rogue' Navigation NN-603
+13238	Eifyr and Co. 'Rogue' Fuel Conservation FC-803
+13239	Eifyr and Co. 'Rogue' Afterburner AB-606
+13240	Eifyr and Co. 'Rogue' Evasive Maneuvering EM-703
+13241	Eifyr and Co. 'Rogue' Warp Drive Operation WD-606
+13242	Eifyr and Co. 'Rogue' Warp Drive Speed WS-610
+13243	Eifyr and Co. 'Rogue' High Speed Maneuvering HS-903
+13244	Eifyr and Co. 'Gunslinger' Surgical Strike SS-903
+13245	Zainou 'Deadeye' Trajectory Analysis TA-703
+13246	Inherent Implants 'Lancer' Controlled Bursts CB-703
+13247	Zainou 'Deadeye' Missile Bombardment MB-703
+13248	Zainou 'Deadeye' Missile Projection MP-703
+13249	Zainou 'Deadeye' Rapid Launch RL-1003
+13250	Zainou 'Deadeye' Target Navigation Prediction TN-903
+13251	Inherent Implants 'Squire' Energy Pulse Weapons EP-703
+13252	Zainou 'Gnome' Weapon Upgrades WU-1003
+13253	Zainou 'Gnome' Shield Upgrades SU-603
+13254	Zainou 'Gypsy' Electronics Upgrades EU-603
+13255	Inherent Implants 'Squire' Energy Grid Upgrades EU-703
+13256	Inherent Implants 'Noble' Hull Upgrades HG-1003
+13257	Inherent Implants 'Noble' Mechanic MC-803
+13258	Inherent Implants 'Noble' Repair Systems RS-603
+13259	Inherent Implants 'Squire' Energy Management EM-803
+13260	Inherent Implants 'Squire' Energy Systems Operation EO-603
+13261	Inherent Implants 'Squire' Engineering EG-603
+13262	Zainou 'Gnome' Shield Emission Systems SE-803
+13263	Zainou 'Gnome' Shield Operation SP-903
+13265	Inherent Implants 'Squire' Energy Emission Systems ES-703
 13267	Janitor
 13278	Archaeology
 13279	Remote Sensing
@@ -3167,7 +3167,7 @@
 13320	Cruise Missile Launcher I
 13321	Cruise Missile Launcher I Blueprint
 13780	Equipment Assembly Array
-13856	Nova Javelin Assault Missile
+13856	Nova Javelin Heavy Assault Missile
 13918	Korranis DNA
 14272	200mm Carbide Railgun I
 14274	200mm 'Scout' Accelerator Cannon
@@ -3300,12 +3300,12 @@
 16000	Imperial Navy Sergeant Insignia III
 16001	Ammatar Navy Sergeant Insignia III
 16002	Federation Navy Sergeant Insignia III
-16003	Hardwiring - Eifyr and Co. 'Rogue' CY-2
-16004	Hardwiring - Eifyr and Co. 'Rogue' AY-2
-16005	Hardwiring - Eifyr and Co. 'Rogue' DY-2
-16006	Hardwiring - Eifyr and Co. 'Rogue' GY-2
-16008	Hardwiring - Eifyr and Co. 'Rogue' MY-1
-16009	Hardwiring - Eifyr and Co. 'Rogue' MY-2
+16003	Eifyr and Co. 'Rogue' Navigation NN-605
+16004	Eifyr and Co. 'Rogue' Evasive Maneuvering EM-705
+16005	Eifyr and Co. 'Rogue' Fuel Conservation FC-805
+16006	Eifyr and Co. 'Rogue' High Speed Maneuvering HS-905
+16008	Eifyr and Co. 'Rogue' Acceleration Control AC-603
+16009	Eifyr and Co. 'Rogue' Acceleration Control AC-605
 16029	800mm Repeating Artillery II Blueprint
 16032	150mm Light AutoCannon II Blueprint
 16069	Remote Armor Repair Systems
@@ -3349,16 +3349,16 @@
 16241	Catalyst Blueprint
 16242	Thrasher
 16243	Thrasher Blueprint
-16245	Hardwiring - Zainou 'Gnome' KUA2000
-16246	Hardwiring - Zainou 'Gnome' KVA2000
-16247	Hardwiring - Zainou 'Gnome' KXA2000
-16248	Hardwiring - Zainou 'Gnome' KYA2000
-16249	Hardwiring - Zainou 'Gnome' KZA2000
+16245	Zainou 'Gnome' Shield Upgrades SU-605
+16246	Zainou 'Gnome' Shield Management SM-705
+16247	Zainou 'Gnome' Shield Emission Systems SE-805
+16248	Zainou 'Gnome' Shield Operation SP-905
+16249	Zainou 'Gnome' Weapon Upgrades WU-1005
 16262	Clear Icicle
 16263	Glacial Mass
 16264	Blue Ice
 16265	White Glaze
-16266	Glare crust
+16266	Glare Crust
 16267	Dark Glitter
 16268	Gelidus
 16269	Krystallos
@@ -3373,70 +3373,70 @@
 16299	'Repose' Core Compensation
 16301	'Stoic' Core Equalizer I
 16303	'Halcyon' Core Equalizer I
-16305	Dual-sheathed Adaptive Nano Plating I
-16307	Triple-sheathed Adaptive Nano Plating I
+16305	Upgraded Adaptive Nano Plating I
+16307	Limited Adaptive Nano Plating I
 16309	'Collateral' Adaptive Nano Plating I
 16311	'Refuge' Adaptive Nano Plating I
-16313	Dual-sheathed Magnetic Plating I
-16315	Triple-sheathed Magnetic Plating I
-16317	Dipolar Weave Magnetic Plating
-16319	'Aegis' Combustive Field Plating I
-16321	Dual-sheathed Reactive Plating I
-16323	Triple-sheathed Reactive Plating I
-16325	'Rampart' Magnetic Field Plating I
-16327	'Element' Magnetic Plating I
-16329	Dual-sheathed Reflective Plating I
-16331	Triple-sheathed Reflective Plating I
-16333	'Contour' Reflective Plating I
-16335	'Spiegel' Reflective Plating I
-16337	Dual-sheathed Thermic Plating I
-16339	Triple-sheathed Thermic Plating I
-16341	Interphase Heat Diffusion Plating
-16343	Electrostatic Heat Diffusion Plating
-16345	Dual-sheathed Regenerative Plating I
-16347	Triple-sheathed Regenerative Plating I
-16349	'Scarab' Regenerative Plating I
-16351	'Grail' Regenerative Plating I
-16353	Voltaic Nanite EM Hardener I
-16355	Microcell Nanite EM Hardener I
-16357	Radioisotope EM Hardener I
-16359	N-Type EM Hardener I
-16361	Voltaic Nanite Explosive Hardener I
-16363	Microcell Nanite Explosive Hardener I
-16365	Radioisotope Explosive Hardener I
-16367	N-Type Explosive Hardener I
-16369	Voltaic Nanite Kinetic Hardener I
-16371	Microcell Nanite Kinetic Hardener I
-16373	Radioisotope Kinetic Hardener I
-16375	N-Type Kinetic Hardener I
-16377	Voltaic Nanite Thermic Hardener I
-16379	Microcell Nanite Thermic Hardener I
-16381	Radioisotope Thermic Hardener I
-16383	N-Type Thermic Hardener I
-16385	Voltaic Nanite Adaptive Membrane I
-16387	Microcell Nanite Adaptive Membrane I
-16389	Radioisotope Adaptive Nano Membrane I
-16391	N-Type Adaptive Nano Membrane I
-16393	Voltaic Nanite Magnetic Membrane I
-16395	Microcell Nanite Magnetic Membrane I
-16397	Radioisotope Magnetic Membrane I
-16399	N-Type Magnetic Membrane I
-16401	Voltaic Nanite Reactive Membrane I
-16403	Microcell Nanite Reactive Membrane I
-16405	Radioisotope Reactive Membrane I
-16407	N-Type Reactive Membrane I
-16409	Voltaic Nanite Reflective Membrane I
-16411	Microcell Nanite Reflective Membrane I
-16413	Radioisotope Reflective Membrane I
-16415	N-Type Reflective Membrane I
-16417	Voltaic Nanite Regenerative Membrane I
-16419	Microcell Nanite Regenerative Membrane I
-16421	Radioisotope Regenerative Membrane I
-16423	N-Type Regenerative Membrane I
-16425	Voltaic Nanite Thermic Membrane I
-16427	Microcell Nanite Thermic Membrane I
-16429	Radioisotope Thermic Membrane I
-16431	N-Type Thermic Membrane I
+16313	Upgraded Kinetic Plating I
+16315	Limited Kinetic Plating I
+16317	Experimental Kinetic Plating I
+16319	'Aegis' Explosive Plating I
+16321	Upgraded Explosive Plating I
+16323	Limited Explosive Plating I
+16325	Experimental Explosive Plating I
+16327	'Element' Kinetic Plating I
+16329	Upgraded EM Plating I
+16331	Limited EM Plating I
+16333	'Contour' EM Plating I
+16335	'Spiegel' EM Plating I
+16337	Upgraded Thermic Plating I
+16339	Limited Thermic Plating I
+16341	Experimental Thermic Plating I
+16343	Prototype Thermic Plating I
+16345	Upgraded Layered Plating I
+16347	Limited Layered Plating I
+16349	'Scarab' Layered Plating I
+16351	'Grail' Layered Plating I
+16353	Upgraded Armor EM Hardener I
+16355	Limited Armor EM Hardener I
+16357	Experimental Armor EM Hardener I
+16359	Prototype Armor EM Hardener I
+16361	Upgraded Armor Explosive Hardener I
+16363	Limited Armor Explosive Hardener I
+16365	Experimental Armor Explosive Hardener I
+16367	Prototype Armor Explosive Hardener I
+16369	Upgraded Armor Kinetic Hardener I
+16371	Limited Armor Kinetic Hardener I
+16373	Experimental Armor Kinetic Hardener I
+16375	Prototype Armor Kinetic Hardener I
+16377	Upgraded Armor Thermic Hardener I
+16379	Limited Armor Thermic Hardener I
+16381	Experimental Armor Thermic Hardener I
+16383	Prototype Armor Thermic Hardener I
+16385	Upgraded Energized Adaptive Nano Membrane I
+16387	Limited Energized Adaptive Nano Membrane I
+16389	Experimental Energized Adaptive Nano Membrane I
+16391	Prototype Energized Adaptive Nano Membrane I
+16393	Upgraded Energized Kinetic Membrane I
+16395	Limited Energized Kinetic Membrane I
+16397	Experimental Energized Kinetic Membrane I
+16399	Prototype Energized Kinetic Membrane I
+16401	Upgraded Energized Explosive Membrane I
+16403	Limited Energized Explosive Membrane I
+16405	Experimental Energized Explosive Membrane I
+16407	Prototype Energized Explosive Membrane I
+16409	Upgraded Energized EM Membrane I
+16411	Limited Energized EM Membrane I
+16413	Experimental Energized EM Membrane I
+16415	Prototype Energized EM Membrane I
+16417	Upgraded Energized Armor Layering Membrane I
+16419	Limited Energized Armor Layering Membrane I
+16421	Experimental Energized Armor Layering Membrane I
+16423	Prototype Energized Armor Layering Membrane I
+16425	Upgraded Energized Thermic Membrane I
+16427	Limited Energized Thermic Membrane I
+16429	Experimental Energized Thermic Membrane I
+16431	Prototype Energized Thermic Membrane I
 16433	Small I-ax Regenerative Projector
 16435	Small Coaxial Regenerative Projector
 16437	Small 'Arup' Remote Bulwark Reconstruction
@@ -3714,8 +3714,8 @@
 17364	Medium Audit Log Secure Container
 17365	Large Audit Log Secure Container
 17366	Station Container
-17367	Station Vault
-17368	Station Warehouse
+17367	Station Vault Container
+17368	Station Warehouse Container
 17392	Data Chips
 17402	Large Blaster Battery
 17403	Medium Blaster Battery
@@ -3836,7 +3836,7 @@
 17754	Activists
 17755	Pro-Trade Pamphlets
 17756	Virgin Forest Pulp
-17765	Exotic Dancers
+17765	Exotic Dancers, Female
 17767	Kameiras
 17769	Fluxed Condensates
 17770	Large AutoCannon Battery
@@ -3863,8 +3863,8 @@
 17852	Faramon's Tag
 17857	Mjolnir Citadel Torpedo
 17858	Mjolnir Citadel Torpedo Blueprint
-17859	Trauma Citadel Torpedo
-17860	Trauma Citadel Torpedo Blueprint
+17859	Scourge Citadel Torpedo
+17860	Scourge Citadel Torpedo Blueprint
 17861	Inferno Citadel Torpedo
 17862	Inferno Citadel Torpedo Blueprint
 17863	Nova Citadel Torpedo
@@ -3875,7 +3875,7 @@
 17868	Golden Omber
 17869	Magma Mercoxit
 17870	Vitreous Mercoxit
-17871	Hardwiring - Inherent Implants 'Noble' ZET200
+17871	Inherent Implants 'Noble' Remote Armor Repair Systems RA-703
 17887	Oxygen Isotopes
 17888	Nitrogen Isotopes
 17889	Hydrogen Isotopes
@@ -4033,33 +4033,33 @@
 19538	Talisman Epsilon
 19539	Talisman Omega
 19540	Snake Alpha
-19547	Hardwiring - Inherent Implants 'Noble' ZET1000
-19548	Hardwiring - Inherent Implants 'Noble' ZET2000
-19549	Hardwiring - Inherent Implants 'Noble' ZET3000
-19550	Hardwiring - Inherent Implants 'Noble' ZET5000
+19547	Inherent Implants 'Noble' Repair Systems RS-605
+19548	Inherent Implants 'Noble' Remote Armor Repair Systems RA-705
+19549	Inherent Implants 'Noble' Mechanic MC-805
+19550	Inherent Implants 'Noble' Hull Upgrades HG-1005
 19551	Snake Beta
 19553	Snake Gamma
 19554	Snake Delta
 19555	Snake Epsilon
 19556	Snake Omega
 19663	Jarkon Puman's Tag
-19684	Hardwiring - Inherent Implants 'Noble' ZET400
-19685	Hardwiring - Inherent Implants 'Noble' ZET4000
-19686	Hardwiring - Eifyr and Co. 'Gunslinger' AX-2
-19687	Hardwiring - Eifyr and Co. 'Gunslinger' CX-2
-19688	Hardwiring - Eifyr and Co. 'Gunslinger' LX-2
-19689	Hardwiring - Eifyr and Co. 'Gunslinger' MX-2
-19690	Hardwiring - Eifyr and Co. 'Gunslinger' SX-2
-19691	Hardwiring - Inherent Implants 'Lancer' G2-Alpha
-19692	Hardwiring - Inherent Implants 'Lancer' G2-Beta
-19693	Hardwiring - Inherent Implants 'Lancer' G2-Delta
-19694	Hardwiring - Inherent Implants 'Lancer' G2-Epsilon
-19695	Hardwiring - Inherent Implants 'Lancer' G2-Gamma
-19696	Hardwiring - Zainou 'Deadeye' ZGA1000
-19697	Hardwiring - Zainou 'Deadeye' ZGC1000
-19698	Hardwiring - Zainou 'Deadeye' ZGL1000
-19699	Hardwiring - Zainou 'Deadeye' ZGM1000
-19700	Hardwiring - Zainou 'Deadeye' ZGS1000
+19684	Inherent Implants 'Noble' Repair Proficiency RP-903
+19685	Inherent Implants 'Noble' Repair Proficiency RP-905
+19686	Eifyr and Co. 'Gunslinger' Motion Prediction MR-705
+19687	Eifyr and Co. 'Gunslinger' Surgical Strike SS-905
+19688	Eifyr and Co. 'Gunslinger' Large Projectile Turret LP-1005
+19689	Eifyr and Co. 'Gunslinger' Medium Projectile Turret MP-805
+19690	Eifyr and Co. 'Gunslinger' Small Projectile Turret SP-605
+19691	Inherent Implants 'Lancer' Small Energy Turret SE-605
+19692	Inherent Implants 'Lancer' Controlled Bursts CB-705
+19693	Inherent Implants 'Lancer' Gunnery RF-905
+19694	Inherent Implants 'Lancer' Large Energy Turret LE-1005
+19695	Inherent Implants 'Lancer' Medium Energy Turret ME-805
+19696	Zainou 'Deadeye' Sharpshooter ST-905
+19697	Zainou 'Deadeye' Trajectory Analysis TA-705
+19698	Zainou 'Deadeye' Large Hybrid Turret LH-1005
+19699	Zainou 'Deadeye' Medium Hybrid Turret MH-805
+19700	Zainou 'Deadeye' Small Hybrid Turret SH-605
 19719	Transport Ships
 19720	Revelation
 19721	Revelation Blueprint
@@ -4185,7 +4185,7 @@
 20189	Fenrir
 20190	Fenrir Blueprint
 20209	Rocket Specialization
-20210	Standard Missile Specialization
+20210	Light Missile Specialization
 20211	Heavy Missile Specialization
 20212	Cruise Missile Specialization
 20213	Torpedo Specialization
@@ -4215,9 +4215,9 @@
 20264	Warded Radar Backup Cluster I
 20280	Siege Module I
 20281	Siege Module I Blueprint
-20306	Mjolnir Assault Missile
-20307	Trauma Assault Missile
-20308	Inferno Assault Missile
+20306	Mjolnir Heavy Assault Missile
+20307	Scourge Heavy Assault Missile
+20308	Inferno Heavy Assault Missile
 20312	Guided Missile Precision
 20314	Target Navigation Prediction
 20315	Warhead Upgrades
@@ -4680,8 +4680,8 @@
 21853	Civilian Armor Repairer
 21855	Civilian Expanded Cargohold
 21857	Civilian Afterburner
-21867	Nova Assault Missile
-21868	Nova Assault Missile Blueprint
+21867	Nova Heavy Assault Missile
+21868	Nova Heavy Assault Missile Blueprint
 21888	Siege Warfare Mindlink
 21889	Information Warfare Mindlink
 21890	Skirmish Warfare Mindlink
@@ -4820,8 +4820,8 @@
 22471	Nighthawk Blueprint
 22474	Damnation
 22475	Damnation Blueprint
-22534	Hardwiring - Inherent Implants 'Highwall' HX-1
-22535	Hardwiring - Inherent Implants 'Highwall' HX-2
+22534	Inherent Implants 'Highwall' Mining MX-1003
+22535	Inherent Implants 'Highwall' Mining MX-1005
 22536	Mining Foreman
 22542	Mining Laser Upgrade I
 22543	Mining Laser Upgrade I Blueprint
@@ -4840,8 +4840,8 @@
 22557	Mining Foreman Link - Laser Optimization I
 22558	Mining Foreman Link - Laser Optimization I Blueprint
 22559	Mining Foreman Mindlink
-22570	Hardwiring - Inherent Implants 'Yeti' BX-1
-22571	Hardwiring - Inherent Implants 'Yeti' BX-2
+22570	Inherent Implants 'Yeti' Ice Harvesting IH-1003
+22571	Inherent Implants 'Yeti' Ice Harvesting IH-1005
 22572	Praetor EV-900
 22573	Praetor EV-900 Blueprint
 22576	Ice Harvester Upgrade I
@@ -5113,45 +5113,45 @@
 24427	Drone Link Augmentor II
 24438	Omnidirectional Tracking Link II
 24443	Shield Boost Amplifier II
-24445	General Freight Container
-24471	Trauma Rage Rocket
+24445	Giant Freight Container
+24471	Scourge Rage Rocket
 24473	Nova Rage Rocket
 24475	Inferno Rage Rocket
-24477	Trauma Javelin Rocket
+24477	Scourge Javelin Rocket
 24478	Nova Javelin Rocket
 24479	Inferno Javelin Rocket
 24483	Nidhoggur
 24484	Nidhoggur Blueprint
-24486	Inferno Rage Assault Missile
-24488	Nova Rage Assault Missile
-24490	Mjolnir Rage Assault Missile
-24492	Trauma Javelin Assault Missile
-24493	Mjolnir Javelin Assault Missile
-24494	Inferno Javelin Assault Missile
-24495	Trauma Fury Light Missile
+24486	Inferno Rage Heavy Assault Missile
+24488	Nova Rage Heavy Assault Missile
+24490	Mjolnir Rage Heavy Assault Missile
+24492	Scourge Javelin Heavy Assault Missile
+24493	Mjolnir Javelin Heavy Assault Missile
+24494	Inferno Javelin Heavy Assault Missile
+24495	Scourge Fury Light Missile
 24497	Nova Fury Light Missile
 24499	Inferno Fury Light Missile
-24501	Trauma Precision Light Missile
+24501	Scourge Precision Light Missile
 24503	Nova Precision Light Missile
 24505	Mjolnir Precision Light Missile
 24507	Nova Fury Heavy Missile
 24509	Mjolnir Fury Heavy Missile
 24511	Inferno Fury Heavy Missile
-24513	Trauma Precision Heavy Missile
+24513	Scourge Precision Heavy Missile
 24515	Inferno Precision Heavy Missile
 24517	Mjolnir Precision Heavy Missile
 24519	Nova Rage Torpedo
-24521	Trauma Rage Torpedo
+24521	Scourge Rage Torpedo
 24523	Mjolnir Rage Torpedo
 24525	Inferno Javelin Torpedo
 24527	Mjolnir Javelin Torpedo
-24529	Trauma Javelin Torpedo
+24529	Scourge Javelin Torpedo
 24531	Nova Fury Cruise Missile
-24533	Trauma Fury Cruise Missile
+24533	Scourge Fury Cruise Missile
 24535	Mjolnir Fury Cruise Missile
 24537	Nova Precision Cruise Missile
 24539	Mjolnir Precision Cruise Missile
-24541	Trauma Precision Cruise Missile
+24541	Scourge Precision Cruise Missile
 24545	Capital Jump Bridge Array
 24546	Capital Jump Bridge Array Blueprint
 24547	Capital Clone Vat Bay
@@ -5189,14 +5189,14 @@
 24613	Advanced Drone Interfacing
 24624	Advanced Laboratory Operation
 24625	Advanced Mass Production
-24632	Hardwiring - Zainou 'Deadeye' ZMA100
-24636	Hardwiring - Zainou 'Deadeye' ZMC1000
-24637	Hardwiring - Zainou 'Deadeye' ZML1000
-24638	Hardwiring - Zainou 'Deadeye' ZMM1000
-24639	Hardwiring - Zainou 'Deadeye' ZMS1000
-24640	Hardwiring - Zainou 'Deadeye' ZMA1000
-24641	Hardwiring - Zainou 'Gnome' KTA100
-24642	Hardwiring - Zainou 'Gnome' KTA1000
+24632	Zainou 'Deadeye' Guided Missile Precision GP-803
+24636	Zainou 'Deadeye' Missile Bombardment MB-705
+24637	Zainou 'Deadeye' Missile Projection MP-705
+24638	Zainou 'Deadeye' Rapid Launch RL-1005
+24639	Zainou 'Deadeye' Target Navigation Prediction TN-905
+24640	Zainou 'Deadeye' Guided Missile Precision GP-805
+24641	Zainou 'Gnome' Launcher CPU Efficiency LE-603
+24642	Zainou 'Gnome' Launcher CPU Efficiency LE-605
 24644	Capital Tractor Beam I
 24645	Capital Tractor Beam I Blueprint
 24646	Capital Ship Maintenance Array
@@ -5296,10 +5296,10 @@
 25540	'Crop' Gas Cloud Harvester
 25542	'Plow' Gas Cloud Harvester
 25544	Gas Cloud Harvesting
-25545	Hardwiring - Eifyr and Co. 'Alchemist' YA-1
-25546	Hardwiring - Eifyr and Co. 'Alchemist' YA-2
-25547	Hardwiring - Eifyr and Co. 'Alchemist' XA-1
-25548	Hardwiring - Eifyr and Co. 'Alchemist' XA-2
+25545	Eifyr and Co. 'Alchemist' Nanite Control NC-903
+25546	Eifyr and Co. 'Alchemist' Nanite Control NC-905
+25547	Eifyr and Co. 'Alchemist' Neurotoxin Recovery NR-1003
+25548	Eifyr and Co. 'Alchemist' Neurotoxin Recovery NR-1005
 25553	Cryptic Data Interface
 25554	Occult Data Interface
 25555	Esoteric Data Interface
@@ -5350,10 +5350,10 @@
 25623	Conductive Thermoplastic
 25624	Intact Armor Plates
 25625	Enhanced Ward Console
-25707	'Arbalest' Heavy Assault Missile Launcher I
-25709	'Malkuth' Heavy Assault Missile Launcher I
-25711	Compact 'Limos' Heavy Assault Missile Launcher I
-25713	XT-2800 Heavy Assault Missile Launcher I
+25707	Prototype 'Arbalest' Heavy Assault Missile Launcher I
+25709	Upgraded 'Malkuth' Heavy Assault Missile Launcher I
+25711	Limited 'Limos' Heavy Assault Missile Launcher I
+25713	Experimental XT-2800 Heavy Assault Missile Launcher I
 25715	Heavy Assault Missile Launcher II
 25716	Heavy Assault Missile Launcher II Blueprint
 25718	Heavy Assault Missile Specialization
@@ -5389,8 +5389,8 @@
 25901	Large Remote Repair Augmentor I Blueprint
 25902	Large Salvage Tackle I
 25903	Large Salvage Tackle I Blueprint
-25906	Large Core Defence Capacitor Safeguard I
-25907	Large Core Defence Capacitor Safeguard I Blueprint
+25906	Large Core Defense Capacitor Safeguard I
+25907	Large Core Defense Capacitor Safeguard I Blueprint
 25908	Large Drone Control Range Augmentor I
 25909	Large Drone Control Range Augmentor I Blueprint
 25910	Large Drone Repair Augmentor I
@@ -5501,14 +5501,14 @@
 26081	Large Anti-Kinetic Screen Reinforcer I Blueprint
 26082	Large Anti-Thermal Screen Reinforcer I
 26083	Large Anti-Thermal Screen Reinforcer I Blueprint
-26084	Large Core Defence Field Purger I
-26085	Large Core Defence Field Purger I Blueprint
-26086	Large Core Defence Operational Solidifier I
-26087	Large Core Defence Operational Solidifier I Blueprint
-26088	Large Core Defence Field Extender I
-26089	Large Core Defence Field Extender I Blueprint
-26090	Large Core Defence Charge Economizer I
-26091	Large Core Defence Charge Economizer I Blueprint
+26084	Large Core Defense Field Purger I
+26085	Large Core Defense Field Purger I Blueprint
+26086	Large Core Defense Operational Solidifier I
+26087	Large Core Defense Operational Solidifier I Blueprint
+26088	Large Core Defense Field Extender I
+26089	Large Core Defense Field Extender I Blueprint
+26090	Large Core Defense Charge Economizer I
+26091	Large Core Defense Charge Economizer I Blueprint
 26096	Large Targeting Systems Stabilizer I
 26097	Large Targeting Systems Stabilizer I Blueprint
 26100	Large Targeting System Subcontroller I
@@ -5608,19 +5608,19 @@
 26438	Large Anti-Explosive Screen Reinforcer II
 26440	Large Anti-Kinetic Screen Reinforcer II
 26442	Large Anti-Thermal Screen Reinforcer II
-26444	Large Core Defence Capacitor Safeguard II
-26446	Large Core Defence Charge Economizer II
-26448	Large Core Defence Field Extender II
-26450	Large Core Defence Field Purger II
-26452	Large Core Defence Operational Solidifier II
+26444	Large Core Defense Capacitor Safeguard II
+26446	Large Core Defense Charge Economizer II
+26448	Large Core Defense Field Extender II
+26450	Large Core Defense Field Purger II
+26452	Large Core Defense Operational Solidifier II
 26597	Cryptic Tuner Data Interface
 26599	Esoteric Tuner Data Interface
 26601	Incognito Tuner Data Interface
 26603	Occult Tuner Data Interface
 26759	Heavy Assault Missile Launcher I Blueprint
-26760	Mjolnir Assault Missile Blueprint
-26761	Inferno Assault Missile Blueprint
-26762	Trauma Assault Missile Blueprint
+26760	Mjolnir Heavy Assault Missile Blueprint
+26761	Inferno Heavy Assault Missile Blueprint
+26762	Scourge Heavy Assault Missile Blueprint
 26888	Mobile Large Warp Disruptor II
 26890	Mobile Medium Warp Disruptor II
 26892	Mobile Small Warp Disruptor II
@@ -5629,136 +5629,136 @@
 26914	Large Remote Armor Repair System II
 27068	Small Remote Repair Augmentor I
 27069	Small Remote Repair Augmentor I Blueprint
-27070	Hardwiring - Inherent Implants 'Noble' ZET10
-27071	Hardwiring - Inherent Implants 'Noble' ZET20
-27072	Hardwiring - Inherent Implants 'Noble' ZET30
-27073	Hardwiring - Inherent Implants 'Noble' ZET40
-27074	Hardwiring - Inherent Implants 'Noble' ZET50
-27075	Hardwiring - Eifyr and Co. 'Gunslinger' AX-0
-27076	Hardwiring - Zainou 'Deadeye' ZGA10
-27077	Hardwiring - Inherent Implants 'Lancer' G0-Delta
-27078	Hardwiring - Zainou 'Deadeye' ZGC10
-27079	Hardwiring - Inherent Implants 'Lancer' G0-Beta
-27080	Hardwiring - Zainou 'Gnome' KZA500
-27081	Hardwiring - Eifyr and Co. 'Gunslinger' CX-0
-27082	Hardwiring - Inherent Implants 'Lancer' G0-Alpha
-27083	Hardwiring - Zainou 'Deadeye' ZGS10
-27084	Hardwiring - Eifyr and Co. 'Gunslinger' SX-0
-27085	Hardwiring - Inherent Implants 'Lancer' G0-Gamma
-27086	Hardwiring - Zainou 'Deadeye' ZGM10
-27087	Hardwiring - Eifyr and Co. 'Gunslinger' MX-0
-27088	Hardwiring - Inherent Implants 'Lancer' G0-Epsilon
-27089	Hardwiring - Zainou 'Deadeye' ZGL10
-27090	Hardwiring - Eifyr and Co. 'Gunslinger' LX-0
-27091	Hardwiring - Zainou 'Gnome' KTA10
-27092	Hardwiring - Zainou 'Deadeye' ZMC10
-27093	Hardwiring - Zainou 'Deadeye' ZML10
-27094	Hardwiring - Zainou 'Deadeye' ZMA10
-27095	Hardwiring - Zainou 'Deadeye' ZMS10
-27096	Hardwiring - Zainou 'Deadeye' ZMM10
-27097	Hardwiring - Eifyr and Co. 'Rogue' CY-0
-27098	Hardwiring - Eifyr and Co. 'Rogue' DY-0
-27099	Hardwiring - Eifyr and Co. 'Rogue' AY-0
-27100	Hardwiring - Eifyr and Co. 'Rogue' GY-0
-27101	Hardwiring - Eifyr and Co. 'Rogue' MY-0
-27102	Hardwiring - Inherent Implants 'Highwall' HX-0
-27103	Hardwiring - Inherent Implants 'Yeti' BX-0
-27104	Hardwiring - Zainou 'Gnome' KUA500
-27105	Hardwiring - Zainou 'Gnome' KVA500
-27106	Hardwiring - Zainou 'Gnome' KXA500
-27107	Hardwiring - Zainou 'Gnome' KYA500
-27108	Hardwiring - Zainou 'Snapshot' ZMN1000
-27109	Hardwiring - Zainou 'Snapshot' ZME1000
-27110	Hardwiring - Eifyr and Co. 'Rogue' EY-2
-27111	Hardwiring - Eifyr and Co. 'Rogue' EY-0
-27112	Hardwiring - Eifyr and Co. 'Rogue' FY-2
-27113	Hardwiring - Eifyr and Co. 'Rogue' FY-0
-27114	Hardwiring - Eifyr and Co. 'Rogue' HY-2
-27115	Hardwiring - Eifyr and Co. 'Rogue' HY-0
-27116	Hardwiring - Inherent Implants 'Squire' CC8
-27117	Hardwiring - Inherent Implants 'Squire' CC2
-27118	Hardwiring - Inherent Implants 'Squire' CR8
-27119	Hardwiring - Inherent Implants 'Squire' CR2
-27120	Hardwiring - Inherent Implants 'Squire' EE2
-27121	Hardwiring - Inherent Implants 'Squire' EE8
-27122	Hardwiring - Inherent Implants 'Squire' EP8
-27123	Hardwiring - Inherent Implants 'Squire' EP2
-27124	Hardwiring - Inherent Implants 'Squire' GU8
-27125	Hardwiring - Inherent Implants 'Squire' GU2
-27126	Hardwiring - Inherent Implants 'Squire' PG8
-27127	Hardwiring - Inherent Implants 'Squire' PG2
-27128	Hardwiring - Zainou 'Gypsy' KLB-75
-27129	Hardwiring - Zainou 'Gypsy' KLB-25
-27130	Hardwiring - Zainou 'Gypsy' KNB-75
-27131	Hardwiring - Zainou 'Gypsy' KNB-25
-27142	Hardwiring - Zainou 'Gypsy' KMB-75
-27143	Hardwiring - Zainou 'Gypsy' KMB-25
-27147	Hardwiring - Eifyr and Co. 'Alchemist' WA-1
-27148	Hardwiring - Eifyr and Co. 'Alchemist' WA-2
-27149	Hardwiring - Inherent Implants 'Highwall' HY-1
-27150	Hardwiring - Inherent Implants 'Highwall' HY-2
-27151	Hardwiring - Inherent Implants 'Highwall' HY-0
-27167	Hardwiring - Zainou 'Beancounter' F50
-27169	Hardwiring - Zainou 'Beancounter' H50
-27170	Hardwiring - Zainou 'Beancounter' F40
-27171	Hardwiring - Zainou 'Beancounter' F60
-27174	Hardwiring - Zainou 'Beancounter' H60
-27175	Hardwiring - Zainou 'Beancounter' H40
-27176	Hardwiring - Zainou 'Beancounter' J50
-27177	Hardwiring - Zainou 'Beancounter' I50
-27178	Hardwiring - Zainou 'Beancounter' K50
-27179	Hardwiring - Zainou 'Beancounter' I60
-27180	Hardwiring - Zainou 'Beancounter' I40
-27181	Hardwiring - Zainou 'Beancounter' J60
-27182	Hardwiring - Zainou 'Beancounter' J40
-27184	Hardwiring - Zainou 'Beancounter' K60
-27185	Hardwiring - Zainou 'Beancounter' K40
-27186	Hardwiring - Poteque Pharmaceuticals 'Prospector' PPF-1
-27187	Hardwiring - Poteque Pharmaceuticals 'Prospector' PPG-1
-27188	Hardwiring - Poteque Pharmaceuticals 'Prospector' PPH-1
-27190	Hardwiring - Poteque Pharmaceuticals 'Prospector' PPF-2
-27191	Hardwiring - Poteque Pharmaceuticals 'Prospector' PPF-0
-27192	Hardwiring - Poteque Pharmaceuticals 'Prospector' PPG-2
-27193	Hardwiring - Poteque Pharmaceuticals 'Prospector' PPG-0
-27194	Hardwiring - Poteque Pharmaceuticals 'Prospector' PPH-2
-27195	Hardwiring - Poteque Pharmaceuticals 'Prospector' PPH-0
-27196	Hardwiring - Poteque Pharmaceuticals 'Prospector' PPW-1
-27197	Hardwiring - Poteque Pharmaceuticals 'Prospector' PPX-1
-27198	Hardwiring - Poteque Pharmaceuticals 'Prospector' PPY-1
-27224	Hardwiring - Zainou 'Gypsy' KTB-50
-27225	Hardwiring - Zainou 'Gypsy' KOB-75
-27226	Hardwiring - Zainou 'Gypsy' KOB-25
-27227	Hardwiring - Zainou 'Gypsy' KPB-75
-27229	Hardwiring - Zainou 'Gypsy' KPB-25
-27230	Hardwiring - Zainou 'Gypsy' KQB-75
-27231	Hardwiring - Zainou 'Gypsy' KQB-25
-27232	Hardwiring - Zainou 'Gypsy' KRB-75
-27233	Hardwiring - Zainou 'Gypsy' KRB-25
-27234	Hardwiring - Zainou 'Gypsy' KSB-75
-27235	Hardwiring - Zainou 'Gypsy' KSB-25
-27236	Hardwiring - Zainou 'Gypsy' KTB-75
-27237	Hardwiring - Zainou 'Gypsy' KTB-25
-27238	Hardwiring - Eifyr and Co. 'Alchemist' ZA-1
-27239	Hardwiring - Eifyr and Co. 'Alchemist' ZA-2
-27240	Hardwiring - Eifyr and Co. 'Alchemist' ZA-0
-27243	Hardwiring - Zainou 'Snapshot' ZMD2000
-27244	Hardwiring - Zainou 'Snapshot' ZMD500
-27245	Hardwiring - Zainou 'Snapshot' ZME2000
-27246	Hardwiring - Zainou 'Snapshot' ZME500
-27247	Hardwiring - Zainou 'Snapshot' ZMF2000
-27249	Hardwiring - Zainou 'Snapshot' ZMF500
-27250	Hardwiring - Zainou 'Snapshot' ZMH2000
-27251	Hardwiring - Zainou 'Snapshot' ZMH500
-27252	Hardwiring - Zainou 'Snapshot' ZMN2000
-27253	Hardwiring - Zainou 'Snapshot' ZMN500
-27254	Hardwiring - Zainou 'Snapshot' ZMR2000
-27255	Hardwiring - Zainou 'Snapshot' ZMR500
-27256	Hardwiring - Zainou 'Snapshot' ZMT2000
-27257	Hardwiring - Zainou 'Snapshot' ZMT500
-27258	Hardwiring - Zainou 'Snapshot' ZMU2000
-27259	Hardwiring - Zainou 'Snapshot' ZMU500
-27260	Hardwiring - Poteque Pharmaceuticals 'Prospector' PPZ-1
-27309	Station Warehouse Blueprint
+27070	Inherent Implants 'Noble' Repair Systems RS-601
+27071	Inherent Implants 'Noble' Remote Armor Repair Systems RA-701
+27072	Inherent Implants 'Noble' Mechanic MC-801
+27073	Inherent Implants 'Noble' Repair Proficiency RP-901
+27074	Inherent Implants 'Noble' Hull Upgrades HG-1001
+27075	Eifyr and Co. 'Gunslinger' Motion Prediction MR-701
+27076	Zainou 'Deadeye' Sharpshooter ST-901
+27077	Inherent Implants 'Lancer' Gunnery RF-901
+27078	Zainou 'Deadeye' Trajectory Analysis TA-701
+27079	Inherent Implants 'Lancer' Controlled Bursts CB-701
+27080	Zainou 'Gnome' Weapon Upgrades WU-1001
+27081	Eifyr and Co. 'Gunslinger' Surgical Strike SS-901
+27082	Inherent Implants 'Lancer' Small Energy Turret SE-601
+27083	Zainou 'Deadeye' Small Hybrid Turret SH-601
+27084	Eifyr and Co. 'Gunslinger' Small Projectile Turret SP-601
+27085	Inherent Implants 'Lancer' Medium Energy Turret ME-801
+27086	Zainou 'Deadeye' Medium Hybrid Turret MH-801
+27087	Eifyr and Co. 'Gunslinger' Medium Projectile Turret MP-801
+27088	Inherent Implants 'Lancer' Large Energy Turret LE-1001
+27089	Zainou 'Deadeye' Large Hybrid Turret LH-1001
+27090	Eifyr and Co. 'Gunslinger' Large Projectile Turret LP-1001
+27091	Zainou 'Gnome' Launcher CPU Efficiency LE-601
+27092	Zainou 'Deadeye' Missile Bombardment MB-701
+27093	Zainou 'Deadeye' Missile Projection MP-701
+27094	Zainou 'Deadeye' Guided Missile Precision GP-801
+27095	Zainou 'Deadeye' Target Navigation Prediction TN-901
+27096	Zainou 'Deadeye' Rapid Launch RL-1001
+27097	Eifyr and Co. 'Rogue' Navigation NN-601
+27098	Eifyr and Co. 'Rogue' Fuel Conservation FC-801
+27099	Eifyr and Co. 'Rogue' Evasive Maneuvering EM-701
+27100	Eifyr and Co. 'Rogue' High Speed Maneuvering HS-901
+27101	Eifyr and Co. 'Rogue' Acceleration Control AC-601
+27102	Inherent Implants 'Highwall' Mining MX-1001
+27103	Inherent Implants 'Yeti' Ice Harvesting IH-1001
+27104	Zainou 'Gnome' Shield Upgrades SU-601
+27105	Zainou 'Gnome' Shield Management SM-701
+27106	Zainou 'Gnome' Shield Emission Systems SE-801
+27107	Zainou 'Gnome' Shield Operation SP-901
+27108	Zainou 'Snapshot' Light Missiles LM-903
+27109	Zainou 'Snapshot' Assault Missiles AM-703
+27110	Eifyr and Co. 'Rogue' Afterburner AB-610
+27111	Eifyr and Co. 'Rogue' Afterburner AB-602
+27112	Eifyr and Co. 'Rogue' Warp Drive Operation WD-610
+27113	Eifyr and Co. 'Rogue' Warp Drive Operation WD-602
+27114	Eifyr and Co. 'Rogue' Warp Drive Speed WS-615
+27115	Eifyr and Co. 'Rogue' Warp Drive Speed WS-605
+27116	Inherent Implants 'Squire' Energy Management EM-805
+27117	Inherent Implants 'Squire' Energy Management EM-801
+27118	Inherent Implants 'Squire' Energy Systems Operation EO-605
+27119	Inherent Implants 'Squire' Energy Systems Operation EO-601
+27120	Inherent Implants 'Squire' Energy Emission Systems ES-701
+27121	Inherent Implants 'Squire' Energy Emission Systems ES-705
+27122	Inherent Implants 'Squire' Energy Pulse Weapons EP-705
+27123	Inherent Implants 'Squire' Energy Pulse Weapons EP-701
+27124	Inherent Implants 'Squire' Energy Grid Upgrades EU-705
+27125	Inherent Implants 'Squire' Energy Grid Upgrades EU-701
+27126	Inherent Implants 'Squire' Engineering EG-605
+27127	Inherent Implants 'Squire' Engineering EG-601
+27128	Zainou 'Gypsy' Electronics Upgrades EU-605
+27129	Zainou 'Gypsy' Electronics Upgrades EU-601
+27130	Zainou 'Gypsy' Signature Analysis SA-705
+27131	Zainou 'Gypsy' Signature Analysis SA-701
+27142	Zainou 'Gypsy' Electronics EE-605
+27143	Zainou 'Gypsy' Electronics EE-601
+27147	Eifyr and Co. 'Alchemist' Biology BY-805
+27148	Eifyr and Co. 'Alchemist' Biology BY-810
+27149	Inherent Implants 'Highwall' Mining Upgrades MU-1003
+27150	Inherent Implants 'Highwall' Mining Upgrades MU-1005
+27151	Inherent Implants 'Highwall' Mining Upgrades MU-1001
+27167	Zainou 'Beancounter' Industry BX-802
+27169	Zainou 'Beancounter' Refining RX-802
+27170	Zainou 'Beancounter' Industry BX-801
+27171	Zainou 'Beancounter' Industry BX-804
+27174	Zainou 'Beancounter' Refining RX-804
+27175	Zainou 'Beancounter' Refining RX-801
+27176	Zainou 'Beancounter' Metallurgy MY-703
+27177	Zainou 'Beancounter' Research RR-603
+27178	Zainou 'Beancounter' Science SC-803
+27179	Zainou 'Beancounter' Research RR-605
+27180	Zainou 'Beancounter' Research RR-601
+27181	Zainou 'Beancounter' Metallurgy MY-705
+27182	Zainou 'Beancounter' Metallurgy MY-701
+27184	Zainou 'Beancounter' Science SC-805
+27185	Zainou 'Beancounter' Science SC-801
+27186	Poteque 'Prospector' Astrometric Pinpointing AP-606
+27187	Poteque 'Prospector' Astrometric Acquisition AQ-706
+27188	Poteque 'Prospector' Astrometric Rangefinding AR-806
+27190	Poteque 'Prospector' Astrometric Pinpointing AP-610
+27191	Poteque 'Prospector' Astrometric Pinpointing AP-602
+27192	Poteque 'Prospector' Astrometric Acquisition AQ-710
+27193	Poteque 'Prospector' Astrometric Acquisition AQ-702
+27194	Poteque 'Prospector' Astrometric Rangefinding AR-810
+27195	Poteque 'Prospector' Astrometric Rangefinding AR-802
+27196	Poteque 'Prospector' Archaeology AC-905
+27197	Poteque 'Prospector' Hacking HC-905
+27198	Poteque 'Prospector' Salvaging SV-905
+27224	Zainou 'Gypsy' Target Painting TG-903
+27225	Zainou 'Gypsy' Electronic Warfare EW-905
+27226	Zainou 'Gypsy' Electronic Warfare EW-901
+27227	Zainou 'Gypsy' Long Range Targeting LT-805
+27229	Zainou 'Gypsy' Long Range Targeting LT-801
+27230	Zainou 'Gypsy' Propulsion Jamming PJ-805
+27231	Zainou 'Gypsy' Propulsion Jamming PJ-801
+27232	Zainou 'Gypsy' Sensor Linking SL-905
+27233	Zainou 'Gypsy' Sensor Linking SL-901
+27234	Zainou 'Gypsy' Weapon Disruption WD-905
+27235	Zainou 'Gypsy' Weapon Disruption WD-901
+27236	Zainou 'Gypsy' Target Painting TG-905
+27237	Zainou 'Gypsy' Target Painting TG-901
+27238	Eifyr and Co. 'Alchemist' Gas Harvesting GH-803
+27239	Eifyr and Co. 'Alchemist' Gas Harvesting GH-805
+27240	Eifyr and Co. 'Alchemist' Gas Harvesting GH-801
+27243	Zainou 'Snapshot' Defender Missiles DM-805
+27244	Zainou 'Snapshot' Defender Missiles DM-801
+27245	Zainou 'Snapshot' Assault Missiles AM-705
+27246	Zainou 'Snapshot' Assault Missiles AM-701
+27247	Zainou 'Snapshot' FOF Explosion Radius FR-1005
+27249	Zainou 'Snapshot' FOF Explosion Radius FR-1001
+27250	Zainou 'Snapshot' Heavy Missiles HM-705
+27251	Zainou 'Snapshot' Heavy Missiles HM-701
+27252	Zainou 'Snapshot' Light Missiles LM-905
+27253	Zainou 'Snapshot' Light Missiles LM-901
+27254	Zainou 'Snapshot' Rockets RD-905
+27255	Zainou 'Snapshot' Rockets RD-901
+27256	Zainou 'Snapshot' Torpedoes TD-605
+27257	Zainou 'Snapshot' Torpedoes TD-601
+27258	Zainou 'Snapshot' Cruise Missiles CM-605
+27259	Zainou 'Snapshot' Cruise Missiles CM-601
+27260	Poteque 'Prospector' Environmental Analysis EY-1005
+27309	Station Warehouse Container Blueprint
 27313	Guristas Inferno Rocket
 27315	Caldari Navy Inferno Rocket
 27317	Dread Guristas Inferno Rocket
@@ -5768,24 +5768,24 @@
 27325	Guristas Nova Rocket
 27327	Caldari Navy Nova Rocket
 27329	Dread Guristas Nova Rocket
-27331	Guristas Trauma Rocket
-27333	Caldari Navy Trauma Rocket
-27335	Dread Guristas Trauma Rocket
+27331	Guristas Scourge Rocket
+27333	Caldari Navy Scourge Rocket
+27335	Dread Guristas Scourge Rocket
 27337	Guristas Mjolnir Torpedo
 27339	Caldari Navy Mjolnir Torpedo
 27341	Dread Guristas Mjolnir Torpedo
-27343	Guristas Trauma Torpedo
-27345	Caldari Navy Trauma Torpedo
-27347	Dread Guristas Trauma Torpedo
+27343	Guristas Scourge Torpedo
+27345	Caldari Navy Scourge Torpedo
+27347	Dread Guristas Scourge Torpedo
 27349	Guristas Inferno Torpedo
 27351	Caldari Navy Inferno Torpedo
-27353	Guristas Trauma Light Missile
+27353	Guristas Scourge Light Missile
 27355	Dread Guristas Inferno Torpedo
 27357	Guristas Nova Torpedo
 27359	Caldari Navy Nova Torpedo
-27361	Caldari Navy Trauma Light Missile
+27361	Caldari Navy Scourge Light Missile
 27363	Dread Guristas Nova Torpedo
-27365	Dread Guristas Trauma Light Missile
+27365	Dread Guristas Scourge Light Missile
 27367	Guristas Inferno Light Missile
 27369	Dread Guristas Inferno Light Missile
 27371	Caldari Navy Inferno Light Missile
@@ -5798,22 +5798,22 @@
 27385	Dread Guristas Mjolnir Light Missile
 27387	Caldari Navy Mjolnir Light Missile
 27389	Dread Guristas Mjolnir Cruise Missile
-27391	Guristas Trauma Cruise Missile
-27393	Guristas Nova Assault Missile
-27395	Caldari Navy Trauma Cruise Missile
-27397	Dread Guristas Nova Assault Missile
-27399	Dread Guristas Trauma Cruise Missile
-27401	Caldari Navy Nova Assault Missile
-27403	Guristas Inferno Assault Missile
-27405	Caldari Navy Inferno Assault Missile
-27407	Dread Guristas Inferno Assault Missile
+27391	Guristas Scourge Cruise Missile
+27393	Guristas Nova Heavy Assault Missile
+27395	Caldari Navy Scourge Cruise Missile
+27397	Dread Guristas Nova Heavy Assault Missile
+27399	Dread Guristas Scourge Cruise Missile
+27401	Caldari Navy Nova Heavy Assault Missile
+27403	Guristas Inferno Heavy Assault Missile
+27405	Caldari Navy Inferno Heavy Assault Missile
+27407	Dread Guristas Inferno Heavy Assault Missile
 27409	Guristas Inferno Cruise Missile
-27411	Guristas Trauma Assault Missile
-27413	Caldari Navy Trauma Assault Missile
-27415	Dread Guristas Trauma Assault Missile
-27417	Guristas Mjolnir Assault Missile
-27419	Caldari Navy Mjolnir Assault Missile
-27421	Dread Guristas Mjolnir Assault Missile
+27411	Guristas Scourge Heavy Assault Missile
+27413	Caldari Navy Scourge Heavy Assault Missile
+27415	Dread Guristas Scourge Heavy Assault Missile
+27417	Guristas Mjolnir Heavy Assault Missile
+27419	Caldari Navy Mjolnir Heavy Assault Missile
+27421	Dread Guristas Mjolnir Heavy Assault Missile
 27423	Caldari Navy Inferno Cruise Missile
 27425	Dread Guristas Inferno Cruise Missile
 27427	Guristas Nova Cruise Missile
@@ -5822,27 +5822,27 @@
 27433	Guristas Mjolnir Heavy Missile
 27435	Caldari Navy Mjolnir Heavy Missile
 27437	Dread Guristas Mjolnir Heavy Missile
-27439	Guristas Trauma Heavy Missile
-27441	Caldari Navy Trauma Heavy Missile
-27443	Dread Guristas Trauma Heavy Missile
+27439	Guristas Scourge Heavy Missile
+27441	Caldari Navy Scourge Heavy Missile
+27443	Dread Guristas Scourge Heavy Missile
 27445	Guristas Inferno Heavy Missile
 27447	Caldari Navy Inferno Heavy Missile
 27449	Dread Guristas Inferno Heavy Missile
 27451	Guristas Nova Heavy Missile
 27453	Caldari Navy Nova Heavy Missile
 27455	Dread Guristas Nova Heavy Missile
-27459	Imperial Navy Hunter F.O.F. Cruise Missile I
-27465	Caldari Navy Dragon F.O.F. Cruise Missile I
-27471	Federation Navy Phoenix F.O.F. Cruise Missile I
-27477	Republic Fleet Obliterator F.O.F. Cruise Missile I
-27483	Imperial Navy Stalker F.O.F. Heavy Missile I
-27489	Caldari Navy Hydra F.O.F. Heavy Missile I
-27495	Federation Navy Hellhound F.O.F. Heavy Missile I
-27501	Republic Fleet Eradicator F.O.F. Heavy Missile I
-27507	Imperial Navy Seeker F.O.F. Light Missile I
-27513	Caldari Navy Serpent F.O.F. Light Missile I
-27519	Federation Navy Firefly F.O.F. Light Missile I
-27525	Republic Fleet Exterminator F.O.F. Light Missile I
+27459	Imperial Navy Mjolnir Auto-Targeting Cruise Missile I
+27465	Caldari Navy Scourge Auto-Targeting Cruise Missile I
+27471	Federation Navy Inferno Auto-Targeting Cruise Missile I
+27477	Republic Fleet Nova Auto-Targeting Cruise Missile I
+27483	Imperial Navy Mjolnir Auto-Targeting Heavy Missile I
+27489	Caldari Navy Scourge Auto-Targeting Heavy Missile I
+27495	Federation Navy Inferno Auto-Targeting Heavy Missile I
+27501	Republic Fleet Nova Auto-Targeting Heavy Missile I
+27507	Imperial Navy Mjolnir Auto-Targeting Light Missile I
+27513	Caldari Navy Scourge Auto-Targeting Light Missile I
+27519	Federation Navy Inferno Auto-Targeting Light Missile I
+27525	Republic Fleet Nova Auto-Targeting Light Missile I
 27656	Foundation Upgrade Platform
 27658	Pedestal Upgrade Platform
 27660	Monument Upgrade Platform
@@ -6197,24 +6197,24 @@
 28879	Nanite Operation
 28880	Nanite Interfacing
 28974	Vaccines
-28999	Optimal Range
-29000	Optimal Range Blueprint
-29001	Tracking Speed
-29002	Tracking Speed Blueprint
-29003	Focused Warp Disruption
-29004	Focused Warp Disruption Blueprint
-29005	Optimal Range Disruption
-29006	Optimal Range Disruption Blueprint
-29007	Tracking Speed Disruption
-29008	Tracking Speed Disruption Blueprint
-29009	Targeting Range
-29010	Targeting Range Blueprint
-29011	Scan Resolution
-29012	Scan Resolution Blueprint
-29013	Scan Resolution Dampening
-29014	Scan Resolution Dampening Blueprint
-29015	Targeting Range Dampening
-29016	Targeting Range Dampening Blueprint
+28999	Optimal Range Script
+29000	Optimal Range Script Blueprint
+29001	Tracking Speed Script
+29002	Tracking Speed Script Blueprint
+29003	Focused Warp Disruption Script
+29004	Focused Warp Disruption Script Blueprint
+29005	Optimal Range Disruption Script
+29006	Optimal Range Disruption Script Blueprint
+29007	Tracking Speed Disruption Script
+29008	Tracking Speed Disruption Script Blueprint
+29009	Targeting Range Script
+29010	Targeting Range Script Blueprint
+29011	Scan Resolution Script
+29012	Scan Resolution Script Blueprint
+29013	Scan Resolution Dampening Script
+29014	Scan Resolution Dampening Script Blueprint
+29015	Targeting Range Dampening Script
+29016	Targeting Range Dampening Script Blueprint
 29029	Jump Freighters
 29039	Capital Antimatter Reactor Unit
 29040	Capital Antimatter Reactor Unit Blueprint
@@ -6298,7 +6298,7 @@
 29613	Large Ship Assembly Array
 29616	Guristas Nova Citadel Torpedo
 29618	Guristas Inferno Citadel Torpedo
-29620	Guristas Trauma Citadel Torpedo
+29620	Guristas Scourge Citadel Torpedo
 29622	Guristas Mjolnir Citadel Torpedo
 29637	Industrial Command Ships
 29640	Unrefined Hyperflurite Reaction
@@ -6915,36 +6915,36 @@
 31755	Medium Anti-Thermal Screen Reinforcer I Blueprint
 31758	Small Anti-Thermal Screen Reinforcer II
 31760	Medium Anti-Thermal Screen Reinforcer II
-31764	Small Core Defence Capacitor Safeguard I
-31765	Small Core Defence Capacitor Safeguard I Blueprint
-31766	Medium Core Defence Capacitor Safeguard I
-31767	Medium Core Defence Capacitor Safeguard I Blueprint
-31770	Small Core Defence Capacitor Safeguard II
-31772	Medium Core Defence Capacitor Safeguard II
-31776	Small Core Defence Charge Economizer I
-31777	Small Core Defence Charge Economizer I Blueprint
-31778	Medium Core Defence Charge Economizer I
-31779	Medium Core Defence Charge Economizer I Blueprint
-31782	Small Core Defence Charge Economizer II
-31784	Medium Core Defence Charge Economizer II
-31788	Small Core Defence Field Extender I
-31789	Small Core Defence Field Extender I Blueprint
-31790	Medium Core Defence Field Extender I
-31791	Medium Core Defence Field Extender I Blueprint
-31794	Small Core Defence Field Extender II
-31796	Medium Core Defence Field Extender II
-31800	Small Core Defence Field Purger I
-31801	Small Core Defence Field Purger I Blueprint
-31802	Medium Core Defence Field Purger I
-31803	Medium Core Defence Field Purger I Blueprint
-31810	Small Core Defence Field Purger II
-31812	Medium Core Defence Field Purger II
-31816	Small Core Defence Operational Solidifier I
-31817	Small Core Defence Operational Solidifier I Blueprint
-31818	Medium Core Defence Operational Solidifier I
-31819	Medium Core Defence Operational Solidifier I Blueprint
-31822	Small Core Defence Operational Solidifier II
-31824	Medium Core Defence Operational Solidifier II
+31764	Small Core Defense Capacitor Safeguard I
+31765	Small Core Defense Capacitor Safeguard I Blueprint
+31766	Medium Core Defense Capacitor Safeguard I
+31767	Medium Core Defense Capacitor Safeguard I Blueprint
+31770	Small Core Defense Capacitor Safeguard II
+31772	Medium Core Defense Capacitor Safeguard II
+31776	Small Core Defense Charge Economizer I
+31777	Small Core Defense Charge Economizer I Blueprint
+31778	Medium Core Defense Charge Economizer I
+31779	Medium Core Defense Charge Economizer I Blueprint
+31782	Small Core Defense Charge Economizer II
+31784	Medium Core Defense Charge Economizer II
+31788	Small Core Defense Field Extender I
+31789	Small Core Defense Field Extender I Blueprint
+31790	Medium Core Defense Field Extender I
+31791	Medium Core Defense Field Extender I Blueprint
+31794	Small Core Defense Field Extender II
+31796	Medium Core Defense Field Extender II
+31800	Small Core Defense Field Purger I
+31801	Small Core Defense Field Purger I Blueprint
+31802	Medium Core Defense Field Purger I
+31803	Medium Core Defense Field Purger I Blueprint
+31810	Small Core Defense Field Purger II
+31812	Medium Core Defense Field Purger II
+31816	Small Core Defense Operational Solidifier I
+31817	Small Core Defense Operational Solidifier I Blueprint
+31818	Medium Core Defense Operational Solidifier I
+31819	Medium Core Defense Operational Solidifier I Blueprint
+31822	Small Core Defense Operational Solidifier II
+31824	Medium Core Defense Operational Solidifier II
 31954	Grail Alpha
 31955	Grail Beta
 31956	Grail Delta
@@ -7067,8 +7067,8 @@
 32345	Mantis Blueprint
 32422	Advanced Logistics Network
 32435	Citadel Cruise Missiles
-32436	Trauma Citadel Cruise Missile
-32437	Trauma Citadel Cruise Missile Blueprint
+32436	Scourge Citadel Cruise Missile
+32437	Scourge Citadel Cruise Missile Blueprint
 32438	Nova Citadel Cruise Missile
 32439	Nova Citadel Cruise Missile Blueprint
 32440	Inferno Citadel Cruise Missile
@@ -7078,3 +7078,42 @@
 32444	Citadel Cruise Launcher I
 32445	Citadel Cruise Launcher I Blueprint
 32458	Infrastructure Hub
+32772	Medium Ancillary Shield Booster
+32780	X-Large Ancillary Shield Booster
+32782	Light Defender Missile I
+32783	Light Defender Missile I Blueprint
+32787	Salvage Drone I
+32788	Cambion
+32790	Etana
+32792	100 Aurum Token
+32797	Armor Resistance Phasing
+32799	Tactical Laser S
+32800	Tactical Laser S Blueprint
+32801	Tactical EMP S
+32854	Discovery Survey Probe I Blueprint
+32855	Gaze Survey Probe I Blueprint
+32858	Station Container Blueprint
+32859	Small Standard Container Blueprint
+32860	Medium Standard Container Blueprint
+32861	Large Standard Container Blueprint
+32862	Giant Freight Container Blueprint
+32863	Giant Secure Container Blueprint
+32864	Huge Secure Container Blueprint
+32865	Large Secure Container Blueprint
+32866	Medium Secure Container Blueprint
+32867	Small Secure Container Blueprint
+32868	Small Audit Log Secure Container Blueprint
+32869	Medium Audit Log Secure Container Blueprint
+32870	Large Audit Log Secure Container Blueprint
+32871	Station Vault Container Blueprint
+32872	Algos
+32873	Algos Blueprint
+32874	Dragoon
+32875	Dragoon Blueprint
+32876	Corax
+32877	Corax Blueprint
+32878	Talwar
+32879	Talwar Blueprint
+32880	Venture
+32881	Venture Blueprint
+32918	Mining Frigate
