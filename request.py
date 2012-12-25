@@ -1,9 +1,9 @@
 #/usr/bin/python
 import json
-import yaml
 import xml.etree.ElementTree as ET
 import urllib2
 from pprint import pprint
+from sqliteStuff import OrdersTable
 
 systems = {
 	'rens': 10000030,
@@ -19,6 +19,7 @@ evecMarketstat =	'http://api.eve-central.com/api/marketstat?'
 evemPriceHistory =	'http://api.eve-marketdata.com/api/item_history2.json?char_name=asdf&days=5&'
 
 typeToName = {}
+volumeHistory = None
 
 def chunks(l, n):
     """ Yield successive n-sized chunks from l.
@@ -47,16 +48,18 @@ class MarketItem:
 		self.volumeDifference = 0
 		self.soldOrderHistory = None
 		self.soldOrders = 0
+		self.totalProfit = 0
 
 	def __repr__(self):
 		s = self.name + '\n'
 		s += 'Buy:\t' + str(self.buyOrders) + '\t@ ' + formatNum(self.buyPrice) + '\n'
 		s += 'Sell:\t' + str(self.sellOrders) + '\t@ ' + formatNum(self.sellPrice) + '\n'
 		s += 'Orders Filled: \t' + str(self.soldOrders) + '\n'
-		#s += 'Order history: ' + str(soldOrderHistory) + '\n'
+		s += 'Order history: ' + str(self.soldOrderHistory) + '\n'
 
 		s += 'Price Difference: %0.2f\n' % self.priceDifference
-		s += 'Volume Difference: %0.2f' % self.volumeDifference
+		s += 'Volume Difference: %0.2f\n' % self.volumeDifference
+		s += 'Total profit: ' + formatNum(self.totalProfit)
 		return s
 
 	def __str__(self):
@@ -79,19 +82,6 @@ class MarketItem:
 		if numDataPoints <> 0:
 			self.soldOrders = float(sumOrders) / numDataPoints
 
-	def fromEveMarketDataPerItem(self, orderDict):
-		if self.typeId == None:
-			return
-
-		url = evemPriceHistory
-		url += 'region_ids=%d&type_ids=%d' % (regions['the_forge'], self.typeId)
-		print url
-
-		data = urllib2.urlopen(url).read()
-		orderDict = json.loads(data)
-
-		self.fromEveMarketData2(orderDict)
-
 	def fromEveCentral(self, itemNode):
 		self.typeId = int(itemNode.attrib['id'])
 		self.name = getItemName(self.typeId)
@@ -112,6 +102,35 @@ class MarketItem:
 		if self.buyOrders <> 0 and self.buyPrice <> 0 and self.sellOrders <> 0 and self.sellPrice <> 0:
 			self.priceDifference = abs(self.buyPrice - self.sellPrice) / self.buyPrice * 100
 			self.volumeDifference = abs(self.buyOrders - self.sellOrders) / float(self.totalOrders) * 100
+	
+	def fromVolumeDb(self, db):
+		if self.typeId not in db.keys():
+			return
+		
+		entry = db[self.typeId]
+		self.soldOrderHistory = entry
+		
+		self.soldOrders = 0
+		
+		if 'buy' in entry.keys():
+			self.soldOrders += entry['buy']
+		
+		if 'sell' in entry.keys():
+			self.soldOrders += entry['sell']
+		
+	def sortCriteria(self, item):
+		#itemBuy = item.buyPrice * 1.03
+		#itemSell = item.sellPrice * 0.95
+		
+		#volume = item.soldOrders * 0.20
+		
+		#totalInvestment = itemBuy * volume
+		#totalRevenue = itemSell * volume
+		
+		#self.totalProfit = totalRevenue - totalInvestment
+		#return self.totalProfit
+		
+		return self.soldOrders
 
 def initTypeToNameDB():
 	f = open('typeid.txt', 'r')
@@ -128,7 +147,7 @@ def getItemName(typeId):
 	else:
 		return None
 
-def _getItems(typeIds, region):
+def _getItems(typeIds, region, volumeHistory):
 	if len(typeIds) == 0:
 		return []
 
@@ -150,66 +169,73 @@ def _getItems(typeIds, region):
 	urlCentral = urlCentral[:-1]		# Strip the ending &
 	urlData = urlData[:-1]
 
-	print 'Using URL:', urlCentral
-	print 'Using URL:', urlData
+	print 'Getting items:', typeIds[0], 'to', typeIds[-1]
 
 	htmlReply = urllib2.urlopen(urlCentral).read()
-	root = ET.fromstring(htmlReply)[0]
+	try:
+		root = ET.fromstring(htmlReply)[0]
+	except:
+		print htmlReply
 
-	eveMarketDataReply = urllib2.urlopen(urlData).read()
-	eveMarketDataDict = json.loads(eveMarketDataReply)
+	#eveMarketDataReply = urllib2.urlopen(urlData).read()
+	#eveMarketDataDict = json.loads(eveMarketDataReply)
 
 	items = []
 	for typeNode in root:
 		item = MarketItem()
 		item.fromEveCentral(typeNode)
-		item.fromEveMarketData(eveMarketDataDict)
+		#item.fromEveMarketData(eveMarketDataDict)
+		item.fromVolumeDb(volumeHistory)
 		items.append(item)
 
 	return items
 
 def getItems(typeIds, region):
+	orders = OrdersTable()
+	vH = orders.getJitaVolumesLastDay()
+	
 	totalItems = []
 	for chunk in chunks(typeIds, 1000):
-		totalItems += _getItems(chunk, region)
+		totalItems += _getItems(chunk, region, vH)
 
 	return totalItems
 
 def itemCriteria(item):
 	if item.priceDifference < 15:
 		return False
-	if item.priceDifference > 100:
+	elif item.priceDifference > 75:
 		return False
 	elif item.totalOrders < 100:
 		return False
-	elif item.volumeDifference > 70:
+	elif item.volumeDifference > 75:
 		return False
-	elif item.buyPrice < 20000:
+	elif item.buyPrice < 90000:
 		return False
-	elif item.soldOrders < 80:
+	elif item.soldOrders < 120:
+		return False
+	elif item.soldOrders > 8000:
+		return False
+	elif item.buyPrice > item.sellPrice:
 		return False
 	elif 'Blueprint' in item.name:
 		return False
-	else:
-		return True
-
-def sortCriteria(item):
-	return item.soldOrders
+	
+	return True
 
 def grabItemNames():
+	'''
+	Gets the item names from pinging eve-central. Slow, but gets the job done.
+	'''
 	templateUrl = 'http://api.eve-central.com/api/quicklook?usesystem=30000142&typeid=%d'
 	f = open('testtypes.txt', 'w')
 	
 	for typeId in range(1, 37000):
 		url = templateUrl % typeId
-		#print url
 		html = urllib2.urlopen(url).read()
 		
 		if 'Type not found' in html:
 			print str(typeId)
 			continue
-		
-		#print html
 		
 		try:
 			root = ET.fromstring(html)
@@ -223,13 +249,12 @@ def grabItemNames():
 		f.flush()
 
 def main():
-
 	initTypeToNameDB()
 
-	typeIds = range(34, 41) + range(178, 202) + range(377, 551) + range(551, 1357) + range(16305, 16536)
+	typeIds = range(1, 33000)
 	itemList = getItems(typeIds, 'the_forge')
 	itemList = filter(itemCriteria, itemList)
-	itemList = sorted(itemList, key=sortCriteria)
+	itemList = sorted(itemList, key=lambda item: item.sortCriteria(item))
 
 	for item in itemList:
 		print item, '\n'
