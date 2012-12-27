@@ -1,9 +1,12 @@
 #/usr/bin/python
+from datetime import datetime, time, timedelta
+import pickle
 import json
 import xml.etree.ElementTree as ET
 import urllib2
 from pprint import pprint
-from sqliteStuff import OrdersTable
+from orders import OrdersTable
+from util import chunks, formatNum
 
 systems = {
 	'rens': 10000030,
@@ -21,34 +24,19 @@ evemPriceHistory =	'http://api.eve-marketdata.com/api/item_history2.json?char_na
 typeToName = {}
 volumeHistory = None
 
-def chunks(l, n):
-    """ Yield successive n-sized chunks from l.
-    """
-    for i in xrange(0, len(l), n):
-        yield l[i:i+n]
-
-def formatNum(price):
-	if price < 1000:
-		return str(price)
-	if price < 1000000:
-		return '%.1fk' % (price / 1000)
-
-	return '%.1fM' % (price / 1000000)
-
 class MarketItem:
 	def __init__(self):
-		self.typeId = None
+		self.typeId = -1
 		self.name = None
-		self.buyOrders = 0
-		self.buyPrice = 0
-		self.sellOrders = 0
-		self.sellPrice = 0
-		self.totalOrders = 0
-		self.priceDifference = 0
-		self.volumeDifference = 0
+		self.buyOrders = None
+		self.buyPrice = -1
+		self.sellOrders = None
+		self.sellPrice = -1
+		self.totalOrders = -1
+		self.priceDifference = -1
+		self.volumeDifference = -1
 		self.soldOrderHistory = None
-		self.soldOrders = 0
-		self.totalProfit = 0
+		self.soldOrders = -1
 
 	def __repr__(self):
 		s = self.name + '\n'
@@ -59,28 +47,10 @@ class MarketItem:
 
 		s += 'Price Difference: %0.2f\n' % self.priceDifference
 		s += 'Volume Difference: %0.2f\n' % self.volumeDifference
-		s += 'Total profit: ' + formatNum(self.totalProfit)
 		return s
 
 	def __str__(self):
 		return self.__repr__()
-
-	def fromEveMarketData(self, orderDict):
-		# Getting the stuff from eve-marketdata.com. Effin messy.
-		orderDict = orderDict['emd']['result']
-
-		# Again, bit awkward, adding the total order history
-		self.soldOrderHistory = []
-		sumOrders = 0
-		numDataPoints = 0
-		for entry in orderDict:
-			if entry['row']['typeID'] == str(self.typeId):
-				numOrders = int(entry['row']['orders'])
-				sumOrders += numOrders
-				numDataPoints += 1
-
-		if numDataPoints <> 0:
-			self.soldOrders = float(sumOrders) / numDataPoints
 
 	def fromEveCentral(self, itemNode):
 		self.typeId = int(itemNode.attrib['id'])
@@ -130,10 +100,10 @@ class MarketItem:
 		#self.totalProfit = totalRevenue - totalInvestment
 		#return self.totalProfit
 		
-		return self.soldOrders
-
+		return self.priceDifference 
+		
 def initTypeToNameDB():
-	f = open('typeid.txt', 'r')
+	f = open('data/typeid.txt', 'r')
 	for line in f:
 		splitString = line.split('\t')
 		typeId = splitString[0].strip()
@@ -142,6 +112,9 @@ def initTypeToNameDB():
 	f.close()
 
 def getItemName(typeId):
+	if len(typeToName) == 0:
+		initTypeToNameDB()
+	
 	if str(typeId) in typeToName:
 		return typeToName[str(typeId)]
 	else:
@@ -190,14 +163,40 @@ def _getItems(typeIds, region, volumeHistory):
 
 	return items
 
-def getItems(typeIds, region):
+def getItems(region='the_forge', callbackFunc=None):
+	typeIds = range(1, 33001)
+	
+	# Check if we have a cached version of the items db from the last 15 minutes
+	try:
+		with open('data/items.pickle', 'rb') as fin:
+			pickedItems = pickle.load(fin)
+			cutoffDate = datetime.utcnow() - timedelta(minutes=15)
+			if pickedItems['time'] > cutoffDate:
+				return pickedItems['items']
+	except:
+		pass	
+	
 	orders = OrdersTable()
 	vH = orders.getJitaVolumesLastDay()
 	
 	totalItems = []
+	numProcessed = 0
 	for chunk in chunks(typeIds, 1000):
 		totalItems += _getItems(chunk, region, vH)
+		
+		numProcessed += 1000
+		
+		# Update the application to show status.
+		if callbackFunc <> None:
+			callbackFunc(numProcessed / float(typeIds[-1]))
 
+	# Always pickle and save the items db
+	picklingList = {}
+	picklingList['time'] = datetime.utcnow()
+	picklingList['items'] = totalItems
+	with open('data/items.pickle', 'wb') as fout:
+		pickle.dump(picklingList, fout)
+	
 	return totalItems
 
 def itemCriteria(item):
@@ -227,37 +226,35 @@ def grabItemNames():
 	Gets the item names from pinging eve-central. Slow, but gets the job done.
 	'''
 	templateUrl = 'http://api.eve-central.com/api/quicklook?usesystem=30000142&typeid=%d'
-	f = open('testtypes.txt', 'w')
-	
-	for typeId in range(1, 37000):
-		url = templateUrl % typeId
-		html = urllib2.urlopen(url).read()
-		
-		if 'Type not found' in html:
-			print str(typeId)
-			continue
-		
-		try:
-			root = ET.fromstring(html)
-		except:
-			print 'Item:', typeId, 'doesn\'t exist'
-		
-		root = root[0]
-		result = str(typeId) + '\t' + root.find('itemname').text 
-		print result
-		f.write(result + '\n')
-		f.flush()
+	with open('testtypes.txt', 'w') as f:
+		for typeId in range(1, 37000):
+			url = templateUrl % typeId
+			html = urllib2.urlopen(url).read()
+			
+			if 'Type not found' in html:
+				print str(typeId)
+				continue
+			
+			try:
+				root = ET.fromstring(html)
+			except:
+				print 'Item:', typeId, 'doesn\'t exist'
+			
+			root = root[0]
+			result = str(typeId) + '\t' + root.find('itemname').text 
+			print result
+			f.write(result + '\n')
 
 def main():
 	initTypeToNameDB()
 
-	typeIds = range(1, 33000)
-	itemList = getItems(typeIds, 'the_forge')
+	#typeIds = range(1, 33000)
+	itemList = getItems('the_forge')
 	itemList = filter(itemCriteria, itemList)
 	itemList = sorted(itemList, key=lambda item: item.sortCriteria(item))
 
 	for item in itemList:
-		print item, '\n'
+		print item
 
 if __name__ == '__main__':
 	main()

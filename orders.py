@@ -1,11 +1,8 @@
-#/usr/bin/python
 from datetime import datetime, time, timedelta
 import gzip
-import os
-import sqlite3
 import MySQLdb
+import os
 import urllib2
-import zlib
 
 class Order:
 	def __init__(self):
@@ -47,47 +44,12 @@ class Order:
 	def __str__(self):
 		return self.__repr__()
 	
-	def _setValues(self, array):
-		self.orderid =			int(array[0])
-		self.regionid =			int(array[1])
-		self.systemid =			int(array[2])
-		self.stationid =		int(array[3])
-		self.typeid =			int(array[4])
-		self.bid =				float(array[5])
-		self.price =			float(array[6])
-		self.minvolume =		int(array[7])
-		self.volremain =		int(array[8])
-		self.volenter =			int(array[9])
-		self.issued =			str(array[10])
-		self.duration =			str(array[11])
-		self.range =			int(array[12])
-		self.reportedby =		int(array[13])
-		self.reportedtime =		str(array[14])
-		
-	def fromCsv(self, line):
-		# Weird way to parse the data, because there is a random comma within a data field.
-		line = line.replace(',', '')
-		line = [x for x in line.split('"') if x]
-		
-		self._setValues(line)
-		
-	def fromSql(self, sqlTuple):
-		self._setValues(sqlTuple)
-		
-	def toSqlite(self, connection):
-		cursor = connection.cursor()
-		sql = 'INSERT IGNORE INTO orders VALUES (' + str(self) + ');'
-		cursor.execute(sql)
-	
 	def getTags(self):
 		return 'orderid,regionid,systemid,stationid,typeid,bid,price,minvolume,volremain,volenter,issued,duration,rng,reportedby,reportedtime'
-	
-	'''select orderid,typeid,max(volenter),min(volremain),max(volenter)-min(volremain) from orders where typeid=34 group by orderid limit 50;'''
-	'''sqlite> SELECT typeid,bid,sum(numsold) from (select typeid,orderid,bid,max(volremain)-min(volremain) AS numsold FROM orders WHERE reportedtime LIKE '2012-12-12%' AND regionid=10000002 group by typeid,orderid,bid) where numsold<>0 and typeid=587 group by typeid,bid;'''
 
 class OrdersTable:
 	def __init__(self):
-		self.conn = MySQLdb.connect(host = '192.168.174.128', user = 'root', passwd = '', db = 'eve')
+		self.conn = MySQLdb.connect(host = '10.10.10.250', user = 'root', passwd = '', db = 'eve')
 		
 		self.daysKept = 3
 		
@@ -101,10 +63,6 @@ class OrdersTable:
 	def create(self):
 		cursor = self.getCursor()
 		cursor.execute('''CREATE TABLE IF NOT EXISTS orders(orderid BIGINT, regionid INTEGER, systemid INTEGER, stationid INTEGER, typeid INTEGER, bid REAL, price REAL, minvolume INTEGER, volremain INTEGER, volenter INTEGER, issued DATETIME, duration TEXT, rng INTEGER, reportedby INTEGER, reportedtime DATETIME, INDEX reportedtime (reportedtime));''')
-		
-		# Probably should make some indexes?
-		# todo fixme INDEX in CREATE TABLE
-		#cursor.execute('''CREATE INDEX reportedtime ON orders (reportedtime);''')
 	
 	def delete(self):
 		cursor = self.getCursor()
@@ -128,7 +86,6 @@ class OrdersTable:
 		print 'Done!'
 		
 	def hasDate(self, date):
-		# This method is really really slow.. Will need to speed it up
 		cursor = self.getCursor()
 		dateStr = '%d-%02d-%02d' % (date.year, date.month, date.day)
 		
@@ -193,7 +150,6 @@ class OrdersTable:
 		startTime = datetime.now()
 		cur = self.getCursor();
 		sql = 'LOAD DATA LOCAL INFILE \'%s\' INTO TABLE orders FIELDS TERMINATED BY \',\' LINES TERMINATED BY \'\\n\';' % fileName
-		print sql
 		cur.execute(sql)
 		
 		print 'Done importing.'
@@ -235,11 +191,3 @@ class OrdersTable:
 				volumesDict[typeId]['sell'] = volume
 				
 		return volumesDict
-		
-def main():
-	ordersTable = OrdersTable()
-	
-	print ordersTable.getJitaVolumesLastDay()
-
-if __name__ == '__main__':
-	main()
