@@ -19,8 +19,10 @@ local.properties
 data/*.dump
 data/*.csv
 data/*.gz
+data/*.pickle
 .idea/*
 .idea
+
 
 # External tool builders
 .externalToolBuilders/
