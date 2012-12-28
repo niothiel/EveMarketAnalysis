@@ -16,7 +16,11 @@ local.properties
 .settings/
 .loadpath
 *~
-data/*
+data/*.dump
+data/*.csv
+data/*.gz
+.idea/*
+.idea
 
 # External tool builders
 .externalToolBuilders/
