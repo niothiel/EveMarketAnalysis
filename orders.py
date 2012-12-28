@@ -1,8 +1,12 @@
 from datetime import datetime, time, timedelta
 import gzip
-import MySQLdb
 import os
 import urllib2
+
+try:
+    import MySQLdb
+except:
+    print 'Failed to import MySQL Library!'
 
 class Order:
 	def __init__(self):
