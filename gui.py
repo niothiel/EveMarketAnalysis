@@ -1,7 +1,45 @@
 from PyQt4.QtGui import *
+from PyQt4.QtCore import Qt
+#import PyQt4.QtCore.Qt
 from request import getItems
+from util import formatNum
 import PyQt4
 import sys
+
+class SpecialWidgetItem(QTableWidgetItem):
+    # Types for the fields
+    T_ISK = 0
+    T_NUMBER = 1
+    T_PERCENT = 2
+    T_OTHER = 3
+
+    def __init__(self, item, type, attribute):
+        super(SpecialWidgetItem, self).__init__()
+        self.item = item
+        self.type = type
+        self.attribute = attribute
+
+    def __getData(self):
+        return getattr(self.item, self.attribute)
+
+    def data(self, p_int):
+        if p_int == Qt.DisplayRole:
+            data = self.__getData()
+
+            if self.type == SpecialWidgetItem.T_ISK:
+                return formatNum(data)
+            elif self.type == SpecialWidgetItem.T_NUMBER:
+                return '%.0f' % data
+            elif self.type == SpecialWidgetItem.T_PERCENT:
+                return '%.1f%%' % data
+            else:
+                return data
+        else:
+            return QTableWidgetItem.data(self, p_int)
+
+    # Another weird hack for sorting data. Sorts based on item (order) attribute
+    def __lt__(self, other):
+        return self.__getData() < other.__getData()
 
 class MainView(QMainWindow):
     def __init__(self):
@@ -12,6 +50,7 @@ class MainView(QMainWindow):
         #self.items = getItems()
     
     def refresh(self):
+        self.statusBar().showMessage('Retrieving item prices: 0%')
         self.items = getItems(callbackFunc= lambda pct: self.statusBar().showMessage('Retrieving item prices: %.0f%%' % (pct * 100)))
         self.updateTable()
         self.statusBar().showMessage('Update completed!')
@@ -66,16 +105,21 @@ class MainView(QMainWindow):
         row = 0
         for item in tempItems:
             name = QTableWidgetItem(str(item.name))
-            buyPrice = QTableWidgetItem()
-            sellPrice = QTableWidgetItem()
-            profit = QTableWidgetItem()
-            totalSold = QTableWidgetItem()
-            
+            #buyPrice = QTableWidgetItem()
+            #sellPrice = QTableWidgetItem()
+            #profit = QTableWidgetItem()
+            #totalSold = QTableWidgetItem()
+
+            buyPrice = SpecialWidgetItem(item, SpecialWidgetItem.T_ISK, 'buyPrice')
+            sellPrice = SpecialWidgetItem(item, SpecialWidgetItem.T_ISK, 'sellPrice')
+            profit = SpecialWidgetItem(item, SpecialWidgetItem.T_PERCENT, 'priceDifference')
+            totalSold = SpecialWidgetItem(item, SpecialWidgetItem.T_NUMBER, 'soldOrders')
+
             # Weird hack to enable sorting by int (What the fuck, Qt?)
-            buyPrice.setData(PyQt4.QtCore.Qt.DisplayRole, item.buyPrice)
-            sellPrice.setData(PyQt4.QtCore.Qt.DisplayRole, item.sellPrice)
-            profit.setData(PyQt4.QtCore.Qt.DisplayRole, item.priceDifference)
-            totalSold.setData(PyQt4.QtCore.Qt.DisplayRole, item.soldOrders)
+            #buyPrice.setData(PyQt4.QtCore.Qt.DisplayRole, item.buyPrice)
+            #sellPrice.setData(PyQt4.QtCore.Qt.DisplayRole, item.sellPrice)
+            #profit.setData(PyQt4.QtCore.Qt.DisplayRole, item.priceDifference)
+            #totalSold.setData(PyQt4.QtCore.Qt.DisplayRole, item.soldOrders)
             
             # Populate with typeId for retrieval
             typeId = item.typeId
@@ -93,6 +137,8 @@ class MainView(QMainWindow):
             row += 1
         
         self.table.setSortingEnabled(True)
+        self.table.sortItems(3, Qt.DescendingOrder)
+        self.table.resizeColumnsToContents()
     
     def initUI(self):
         mainLayout = QVBoxLayout(self)

@@ -170,7 +170,7 @@ def getItems(region='the_forge', localData=False, callbackFunc=None):
 	try:
 		with open('data/items.pickle', 'rb') as fin:
 			pickedItems = pickle.load(fin)
-			cutoffDate = datetime.utcnow() - timedelta(minutes=15)
+			cutoffDate = datetime.utcnow() - timedelta(hours=5, minutes=15)
 			if pickedItems['time'] > cutoffDate:
 				return pickedItems['items']
 	except:
