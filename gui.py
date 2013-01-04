@@ -1,12 +1,98 @@
 from PyQt4.QtGui import *
 from PyQt4.QtCore import Qt
-#import PyQt4.QtCore.Qt
 from request import getItems
 from util import formatNum
 import PyQt4
 import sys
 
-class SpecialWidgetItem(QTableWidgetItem):
+class PriceListWindow(QDialog):
+    def __init__(self, parent, typeId):
+        QDialog.__init__(self, parent)
+        self.typeId = typeId
+
+        self.initUI()
+
+    def initUI(self):
+        mainLayout = QVBoxLayout(self)
+        mainWidget = QWidget(self)
+        mainWidget.setLayout(mainLayout)
+
+        minProfit = QLabel('Min. Profit:')
+
+        self.minProfitEdit = QDoubleSpinBox()
+        self.minProfitEdit.setAccelerated(True)
+        self.minProfitEdit.setMaximum(10000000000)
+
+        maxProfit = QLabel('Max Profit:')
+
+        self.maxProfitEdit = QDoubleSpinBox()
+        self.maxProfitEdit.setAccelerated(True)
+        self.maxProfitEdit.setMaximum(10000000000)
+
+        maxInvestment = QLabel('Max Investment:')
+
+        self.maxInvestmentEdit = QDoubleSpinBox()
+        self.maxInvestmentEdit.setAccelerated(True)
+        self.maxInvestmentEdit.setMaximum(10000000000)
+
+        minOrders = QLabel('Min Orders:')
+
+        self.minOrdersEdit = QDoubleSpinBox()
+        self.minOrdersEdit.setAccelerated(True)
+        self.minOrdersEdit.setMaximum(10000000000)
+
+        maxOrders = QLabel('Max Orders:')
+
+        self.maxOrdersEdit = QDoubleSpinBox()
+        self.maxOrdersEdit.setAccelerated(True)
+        self.maxOrdersEdit.setMaximum(10000000000)
+
+        minPrice = QLabel('Min Price:')
+
+        self.minPriceEdit = QDoubleSpinBox()
+        self.minPriceEdit.setAccelerated(True)
+        self.minPriceEdit.setMaximum(10000000000)
+
+        columnNames = ['Name', 'Buy (Isk)', 'Sell (Isk)', 'Profit (%)', 'Total Sold']
+        table = QTableWidget(2, len(columnNames), self)
+        table.setHorizontalHeaderLabels(columnNames)
+        table.verticalHeader().hide()
+        table.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        table.setSelectionBehavior(QAbstractItemView.SelectRows)
+        self.table = table
+
+        refreshButton = QPushButton('Refresh')
+
+        form = QFormLayout()
+        form.addRow('Min. Profit:', self.minProfitEdit)
+        form.addRow('Max Profit:', self.maxProfitEdit)
+
+        grid = QGridLayout()
+        grid.addWidget(minProfit, 0, 0)
+        grid.addWidget(self.minProfitEdit, 0, 1)
+        grid.addWidget(maxProfit, 1, 0)
+        grid.addWidget(self.maxProfitEdit, 1, 1)
+        grid.addWidget(maxInvestment, 2, 0)
+        grid.addWidget(self.maxInvestmentEdit, 2, 1)
+        grid.addWidget(minOrders, 3, 0)
+        grid.addWidget(self.minOrdersEdit, 3, 1)
+        grid.addWidget(maxOrders, 4, 0)
+        grid.addWidget(self.maxOrdersEdit, 4, 1)
+        grid.addWidget(minPrice, 5, 0)
+        grid.addWidget(self.minPriceEdit, 5, 1)
+
+        mainLayout.addLayout(grid)
+        #mainLayout.addLayout(form)
+        mainLayout.addWidget(table)
+        mainLayout.addWidget(refreshButton)
+
+        self.setCentralWidget(mainWidget)
+        self.setGeometry(100, 100, 800, 500)
+        self.setWindowTitle('Eve Market Analyzer')
+        self.statusBar().showMessage('Status Bar')
+        self.show()
+
+class FormattedWidgetItem(QTableWidgetItem):
     # Types for the fields
     T_ISK = 0
     T_NUMBER = 1
@@ -14,7 +100,7 @@ class SpecialWidgetItem(QTableWidgetItem):
     T_OTHER = 3
 
     def __init__(self, item, type, attribute):
-        super(SpecialWidgetItem, self).__init__()
+        super(FormattedWidgetItem, self).__init__()
         self.item = item
         self.type = type
         self.attribute = attribute
@@ -26,11 +112,11 @@ class SpecialWidgetItem(QTableWidgetItem):
         if p_int == Qt.DisplayRole:
             data = self.__getData()
 
-            if self.type == SpecialWidgetItem.T_ISK:
+            if self.type == FormattedWidgetItem.T_ISK:
                 return formatNum(data)
-            elif self.type == SpecialWidgetItem.T_NUMBER:
+            elif self.type == FormattedWidgetItem.T_NUMBER:
                 return '%.0f' % data
-            elif self.type == SpecialWidgetItem.T_PERCENT:
+            elif self.type == FormattedWidgetItem.T_PERCENT:
                 return '%.1f%%' % data
             else:
                 return data
@@ -105,21 +191,11 @@ class MainView(QMainWindow):
         row = 0
         for item in tempItems:
             name = QTableWidgetItem(str(item.name))
-            #buyPrice = QTableWidgetItem()
-            #sellPrice = QTableWidgetItem()
-            #profit = QTableWidgetItem()
-            #totalSold = QTableWidgetItem()
 
-            buyPrice = SpecialWidgetItem(item, SpecialWidgetItem.T_ISK, 'buyPrice')
-            sellPrice = SpecialWidgetItem(item, SpecialWidgetItem.T_ISK, 'sellPrice')
-            profit = SpecialWidgetItem(item, SpecialWidgetItem.T_PERCENT, 'priceDifference')
-            totalSold = SpecialWidgetItem(item, SpecialWidgetItem.T_NUMBER, 'soldOrders')
-
-            # Weird hack to enable sorting by int (What the fuck, Qt?)
-            #buyPrice.setData(PyQt4.QtCore.Qt.DisplayRole, item.buyPrice)
-            #sellPrice.setData(PyQt4.QtCore.Qt.DisplayRole, item.sellPrice)
-            #profit.setData(PyQt4.QtCore.Qt.DisplayRole, item.priceDifference)
-            #totalSold.setData(PyQt4.QtCore.Qt.DisplayRole, item.soldOrders)
+            buyPrice = FormattedWidgetItem(item, FormattedWidgetItem.T_ISK, 'buyPrice')
+            sellPrice = FormattedWidgetItem(item, FormattedWidgetItem.T_ISK, 'sellPrice')
+            profit = FormattedWidgetItem(item, FormattedWidgetItem.T_PERCENT, 'priceDifference')
+            totalSold = FormattedWidgetItem(item, FormattedWidgetItem.T_NUMBER, 'soldOrders')
             
             # Populate with typeId for retrieval
             typeId = item.typeId
@@ -139,6 +215,7 @@ class MainView(QMainWindow):
         self.table.setSortingEnabled(True)
         self.table.sortItems(3, Qt.DescendingOrder)
         self.table.resizeColumnsToContents()
+        self.table.resizeRowsToContents()
     
     def initUI(self):
         mainLayout = QVBoxLayout(self)
@@ -185,6 +262,9 @@ class MainView(QMainWindow):
         table = QTableWidget(2, len(columnNames), self)
         table.setHorizontalHeaderLabels(columnNames)
         table.verticalHeader().hide()
+        table.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        table.setSelectionBehavior(QAbstractItemView.SelectRows)
+        table.cellDoubleClicked.connect(self.onDoubleClick)
         self.table = table
         
         refreshButton = QPushButton('Refresh')
@@ -218,6 +298,15 @@ class MainView(QMainWindow):
         self.setWindowTitle('Eve Market Analyzer')
         self.statusBar().showMessage('Status Bar')    
         self.show()
+
+    def onDoubleClick(self, row, col):
+        print "Clicked cell:", row, col
+
+        typeId = self.table.item(row, col).data(Qt.UserRole).toInt()[0]
+        print typeId
+
+        priceWindow = PriceListWindow(self, typeId)
+        priceWindow.exec_()
 
 def main():
     app = QApplication(sys.argv)

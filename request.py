@@ -20,6 +20,7 @@ regions = {
 evecMarketstat =	'http://api.eve-central.com/api/marketstat?'
 evemPriceHistory =	'http://api.eve-marketdata.com/api/item_history2.json?char_name=asdf&days=5&'
 
+itemDbInitialized = False
 typeToName = {}
 volumeHistory = None
 
@@ -102,22 +103,24 @@ class MarketItem:
 			self.soldOrders += entry['sell']
 
 def initTypeToNameDB():
-	f = open('data/typeid.txt', 'r')
-	for line in f:
-		splitString = line.split('\t')
-		typeId = splitString[0].strip()
-		name = splitString[1].strip()
-		typeToName[typeId] = name
-	f.close()
+    with open('data/typeid.txt', 'r') as f:
+        for line in f:
+            splitString = line.split('\t')
+            typeId = splitString[0].strip()
+            name = splitString[1].strip()
+            typeToName[typeId] = name
+
+    global itemDbInitialized
+    itemDbInitialized = True
 
 def getItemName(typeId):
-	if len(typeToName) == 0:
-		initTypeToNameDB()
+    if not itemDbInitialized:
+        initTypeToNameDB()
 
-	if str(typeId) in typeToName:
-		return typeToName[str(typeId)]
-	else:
-		return None
+    if str(typeId) in typeToName:
+        return typeToName[str(typeId)]
+    else:
+        return None
 
 def _getItems(typeIds, region, volumeHistory):
 	if len(typeIds) == 0:
@@ -170,7 +173,7 @@ def getItems(region='the_forge', localData=False, callbackFunc=None):
 	try:
 		with open('data/items.pickle', 'rb') as fin:
 			pickedItems = pickle.load(fin)
-			cutoffDate = datetime.utcnow() - timedelta(hours=5, minutes=15)
+			cutoffDate = datetime.utcnow() - timedelta(hours=2, minutes=15)
 			if pickedItems['time'] > cutoffDate:
 				return pickedItems['items']
 	except:
