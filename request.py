@@ -33,7 +33,7 @@ class MarketItem:
 		self.sellPrice = -1
 		self.totalOrders = -1
 		self.priceDifference = -1
-		self.soldOrderHistory = None
+		self.soldOrderHistory = []
 		self.soldOrders = -1
 
 	def __repr__(self):
@@ -51,9 +51,6 @@ class MarketItem:
 
 	def fromEveMarketData(self, orderDict):
 		# Getting the stuff from eve-marketdata.com. Effin messy.
-
-		# Again, bit awkward, adding the total order history
-		self.soldOrderHistory = []
 		sumOrders = 0
 		numDataPoints = 0
 		for entry in orderDict:
@@ -170,7 +167,7 @@ def getItems(region='the_forge', localData=False, callbackFunc=None):
 	try:
 		with open('data/items.pickle', 'rb') as fin:
 			pickedItems = pickle.load(fin)
-			cutoffDate = datetime.utcnow() - timedelta(minutes=15)
+			cutoffDate = datetime.utcnow() - timedelta(hours=1, minutes=15)
 			if pickedItems['time'] > cutoffDate:
 				return pickedItems['items']
 	except:
