@@ -172,8 +172,8 @@ class MainView(QMainWindow):
             return False
         elif item.soldOrders < 1:
             return False
-        elif item.volumeDifference > 75:
-            return False
+        #elif item.volumeDifference > 75:
+        #    return False
 
         return True
     

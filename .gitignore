@@ -22,6 +22,7 @@ data/*.gz
 data/*.pickle
 .idea/*
 .idea
+*.db
 
 
 # External tool builders

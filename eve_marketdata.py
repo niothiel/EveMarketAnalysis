@@ -84,7 +84,6 @@ class EVEMarketData(object):
 
 		query = urllib.urlencode(params)
 		url = '%s/item_prices2.json?%s' % (self.api_base, query)
-		print url
 
 		response = self.url_fetch(url)
 		api_result = json.loads(response)['emd']
@@ -177,7 +176,6 @@ class EVEMarketData(object):
 
 		response = self.url_fetch(url)
 		api_result = json.loads(response)['emd']
-		pprint(api_result)
 
 		results = {}
 		for row in api_result['result']:
