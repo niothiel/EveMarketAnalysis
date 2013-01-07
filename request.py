@@ -4,7 +4,7 @@ import json
 import pickle
 import xml.etree.ElementTree as ET
 import urllib2
-from orders import OrdersTable
+from db import OrdersTable
 from util import chunks, formatNum
 
 systems = {
@@ -67,7 +67,7 @@ class MarketItem:
 		self.typeId = int(itemNode.attrib['id'])
 		self.name = getItemName(self.typeId)
 
-		if self.name == None:
+		if self.name is None:
 			return
 
 		buyNode = itemNode.find('buy')
@@ -82,7 +82,6 @@ class MarketItem:
 
 		if self.numBuyOrders <> 0 and self.buyPrice <> 0 and self.numSellOrders <> 0 and self.sellPrice <> 0:
 			self.priceDifference = abs(self.buyPrice - self.sellPrice) / self.buyPrice * 100
-			self.volumeDifference = abs(self.numBuyOrders - self.numSellOrders) / float(self.totalOrders) * 100
 
 	def fromVolumeDb(self, db):
 		if self.typeId not in db.keys():
@@ -100,24 +99,24 @@ class MarketItem:
 			self.soldOrders += entry['sell']
 
 def initTypeToNameDB():
-    with open('data/typeid.txt', 'r') as f:
-        for line in f:
-            splitString = line.split('\t')
-            typeId = splitString[0].strip()
-            name = splitString[1].strip()
-            typeToName[typeId] = name
+	with open('data/typeid.txt', 'r') as f:
+		for line in f:
+			splitString = line.split('\t')
+			typeId = splitString[0].strip()
+			name = splitString[1].strip()
+			typeToName[typeId] = name
 
-    global itemDbInitialized
-    itemDbInitialized = True
+	global itemDbInitialized
+	itemDbInitialized = True
 
 def getItemName(typeId):
-    if not itemDbInitialized:
-        initTypeToNameDB()
+	if not itemDbInitialized:
+		initTypeToNameDB()
 
-    if str(typeId) in typeToName:
-        return typeToName[str(typeId)]
-    else:
-        return None
+	if str(typeId) in typeToName:
+		return typeToName[str(typeId)]
+	else:
+		return None
 
 def _getItems(typeIds, region, volumeHistory):
 	if len(typeIds) == 0:
@@ -127,14 +126,14 @@ def _getItems(typeIds, region, volumeHistory):
 	urlCentral = evecMarketstat
 	urlData = evemPriceHistory
 
-	if region <> None:					# Set the region if we have one
+	if region is not None:				# Set the region if we have one
 		urlCentral += 'regionlimit=%d&' % regions[region]
 		urlData += 'region_ids=%d&' % regions[region]
 
 	urlData += 'type_ids='
 
 	for typeId in typeIds:				# Add all the typeids
-		if getItemName(typeId) <> None:	# Check to make sure the thing actually exists.
+		if getItemName(typeId) is not None:	# Check to make sure the thing actually exists.
 			urlCentral += 'typeid=%d&' % typeId
 			urlData += '%d,' % typeId
 
@@ -163,8 +162,9 @@ def _getItems(typeIds, region, volumeHistory):
 
 	return items
 
-def getItems(region='the_forge', localData=False, callbackFunc=None):
-	typeIds = range(1, 33001)
+def getItems(region='the_forge', typeIds=None, callbackFunc=None):
+	if typeIds is None:
+		typeIds = range(1, 33001)
 
 	# Check if we have a cached version of the items db from the last 15 minutes
 	try:
@@ -189,7 +189,7 @@ def getItems(region='the_forge', localData=False, callbackFunc=None):
 		numProcessed += 1000
 
 		# Update the application to show status.
-		if callbackFunc <> None:
+		if callbackFunc is not None:
 			callbackFunc(numProcessed / float(totalOrders))
 
 	# Always pickle and save the items db
