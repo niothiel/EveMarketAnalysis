@@ -4,7 +4,7 @@ import json
 import pickle
 import xml.etree.ElementTree as ET
 import urllib2
-from db import OrdersTable
+from cache import ShelfCache
 from util import chunks, formatNum
 
 systems = {
@@ -118,9 +118,30 @@ def getItemName(typeId):
 	else:
 		return None
 
+cache = ShelfCache('data/items.shelf')
 def _getItems(typeIds, region, volumeHistory):
 	if len(typeIds) == 0:
 		return []
+
+	# Eliminate the invalid ids
+	typeIds = [type_id for type_id in typeIds if getItemName(type_id)]
+
+	items = []
+	needed_ids = []
+	for type_id in typeIds:
+		item = cache.get(str(type_id))
+		print item
+		if item:
+			items.append(item)
+		else:
+			needed_ids.append(type_id)
+			print 'Cache miss on:', type_id
+
+	typeIds = needed_ids
+	print typeIds
+
+	if len(typeIds) == 0:
+		return items
 
 	# Generate the url to use for the query
 	urlCentral = evecMarketstat
@@ -140,6 +161,8 @@ def _getItems(typeIds, region, volumeHistory):
 	urlCentral = urlCentral[:-1]		# Strip the ending &
 	urlData = urlData[:-1]
 
+	print urlData
+
 	print 'Getting items:', typeIds[0], 'to', typeIds[-1]
 
 	htmlReply = urllib2.urlopen(urlCentral).read()
@@ -149,16 +172,20 @@ def _getItems(typeIds, region, volumeHistory):
 		print htmlReply
 
 	eveMarketDataReply = urllib2.urlopen(urlData).read()
-	eveMarketDataDict = json.loads(eveMarketDataReply)
+	try:
+		eveMarketDataDict = json.loads(eveMarketDataReply)
+	except:
+		print 'Got bad data from Eve-MarketData:', eveMarketDataReply
+		exit(1)
 	eveMarketDataDict = eveMarketDataDict['emd']['result']
 
-	items = []
 	for typeNode in root:
 		item = MarketItem()
 		item.fromEveCentral(typeNode)
 		item.fromEveMarketData(eveMarketDataDict)
 		#item.fromVolumeDb(volumeHistory)
 		items.append(item)
+		cache.set(str(item.typeId), item)
 
 	return items
 
@@ -167,6 +194,7 @@ def getItems(region='the_forge', typeIds=None, callbackFunc=None):
 		typeIds = range(1, 33001)
 
 	# Check if we have a cached version of the items db from the last 15 minutes
+	'''
 	try:
 		with open('data/items.pickle', 'rb') as fin:
 			pickedItems = pickle.load(fin)
@@ -175,6 +203,7 @@ def getItems(region='the_forge', typeIds=None, callbackFunc=None):
 				return pickedItems['items']
 	except:
 		pass
+	'''
 
 	#orders = OrdersTable()
 	#vH = orders.getJitaVolumesLastDay()
@@ -192,12 +221,14 @@ def getItems(region='the_forge', typeIds=None, callbackFunc=None):
 		if callbackFunc is not None:
 			callbackFunc(numProcessed / float(totalOrders))
 
+	'''
 	# Always pickle and save the items db
 	picklingList = {}
 	picklingList['time'] = datetime.utcnow()
 	picklingList['items'] = totalItems
 	with open('data/items.pickle', 'wb') as fout:
 		pickle.dump(picklingList, fout)
+	'''
 
 	return totalItems
 

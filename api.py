@@ -1,10 +1,8 @@
-from urllib import urlencode
-import urllib2
 import xml.etree.ElementTree as ET
 from request import getItemName
-from util import htmlFromUrl
 from cache import GenericCache
 from request import getItems
+import util
 
 keyId = 1483700
 vCode = 'tKvQgldcNC5XjFYCFy4IV7W5tliQVKAmkyPSl2xw7kqF6Rx9bUM4PrmmD8CtxrhW'
@@ -41,12 +39,21 @@ class CharacterApiReader:
 		cacheKey = (url, str(params))
 		html = self.cache.get(cacheKey)
 		if html is None:
-			html = htmlFromUrl(url, params)
-		self.cache.set(cacheKey, html)
+			html = util.htmlFromUrl(url, params)
+			self.cache.set(cacheKey, html)
+
 		root = ET.fromstring(html)
 		root = root.find('result').find('rowset')
 
-		return [child.attrib for child in root]
+		result = []
+		for child in root:
+			child = child.attrib
+			for key, value in child.iteritems():
+				child[key] = util.smartParse(value)
+
+			result.append(child)
+
+		return result
 
 	def getChar(self, url, params = {}):
 		params['characterID'] = self.charId
@@ -91,7 +98,6 @@ def getItemPaidPrice(apiAdapter, typeId, quantity):
 	if totalQuantity <> quantity:
 		return None
 
-	#print typeId, getItemName(typeId), totalQuantity, totalPaid
 	if totalQuantity <> 0:
 		return (totalPaid / totalQuantity)
 	else:

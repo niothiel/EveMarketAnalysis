@@ -1,8 +1,13 @@
 from eve_central import EVECentral
 from eve_marketdata import EVEMarketData
 from pprint import pprint
+import cProfile
+import request
 
 def main():
+	request.getItems()
+	return
+
 	eveCentral = EVECentral()
 	eveMarketData = EVEMarketData('asdf')
 
@@ -12,7 +17,6 @@ def main():
 	pprint(asdf)
 	asdf = eveMarketData.item_price_history([34], [10000002])
 	pprint(asdf)
-
 
 if __name__ == '__main__':
 	main()

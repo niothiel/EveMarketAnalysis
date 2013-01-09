@@ -1,33 +1,12 @@
-import datetime
+
 import json
 import urllib
-
-from pprint import pprint
+from util import smartParse
 
 try:
 	import urllib2
 except ImportError:
 	urllib2 = None
-
-def smartParse(value):
-	try:
-		return int(value)
-	except:
-		pass
-
-	try:
-		return float(value)
-	except:
-		pass
-	try:
-		return datetime.datetime.strptime(value, '%Y-%m-%d %H:%M:%S')
-	except:
-		pass
-	try:
-		return datetime.datetime.strptime(value, '%Y-%m-%d').date()
-	except:
-		pass
-	return value
 
 class EVEMarketData(object):
 	BUY = 'b'
@@ -51,6 +30,11 @@ class EVEMarketData(object):
 	def _default_fetch_func(self, url):
 		"""Fetches a given URL using GET and returns the response."""
 		return urllib2.urlopen(url).read()
+
+	def _get_html(self, api_string, params):
+		query = urllib.urlencode(params)
+		url = '%s/%s?%s' % (self.api_base, api_string, query)
+		return self.url_fetch(url)
 
 	def item_prices(self, type_ids, order_type=None, marketgroups=None, regions=None, systems=None, stations=None,
 	                 min_values=None):
@@ -82,10 +66,7 @@ class EVEMarketData(object):
 		if min_values:
 			params['minmax'] = 'min' if min_values else 'max'
 
-		query = urllib.urlencode(params)
-		url = '%s/item_prices2.json?%s' % (self.api_base, query)
-
-		response = self.url_fetch(url)
+		response = self._get_html('item_prices2.json', params)
 		api_result = json.loads(response)['emd']
 
 		results = {}
@@ -132,14 +113,7 @@ class EVEMarketData(object):
 		if stations:
 			params['station_ids'] = ','.join(str(x) for x in stations)
 
-		query = urllib.urlencode(params, True)
-		url = '%s/item_orders2.json?%s' % (self.api_base, query)
-
-		response = self.url_fetch(url)
-		return self._parse_item_orders(response)
-
-	def _parse_item_orders(self, response):
-		"""Shared parsing functionality for market order data from EVE-MarketData."""
+		response = self._get_html('item_orders2.json', params)
 		api_result = json.loads(response)['emd']
 
 		results = {}
@@ -153,6 +127,10 @@ class EVEMarketData(object):
 			itemList = results.setdefault(type_id, [])
 			itemList.append(row)
 		return results
+
+	def _parse_item_orders(self, response):
+		"""Shared parsing functionality for market order data from EVE-MarketData."""
+
 
 	def item_price_history(self, type_ids, regions, days=30):
 		"""Gets the price history for items, same as the 'Show Table' tab in game.
@@ -171,10 +149,7 @@ class EVEMarketData(object):
 		if days:
 			params['days'] = days
 
-		query = urllib.urlencode(params)
-		url = '%s/item_history2.json?%s' % (self.api_base, query)
-
-		response = self.url_fetch(url)
+		response = self._get_html('item_history2.json', params)
 		api_result = json.loads(response)['emd']
 
 		results = {}

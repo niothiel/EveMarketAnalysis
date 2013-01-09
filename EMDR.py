@@ -1,13 +1,7 @@
-"""
-Example Python EMDR client.
-"""
 import zlib
 import zmq
-# You can substitute the stdlib's json module, if that suits your fancy
 import json
 from datetime import datetime
-import sys
-from pprint import pprint
 
 data = {}
 uniqueOrders = 0

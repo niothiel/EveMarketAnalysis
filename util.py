@@ -1,4 +1,5 @@
 from urllib import urlencode
+import datetime
 import urllib2
 
 def chunks(l, n):
@@ -25,3 +26,23 @@ def htmlFromUrl(url, params = {}):
 
     html = urllib2.urlopen(url).read()
     return html
+
+def smartParse(value):
+	try:
+		return int(value)
+	except:
+		pass
+
+	try:
+		return float(value)
+	except:
+		pass
+	try:
+		return datetime.datetime.strptime(value, '%Y-%m-%d %H:%M:%S')
+	except:
+		pass
+	try:
+		return datetime.datetime.strptime(value, '%Y-%m-%d').date()
+	except:
+		pass
+	return value
