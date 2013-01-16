@@ -128,10 +128,6 @@ class EVEMarketData(object):
 			itemList.append(row)
 		return results
 
-	def _parse_item_orders(self, response):
-		"""Shared parsing functionality for market order data from EVE-MarketData."""
-
-
 	def item_price_history(self, type_ids, regions, days=30):
 		"""Gets the price history for items, same as the 'Show Table' tab in game.
 

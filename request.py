@@ -56,7 +56,8 @@ class MarketItem:
 		numDataPoints = 0
 		for entry in orderDict:
 			if entry['row']['typeID'] == str(self.typeId):
-				numOrders = int(entry['row']['orders'])
+				#numOrders = int(entry['row']['orders'])
+				numOrders = int(entry['row']['volume'])
 				sumOrders += numOrders
 				numDataPoints += 1
 
@@ -118,7 +119,7 @@ def getItemName(typeId):
 	else:
 		return None
 
-cache = ShelfCache('data/items.shelf')
+cache = ShelfCache('items.shelf')
 def _getItems(typeIds, region, volumeHistory):
 	if len(typeIds) == 0:
 		return []
@@ -130,15 +131,12 @@ def _getItems(typeIds, region, volumeHistory):
 	needed_ids = []
 	for type_id in typeIds:
 		item = cache.get(str(type_id))
-		print item
 		if item:
 			items.append(item)
 		else:
 			needed_ids.append(type_id)
-			print 'Cache miss on:', type_id
 
 	typeIds = needed_ids
-	print typeIds
 
 	if len(typeIds) == 0:
 		return items
@@ -160,8 +158,6 @@ def _getItems(typeIds, region, volumeHistory):
 
 	urlCentral = urlCentral[:-1]		# Strip the ending &
 	urlData = urlData[:-1]
-
-	print urlData
 
 	print 'Getting items:', typeIds[0], 'to', typeIds[-1]
 
@@ -189,21 +185,9 @@ def _getItems(typeIds, region, volumeHistory):
 
 	return items
 
-def getItems(region='the_forge', typeIds=None, callbackFunc=None):
+def getItems(typeIds=None, region='the_forge', callbackFunc=None):
 	if typeIds is None:
 		typeIds = range(1, 33001)
-
-	# Check if we have a cached version of the items db from the last 15 minutes
-	'''
-	try:
-		with open('data/items.pickle', 'rb') as fin:
-			pickedItems = pickle.load(fin)
-			cutoffDate = datetime.utcnow() - timedelta(hours=1, minutes=15)
-			if pickedItems['time'] > cutoffDate:
-				return pickedItems['items']
-	except:
-		pass
-	'''
 
 	#orders = OrdersTable()
 	#vH = orders.getJitaVolumesLastDay()
@@ -220,15 +204,6 @@ def getItems(region='the_forge', typeIds=None, callbackFunc=None):
 		# Update the application to show status.
 		if callbackFunc is not None:
 			callbackFunc(numProcessed / float(totalOrders))
-
-	'''
-	# Always pickle and save the items db
-	picklingList = {}
-	picklingList['time'] = datetime.utcnow()
-	picklingList['items'] = totalItems
-	with open('data/items.pickle', 'wb') as fout:
-		pickle.dump(picklingList, fout)
-	'''
 
 	return totalItems
 
@@ -260,7 +235,7 @@ def sortCriteria(item):
 def main():
 	initTypeToNameDB()
 
-	itemList = getItems('the_forge')
+	itemList = getItems()
 	itemList = filter(itemCriteria, itemList)
 	itemList = sorted(itemList, key=lambda item: sortCriteria(item))
 
