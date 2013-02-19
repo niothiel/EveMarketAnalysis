@@ -1,7 +1,7 @@
 
 import json
 import urllib
-from util import smartParse
+from util import smart_parse
 
 try:
 	import urllib2
@@ -74,7 +74,7 @@ class EVEMarketData(object):
 			row = row['row']
 
 			for key, value in row.iteritems():
-				row[key] = smartParse(value)
+				row[key] = smart_parse(value)
 
 			results[row['typeID']] = row
 		return results
@@ -121,7 +121,7 @@ class EVEMarketData(object):
 			row = row['row']
 
 			for key, value in row.iteritems():
-				row[key] = smartParse(value)
+				row[key] = smart_parse(value)
 
 			type_id = row['typeID']
 			itemList = results.setdefault(type_id, [])
@@ -153,7 +153,7 @@ class EVEMarketData(object):
 			row = row['row']
 
 			for key, value in row.iteritems():
-				row[key] = smartParse(value)
+				row[key] = smart_parse(value)
 
 			type_id = row['typeID']
 			typeDict = results.setdefault(type_id, {})

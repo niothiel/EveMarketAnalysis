@@ -27,7 +27,7 @@ def htmlFromUrl(url, params = {}):
     html = urllib2.urlopen(url).read()
     return html
 
-def smartParse(value):
+def smart_parse(value):
 	try:
 		return int(value)
 	except:

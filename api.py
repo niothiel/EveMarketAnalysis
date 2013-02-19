@@ -49,7 +49,7 @@ class CharacterApiReader:
 		for child in root:
 			child = child.attrib
 			for key, value in child.iteritems():
-				child[key] = util.smartParse(value)
+				child[key] = util.smart_parse(value)
 
 			result.append(child)
 

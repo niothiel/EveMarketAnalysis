@@ -1,11 +1,14 @@
 #/usr/bin/python
-from datetime import datetime, time, timedelta
+
 import json
-import pickle
 import xml.etree.ElementTree as ET
 import urllib2
+
+from datetime import datetime, time, timedelta
 from cache import ShelfCache
+from itemdb import ItemDb
 from util import chunks, formatNum
+
 
 systems = {
 	'rens': 10000030,
@@ -20,8 +23,7 @@ regions = {
 evecMarketstat =	'http://api.eve-central.com/api/marketstat?'
 evemPriceHistory =	'http://api.eve-marketdata.com/api/item_history2.json?char_name=asdf&days=5&'
 
-itemDbInitialized = False
-typeToName = {}
+itemdb = ItemDb()
 volumeHistory = None
 
 class MarketItem:
@@ -64,9 +66,11 @@ class MarketItem:
 		if numDataPoints <> 0:
 			self.soldOrders = float(sumOrders) / numDataPoints
 
+		self.ranking = (self.sellPrice - self.buyPrice) * self.soldOrders / 100
+
 	def fromEveCentral(self, itemNode):
 		self.typeId = int(itemNode.attrib['id'])
-		self.name = getItemName(self.typeId)
+		self.name = itemdb.get_name(self.typeId)
 
 		if self.name is None:
 			return
@@ -99,33 +103,13 @@ class MarketItem:
 		if 'sell' in entry.keys():
 			self.soldOrders += entry['sell']
 
-def initTypeToNameDB():
-	with open('data/typeid.txt', 'r') as f:
-		for line in f:
-			splitString = line.split('\t')
-			typeId = splitString[0].strip()
-			name = splitString[1].strip()
-			typeToName[typeId] = name
-
-	global itemDbInitialized
-	itemDbInitialized = True
-
-def getItemName(typeId):
-	if not itemDbInitialized:
-		initTypeToNameDB()
-
-	if str(typeId) in typeToName:
-		return typeToName[str(typeId)]
-	else:
-		return None
-
-cache = ShelfCache('items.shelf')
+cache = ShelfCache('data/items.shelf')
 def _getItems(typeIds, region, volumeHistory):
 	if len(typeIds) == 0:
 		return []
 
 	# Eliminate the invalid ids
-	typeIds = [type_id for type_id in typeIds if getItemName(type_id)]
+	typeIds = [type_id for type_id in typeIds if itemdb.get_name(type_id)]
 
 	items = []
 	needed_ids = []
@@ -152,14 +136,14 @@ def _getItems(typeIds, region, volumeHistory):
 	urlData += 'type_ids='
 
 	for typeId in typeIds:				# Add all the typeids
-		if getItemName(typeId) is not None:	# Check to make sure the thing actually exists.
-			urlCentral += 'typeid=%d&' % typeId
-			urlData += '%d,' % typeId
+		#if getItemName(typeId) is not None:	# Check to make sure the thing actually exists.
+		urlCentral += 'typeid=%d&' % typeId
+		urlData += '%d,' % typeId
 
 	urlCentral = urlCentral[:-1]		# Strip the ending &
 	urlData = urlData[:-1]
 
-	print 'Getting items:', typeIds[0], 'to', typeIds[-1]
+	#print 'Getting items:', min(typeIds), 'to', max(typeIds)
 
 	htmlReply = urllib2.urlopen(urlCentral).read()
 	try:
@@ -187,7 +171,7 @@ def _getItems(typeIds, region, volumeHistory):
 
 def getItems(typeIds=None, region='the_forge', callbackFunc=None):
 	if typeIds is None:
-		typeIds = range(1, 33001)
+		typeIds = itemdb.get_typeids()
 
 	#orders = OrdersTable()
 	#vH = orders.getJitaVolumesLastDay()
@@ -195,11 +179,13 @@ def getItems(typeIds=None, region='the_forge', callbackFunc=None):
 	totalItems = []
 	numProcessed = 0
 	totalOrders = len(typeIds)
+	chunk_size = 150
 
-	for chunk in chunks(typeIds, 1000):
+	for chunk in chunks(typeIds, chunk_size):
+		#print 'Getting:', len(chunk)
 		totalItems += _getItems(chunk, region, None)
 
-		numProcessed += 1000
+		numProcessed += chunk_size
 
 		# Update the application to show status.
 		if callbackFunc is not None:
@@ -233,8 +219,6 @@ def sortCriteria(item):
 	return item.soldOrders
 
 def main():
-	initTypeToNameDB()
-
 	itemList = getItems()
 	itemList = filter(itemCriteria, itemList)
 	itemList = sorted(itemList, key=lambda item: sortCriteria(item))
