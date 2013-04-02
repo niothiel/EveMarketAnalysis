@@ -1,7 +1,5 @@
 import xml.etree.ElementTree as ET
-from request import getItemName
 from cache import GenericCache
-from request import getItems
 import util
 
 keyId = 1483700
@@ -63,7 +61,7 @@ class CharacterApiReader:
 		allAssets = self.getChar(EveApiUrl.ASSETS)
 		for asset in allAssets:
 			asset['quantity'] = int(asset['quantity'])
-			asset['name'] = getItemName(asset['typeID'])
+			asset['name'] = ItemDb().get_name(asset['typeID'])
 			del asset['flag']
 			del asset['singleton']
 
@@ -74,58 +72,3 @@ class CharacterApiReader:
 
 	def getTransactions(self):
 		return self.getChar(EveApiUrl.WALLET_TRANSACTIONS)
-
-def getItemPaidPrice(apiAdapter, typeId, quantity):
-	transactions = apiAdapter.getTransactions()
-
-	typeId = int(typeId)
-	quantity = int(quantity)
-
-	totalPaid = 0
-	totalQuantity = 0
-	for transaction in transactions:
-		if totalQuantity == quantity:
-			break
-
-		if int(transaction['typeID']) == typeId and transaction['transactionType'] == 'buy':
-			price = float(transaction['price'])
-			transQuantity = int(transaction['quantity'])
-
-			quantityTaken = min(quantity, transQuantity)
-			totalQuantity += quantityTaken
-			totalPaid += price * quantityTaken
-
-	if totalQuantity <> quantity:
-		return None
-
-	if totalQuantity <> 0:
-		return (totalPaid / totalQuantity)
-	else:
-		return None
-
-def main():
-	apiAdapter = CharacterApiReader(keyId, vCode, 'Lotheril Oramar')
-	itemPrices = getItems()
-
-	itemDict = {}
-	for item in itemPrices:
-		itemDict[item.typeId] = item
-
-	assets = apiAdapter.getAssets()
-	print 'Assets List:'
-	for asset in assets:
-		print asset['quantity'], 'x\t', asset['name']
-
-	for asset in assets:
-		typeId = int(asset['typeID'])
-		quantity = int(asset['quantity'])
-		buyAmt = getItemPaidPrice(apiAdapter, typeId, quantity)
-		if typeId not in itemDict.keys() or buyAmt is None:
-			continue
-
-		sellAmt = itemDict[int(asset['typeID'])].sellPrice
-		#if sellAmt > buyAmt:
-		print asset['name'], 'buy:', buyAmt, 'sell:', sellAmt
-
-if __name__ == '__main__':
-	main()

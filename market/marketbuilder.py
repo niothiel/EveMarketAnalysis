@@ -6,9 +6,7 @@ import urllib2
 
 from datetime import datetime, time, timedelta
 from cache import ShelfCache
-from itemdb import ItemDb
-from util import chunks, formatNum
-
+from util import chunks, formatIsk
 
 systems = {
 	'rens': 10000030,
@@ -23,8 +21,11 @@ regions = {
 evecMarketstat =	'http://api.eve-central.com/api/marketstat?'
 evemPriceHistory =	'http://api.eve-marketdata.com/api/item_history2.json?char_name=asdf&days=5&'
 
-itemdb = ItemDb()
 volumeHistory = None
+
+def getItemName(typeid):
+	from eos.db.gamedata.queries import getItem
+	return getItem(typeid).name
 
 class MarketItem:
 	def __init__(self):
@@ -41,8 +42,8 @@ class MarketItem:
 
 	def __repr__(self):
 		s = self.name + '\n'
-		s += 'Buy:\t' + str(self.numBuyOrders) + '\t@ ' + formatNum(self.buyPrice) + '\n'
-		s += 'Sell:\t' + str(self.numSellOrders) + '\t@ ' + formatNum(self.sellPrice) + '\n'
+		s += 'Buy:\t' + str(self.numBuyOrders) + '\t@ ' + formatIsk(self.buyPrice) + '\n'
+		s += 'Sell:\t' + str(self.numSellOrders) + '\t@ ' + formatIsk(self.sellPrice) + '\n'
 		s += 'Orders Filled: \t' + str(self.soldOrders) + '\n'
 		s += 'Order history: ' + str(self.soldOrderHistory) + '\n'
 
@@ -70,7 +71,7 @@ class MarketItem:
 
 	def fromEveCentral(self, itemNode):
 		self.typeId = int(itemNode.attrib['id'])
-		self.name = itemdb.get_name(self.typeId)
+		self.name = getItemName(self.typeId)
 
 		if self.name is None:
 			return
@@ -109,7 +110,8 @@ def _getItems(typeIds, region, volumeHistory):
 		return []
 
 	# Eliminate the invalid ids
-	typeIds = [type_id for type_id in typeIds if itemdb.get_name(type_id)]
+	# TODO: FIX
+	typeIds = [type_id for type_id in typeIds if getItemName(type_id)]
 
 	items = []
 	needed_ids = []
@@ -171,7 +173,9 @@ def _getItems(typeIds, region, volumeHistory):
 
 def getItems(typeIds=None, region='the_forge', callbackFunc=None):
 	if typeIds is None:
-		typeIds = itemdb.get_typeids()
+		#typeIds = itemdb.get_typeids()
+		# TODO: FIX
+		pass
 
 	#orders = OrdersTable()
 	#vH = orders.getJitaVolumesLastDay()

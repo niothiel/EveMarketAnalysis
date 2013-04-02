@@ -1,131 +1,133 @@
 from PyQt4.QtGui import *
 from PyQt4.QtCore import Qt
-from request import getItems
-from util import formatNum
+from market.marketbuilder import getItems
+from util import formatIsk
+from market.evecentral import EveCentral
 import PyQt4
 import sys
 
 class PriceListWindow(QDialog):
-    def __init__(self, parent, typeId):
-        QDialog.__init__(self, parent)
-        self.typeId = typeId
+	def __init__(self, parent, typeId):
+		QDialog.__init__(self, parent)
+		self.typeId = typeId
 
-        self.initUI()
+		self.initUI()
 
-    def initUI(self):
-        mainLayout = QVBoxLayout(self)
-        mainWidget = QWidget(self)
-        mainWidget.setLayout(mainLayout)
+	def initUI(self):
+		mainLayout = QVBoxLayout(self)
+		mainWidget = QWidget(self)
+		mainWidget.setLayout(mainLayout)
 
-        minProfit = QLabel('Min. Profit:')
+		minProfit = QLabel('Min. Profit:')
 
-        self.minProfitEdit = QDoubleSpinBox()
-        self.minProfitEdit.setAccelerated(True)
-        self.minProfitEdit.setMaximum(10000000000)
+		self.minProfitEdit = QDoubleSpinBox()
+		self.minProfitEdit.setAccelerated(True)
+		self.minProfitEdit.setMaximum(10000000000)
 
-        maxProfit = QLabel('Max Profit:')
+		maxProfit = QLabel('Max Profit:')
 
-        self.maxProfitEdit = QDoubleSpinBox()
-        self.maxProfitEdit.setAccelerated(True)
-        self.maxProfitEdit.setMaximum(10000000000)
+		self.maxProfitEdit = QDoubleSpinBox()
+		self.maxProfitEdit.setAccelerated(True)
+		self.maxProfitEdit.setMaximum(10000000000)
 
-        maxInvestment = QLabel('Max Investment:')
+		maxInvestment = QLabel('Max Investment:')
 
-        self.maxInvestmentEdit = QDoubleSpinBox()
-        self.maxInvestmentEdit.setAccelerated(True)
-        self.maxInvestmentEdit.setMaximum(10000000000)
+		self.maxInvestmentEdit = QDoubleSpinBox()
+		self.maxInvestmentEdit.setAccelerated(True)
+		self.maxInvestmentEdit.setMaximum(10000000000)
 
-        minOrders = QLabel('Min Orders:')
+		minOrders = QLabel('Min Orders:')
 
-        self.minOrdersEdit = QDoubleSpinBox()
-        self.minOrdersEdit.setAccelerated(True)
-        self.minOrdersEdit.setMaximum(10000000000)
+		self.minOrdersEdit = QDoubleSpinBox()
+		self.minOrdersEdit.setAccelerated(True)
+		self.minOrdersEdit.setMaximum(10000000000)
 
-        maxOrders = QLabel('Max Orders:')
+		maxOrders = QLabel('Max Orders:')
 
-        self.maxOrdersEdit = QDoubleSpinBox()
-        self.maxOrdersEdit.setAccelerated(True)
-        self.maxOrdersEdit.setMaximum(10000000000)
+		self.maxOrdersEdit = QDoubleSpinBox()
+		self.maxOrdersEdit.setAccelerated(True)
+		self.maxOrdersEdit.setMaximum(10000000000)
 
-        minPrice = QLabel('Min Price:')
+		minPrice = QLabel('Min Price:')
 
-        self.minPriceEdit = QDoubleSpinBox()
-        self.minPriceEdit.setAccelerated(True)
-        self.minPriceEdit.setMaximum(10000000000)
+		self.minPriceEdit = QDoubleSpinBox()
+		self.minPriceEdit.setAccelerated(True)
+		self.minPriceEdit.setMaximum(10000000000)
 
-        columnNames = ['Name', 'Buy (Isk)', 'Sell (Isk)', 'Profit (%)', 'Total Sold']
-        table = QTableWidget(2, len(columnNames), self)
-        table.setHorizontalHeaderLabels(columnNames)
-        table.verticalHeader().hide()
-        table.setEditTriggers(QAbstractItemView.NoEditTriggers)
-        table.setSelectionBehavior(QAbstractItemView.SelectRows)
-        self.table = table
+		columnNames = ['Name', 'Buy (Isk)', 'Sell (Isk)', 'Profit (%)', 'Total Sold']
+		table = QTableWidget(2, len(columnNames), self)
+		table.setHorizontalHeaderLabels(columnNames)
+		table.verticalHeader().hide()
+		table.setEditTriggers(QAbstractItemView.NoEditTriggers)
+		table.setSelectionBehavior(QAbstractItemView.SelectRows)
+		self.table = table
 
-        refreshButton = QPushButton('Refresh')
+		refreshButton = QPushButton('Refresh')
 
-        form = QFormLayout()
-        form.addRow('Min. Profit:', self.minProfitEdit)
-        form.addRow('Max Profit:', self.maxProfitEdit)
+		form = QFormLayout()
+		form.addRow('Min. Profit:', self.minProfitEdit)
+		form.addRow('Max Profit:', self.maxProfitEdit)
 
-        grid = QGridLayout()
-        grid.addWidget(minProfit, 0, 0)
-        grid.addWidget(self.minProfitEdit, 0, 1)
-        grid.addWidget(maxProfit, 1, 0)
-        grid.addWidget(self.maxProfitEdit, 1, 1)
-        grid.addWidget(maxInvestment, 2, 0)
-        grid.addWidget(self.maxInvestmentEdit, 2, 1)
-        grid.addWidget(minOrders, 3, 0)
-        grid.addWidget(self.minOrdersEdit, 3, 1)
-        grid.addWidget(maxOrders, 4, 0)
-        grid.addWidget(self.maxOrdersEdit, 4, 1)
-        grid.addWidget(minPrice, 5, 0)
-        grid.addWidget(self.minPriceEdit, 5, 1)
+		grid = QGridLayout()
+		grid.addWidget(minProfit, 0, 0)
+		grid.addWidget(self.minProfitEdit, 0, 1)
+		grid.addWidget(maxProfit, 1, 0)
+		grid.addWidget(self.maxProfitEdit, 1, 1)
+		grid.addWidget(maxInvestment, 2, 0)
+		grid.addWidget(self.maxInvestmentEdit, 2, 1)
+		grid.addWidget(minOrders, 3, 0)
+		grid.addWidget(self.minOrdersEdit, 3, 1)
+		grid.addWidget(maxOrders, 4, 0)
+		grid.addWidget(self.maxOrdersEdit, 4, 1)
+		grid.addWidget(minPrice, 5, 0)
+		grid.addWidget(self.minPriceEdit, 5, 1)
 
-        mainLayout.addLayout(grid)
-        #mainLayout.addLayout(form)
-        mainLayout.addWidget(table)
-        mainLayout.addWidget(refreshButton)
+		mainLayout.addLayout(grid)
+		#mainLayout.addLayout(form)
+		mainLayout.addWidget(table)
+		mainLayout.addWidget(refreshButton)
 
-        self.setCentralWidget(mainWidget)
-        self.setGeometry(100, 100, 800, 500)
-        self.setWindowTitle('Eve Market Analyzer')
-        self.statusBar().showMessage('Status Bar')
-        self.show()
+		self.setCentralWidget(mainWidget)
+		self.setGeometry(100, 100, 800, 500)
+		self.setWindowTitle('Eve Market Analyzer')
+		self.statusBar().showMessage('Status Bar')
+		self.show()
 
 class FormattedWidgetItem(QTableWidgetItem):
-    # Types for the fields
-    T_ISK = 0
-    T_NUMBER = 1
-    T_PERCENT = 2
-    T_OTHER = 3
+	# Types for the fields
+	T_ISK = 0
+	T_NUMBER = 1
+	T_PERCENT = 2
+	T_OTHER = 3
 
-    def __init__(self, item, type, attribute):
-        super(FormattedWidgetItem, self).__init__()
-        self.item = item
-        self.type = type
-        self.attribute = attribute
+	def __init__(self, item, type, get_data_func):
+		super(FormattedWidgetItem, self).__init__()
+		self.item = item
+		self.type = type
+		self.get_data_func = get_data_func
 
-    def __getData(self):
-        return getattr(self.item, self.attribute)
+	def __getData(self):
+		return self.get_data_func(self.item)
 
-    def data(self, p_int):
-        if p_int == Qt.DisplayRole:
-            data = self.__getData()
+	def data(self, p_int):
+		if p_int == Qt.DisplayRole:
+			data = self.__getData()
 
-            if self.type == FormattedWidgetItem.T_ISK:
-                return formatNum(data)
-            elif self.type == FormattedWidgetItem.T_NUMBER:
-                return '%.0f' % data
-            elif self.type == FormattedWidgetItem.T_PERCENT:
-                return '%.1f%%' % data
-            else:
-                return data
-        else:
-            return QTableWidgetItem.data(self, p_int)
+			if self.type == FormattedWidgetItem.T_ISK:
+				return formatIsk(data)
+			elif self.type == FormattedWidgetItem.T_NUMBER:
+				return '%.0f' % data
+			elif self.type == FormattedWidgetItem.T_PERCENT:
+				print data
+				return '%.1f%%' % data
+			else:
+				return data
+		else:
+			return QTableWidgetItem.data(self, p_int)
 
-    # Another weird hack for sorting data. Sorts based on item (order) attribute
-    def __lt__(self, other):
-        return self.__getData() < other.__getData()
+	# Another weird hack for sorting data. Sorts based on item (order) attribute
+	def __lt__(self, other):
+		return self.__getData() < other.__getData()
 
 class MainView(QMainWindow):
 	def __init__(self):
@@ -146,10 +148,10 @@ class MainView(QMainWindow):
 
 		#print len(skill_books), skill_books
 		#self.items = getItems(skill_books)
-		self.items = getItems()
+		self.items = EveCentral.getPrices()
 		self.updateTable()
 		self.statusBar().showMessage('Update completed!')
-        
+
 	def setCullValues(self):
 		# Eventually will have to retain old settings
 		self.minProfitEdit.setValue(10)
@@ -158,40 +160,44 @@ class MainView(QMainWindow):
 		self.minOrdersEdit.setValue(120)
 		self.maxOrdersEdit.setValue(6000)
 		self.minPriceEdit.setValue(500000)
-        
+
 	def itemsFilter(self, item):
-		if item.priceDifference < self.minProfitEdit.value():
+		priceDifference = 0
+		if item.buy.volume <> 0 and item.buy.max <> 0 and item.sell.volume <> 0 and item.sell.min <> 0:
+			priceDifference = abs(item.buy.max - item.sell.min) / item.buy.max * 100
+
+		if priceDifference < self.minProfitEdit.value():
 			return False
-		elif item.priceDifference > self.maxProfitEdit.value():
+		elif priceDifference > self.maxProfitEdit.value():
 			return False
-		elif item.buyPrice > self.maxInvestmentEdit.value():
+		elif item.buy.max > self.maxInvestmentEdit.value():
 			return False
-		elif item.soldOrders < self.minOrdersEdit.value():
+		elif item.sell.volume < self.minOrdersEdit.value():
 			return False
-		elif item.soldOrders > self.maxOrdersEdit.value():
+		elif item.sell.volume > self.maxOrdersEdit.value():
 			return False
-		elif item.buyPrice < self.minPriceEdit.value():
+		elif item.buy.max < self.minPriceEdit.value():
 			return False
 
-		if item.buyPrice > item.sellPrice:
+		if item.buy.max > item.sell.min:
 			return False
-		elif item.buyPrice < 1:
+		elif item.buy.max < 1:
 			return False
-		elif item.sellPrice < 1:
+		elif item.sell.min < 1:
 			return False
-		elif item.soldOrders < 1:
+		elif item.all.volume < 1:
 			return False
 		#elif item.volumeDifference > 75:
 		#    return False
 
 		return True
-    
+
 	def updateTable(self):
 		# Disable sorting as this screws everything up while adding data.
 		self.table.setSortingEnabled(False)
 
 		# Filter out the crap
-		self.items = filter(self.itemsFilter, self.items)
+		self.items = filter(self.itemsFilter, self.items.itervalues())
 
 		viewedItems = len(self.items)
 		self.table.setRowCount(viewedItems)
@@ -201,14 +207,15 @@ class MainView(QMainWindow):
 		for item in tempItems:
 			name = QTableWidgetItem(str(item.name))
 
-			buyPrice = FormattedWidgetItem(item, FormattedWidgetItem.T_ISK, 'buyPrice')
-			sellPrice = FormattedWidgetItem(item, FormattedWidgetItem.T_ISK, 'sellPrice')
-			profit = FormattedWidgetItem(item, FormattedWidgetItem.T_PERCENT, 'priceDifference')
-			totalSold = FormattedWidgetItem(item, FormattedWidgetItem.T_NUMBER, 'soldOrders')
-			ranking = FormattedWidgetItem(item, FormattedWidgetItem.T_NUMBER, 'ranking')
+			buyPrice = FormattedWidgetItem(item, FormattedWidgetItem.T_ISK, lambda item: item.buy.max)
+			sellPrice = FormattedWidgetItem(item, FormattedWidgetItem.T_ISK, lambda item: item.sell.min)
+			print abs(item.buy.max - item.sell.min) / float(item.buy.min)
+			profit = FormattedWidgetItem(item, FormattedWidgetItem.T_PERCENT, lambda item: (abs(item.buy.max - item.sell.min) / float(item.buy.min)))
+			totalSold = FormattedWidgetItem(item, FormattedWidgetItem.T_NUMBER, lambda item: item.all.volume)
+			ranking = FormattedWidgetItem(item, FormattedWidgetItem.T_NUMBER, lambda item: abs(item.sell.min - item.buy.max) / item.sell.min)
 
 			# Populate with typeId for retrieval
-			typeId = item.typeId
+			typeId = item.id
 			name.setData(PyQt4.QtCore.Qt.UserRole, typeId)
 			buyPrice.setData(PyQt4.QtCore.Qt.UserRole, typeId)
 			sellPrice.setData(PyQt4.QtCore.Qt.UserRole, typeId)
@@ -223,12 +230,12 @@ class MainView(QMainWindow):
 			self.table.setItem(row, 4, totalSold)
 			self.table.setItem(row, 5, ranking)
 			row += 1
-        
+
 		self.table.setSortingEnabled(True)
 		self.table.sortItems(3, Qt.DescendingOrder)
 		self.table.resizeColumnsToContents()
 		self.table.resizeRowsToContents()
-    
+
 	def initUI(self):
 		mainLayout = QVBoxLayout(self)
 		mainWidget = QWidget(self)
@@ -324,6 +331,6 @@ def main():
 	app = QApplication(sys.argv)
 	mainView = MainView()
 	sys.exit(app.exec_())
-    
+
 if __name__ == '__main__':
 	main()
