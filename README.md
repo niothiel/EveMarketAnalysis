@@ -1,15 +1,19 @@
 EveMarketAnalysis
 =================
 
-Quick analysis tool I wrote to find profitable items to trade in Eve Online
+A not-so-small (anymore) analysis tool that I am developing to help find profitable items to trade in Eve Online.
+
+It is my first foray into web development with python, and any kind of significant database work.
 
 Requirements:
 
-PyQt4
-MySQLdb
+* sqlalchemy
+* flask
+* flask-wtf
+* Eve Static Data
 
-Optionally, you will require an installation of MySQL somewhere for finer-grained order information.
-
+Design Notes
+------------
 
 Goal:
 	Get rich in Eve Online through market trading.
@@ -61,52 +65,52 @@ Goal:
 	Scope of data:
 		Station -> System -> Region
 		Primary Foci:
-			Jita -> TVN-FM -> Amarr -> Rens -> Dodixie -> Hek
+			Jita -> Null Sec Hubs -> Amarr -> Rens -> Dodixie -> Hek
 
 	Trade Route finder...
 
-Design Decisions:
-	Language
-	Database
+Historial Design
+----------------
+    What we have:
+        orderid
+        regionid
+        systemid
+        stationid
+        typeid
+        bid
+        price
+        minvolume
+        volremain
+        volenter
+        issued
+        duration
+        rng
+        reportedby
+        reportedtime
 
-Historial Design:
-	What we have:
-		orderid
-		regionid
-		systemid
-		stationid
-		typeid
-		bid
-		price
-		minvolume
-		volremain
-		volenter
-		issued
-		duration
-		rng
-		reportedby
-		reportedtime
+    What we want:
+        typeid
+        stationid
+        systemid
+        regionid
+        date
+        maxbuyprice
+        minbuyprice
+        maxsellprice
+        minsellprice
+        avgbuyprice
+        avgsellprice
+        medbuyprice
+        medsellprice
+        buystddev
+        sellstddev
+        volbought
+        volsold
+        number of orders and demand
+        * Num orders* and *demand*
 
-	What we want:
-		typeid
-		stationid
-		systemid
-		regionid
-		date
-		maxbuyprice
-		minbuyprice
-		maxsellprice
-		minsellprice
-		avgbuyprice
-		avgsellprice
-		medbuyprice
-		medsellprice
-		buystddev
-		sellstddev
-		volbought
-		volsold
-		* Num orders* and *demand*
-
-Statistics research
-How to model Supply vs Demand?
-In Game Browser upload to Eve Central for up-to-date information.
+Further Study
+-------------
+* Market statistics research
+* Modelling Supply vs Demand
+* In Game Browser integration for pulling orders
