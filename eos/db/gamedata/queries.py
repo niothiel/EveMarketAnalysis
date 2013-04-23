@@ -218,20 +218,6 @@ def getMarketGroup(lookfor, eager=None):
 # TODO: Shit this is slow...
 def getMarketGroupItems(market_group, only_typeids=True):
 	marketGroup = getMarketGroup(market_group)
-	"""
-	all_items = gamedata_session.query(Item).all()
-
-	items = []
-	for item in all_items:
-		group = item.marketGroup
-		if not group:
-			continue
-
-		while group.parent:
-			if group.ID == marketGroup.ID:
-				items.append(item)
-			group = group.parent
-"""
 	items = _getMarketGroupItems(marketGroup)
 
 	if only_typeids:

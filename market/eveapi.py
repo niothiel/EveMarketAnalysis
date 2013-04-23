@@ -2,9 +2,6 @@ import xml.etree.ElementTree as ET
 from cache import GenericCache
 import util
 
-keyId = 1483700
-vCode = 'tKvQgldcNC5XjFYCFy4IV7W5tliQVKAmkyPSl2xw7kqF6Rx9bUM4PrmmD8CtxrhW'
-
 class EveApiUrl:
 	ASSETS = 'https://api.eveonline.com/char/AssetList.xml.aspx'
 	CHARACTERS = 'https://api.eveonline.com/account/Characters.xml.aspx'

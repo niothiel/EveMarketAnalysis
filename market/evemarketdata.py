@@ -159,5 +159,3 @@ class EVEMarketData(object):
 			typeDict = results.setdefault(type_id, {})
 			typeDict[row['date']] = row
 		return results
-
-		# vim: set et ts=4 sts=4 sw=4:

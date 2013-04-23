@@ -16,15 +16,6 @@ local.properties
 .settings/
 .loadpath
 *~
-data/*.dump
-data/*.csv
-data/*.gz
-data/*.pickle
-.idea/*
-.idea
-*.db
-web/static/img/eve/*
-
 
 # External tool builders
 .externalToolBuilders/
@@ -172,3 +163,12 @@ pip-log.txt
 
 # Mac crap
 .DS_Store
+
+#################
+## Application
+#################
+data/*
+.idea/*
+.idea
+web/static/img/eve/*
+config.py
