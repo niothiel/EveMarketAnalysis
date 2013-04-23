@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Market Scanner</h1>
+
+{% if igb %}
+IGB
+    {% if trusted %}
+        Form data goes here.
+    {% else %}
+        In order for the market scanner to work, you must grant trust to this website. Please click the 'Request Trust'
+        button below in order to do so, then <strong>reload</strong> the page in order to see full functionality.<br>
+        <button type="button" class="btn btn-primary" onclick="CCPEVE.requestTrust('http://localhost:5000');">Request Trust</button>
+    {% endif %}
+{% else %}
+Market Scanner functionality only works within the Eve In-Game-Browser, please visit this site from there.
+{% endif %}
+{% endblock %}

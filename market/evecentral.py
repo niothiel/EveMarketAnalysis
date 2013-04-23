@@ -3,10 +3,12 @@ import xml.etree.ElementTree as ET
 
 import eos
 from eos.db.gamedata.queries import getSystem, getRegion, getItem
+from cache import GenericCache
 from util import formatIsk
 
 from pprint import pprint
 
+# TODO: This takes a long time on startup, need to fix.
 def _get_valid_ids():
 	session = eos.db.gamedata_session
 	valid_ids = []
@@ -15,12 +17,6 @@ def _get_valid_ids():
 			valid_ids.append(int(item.typeID))
 
 	return set(valid_ids)
-
-	import os
-	print os.getcwd()
-	with open('data/valid_typeids.txt', 'r') as fin:
-		valid_ids = fin.readlines()
-		return set(int(typeID) for typeID in valid_ids)
 
 class PriceInfo:
 	def __init__(self):
@@ -65,6 +61,7 @@ class EveCentral:
 	URL = 'http://api.eve-central.com/api/marketstat?'
 
 	validids = _get_valid_ids()
+	cache = GenericCache()
 
 	@classmethod
 	def getPrices(cls, typeIDs=None, region=None, system='Jita'):
@@ -74,7 +71,6 @@ class EveCentral:
 		toRequest = set(typeIDs)
 		requested = set()
 		priceMap = {}
-
 
 		if region:
 			basequeryurl += 'regionlimit=%s&' % getRegion(region).ID
@@ -89,13 +85,21 @@ class EveCentral:
 				culledRequest.append(typeID)
 		toRequest = set(culledRequest)
 
+		# Hit the cache for some fish and see if we can get any yummmm.
+		for id in toRequest:
+			price = EveCentral.cache.get(id)
+			if price:
+				priceMap[price.id] = price
+				requested.add(id)
+		toRequest = toRequest.difference(requested)
+
 		while len(toRequest):
 			requrl = basequeryurl
 			for typeID in toRequest:
 				newurl = requrl
 				newurl += 'typeid=%d&' % typeID
 
-				if len(newurl) < 2000:
+				if len(newurl) < 2048:
 					requrl = newurl
 					requested.add(typeID)
 				else:
@@ -127,6 +131,7 @@ class EveCentral:
 				price.all.fromNode(allNode)
 
 				priceMap[price.id] = price
+				EveCentral.cache.set(price.id, price)
 
 		return priceMap
 

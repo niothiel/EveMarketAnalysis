@@ -1,6 +1,9 @@
 from market.marketbuilder import getItems
 from eos.db.gamedata.queries import *
 import eos
+from eos.types import *
+from market.evecentral import EveCentral
+from multiprocessing import *
 
 session = eos.db.gamedata_session
 
@@ -86,8 +89,18 @@ def get_bottom_level_marketgroup(marketGroup):
 			l.extend(get_bottom_level_marketgroup(child_marketgroup))
 		return l
 
-# Data from : http://pozniak.pl/wp/?page_id=530
 def main():
+	from eos.db.gamedata.queries import *
+	session = eos.db.gamedata_session
+	import cProfile
+	cProfile.run('getMarketGroupItems(\'Blueprints\')', sort=1)
+	#cProfile.run('[group.items for group in get_bottom_level_marketgroup(getMarketGroup(4))]', sort=1)
+	return 0
+
+	items = getMarketGroupItems('Blueprints')
+	for item in items:
+		print item.name
+
 	import eos.eveapi
 	api = eos.eveapi.EVEAPIConnection()
 	auth = api.auth(keyID=1483700, vCode='tKvQgldcNC5XjFYCFy4IV7W5tliQVKAmkyPSl2xw7kqF6Rx9bUM4PrmmD8CtxrhW')
@@ -110,13 +123,16 @@ def main():
 
 	for item in items:
 		print item.ID, item.name, item.blueprint
-	#pprint(items)
 
 	assets_jita = get_jita_assets()
 	for asset in assets_jita:
-		#print asset
 		typeid = asset['typeID']
 		sell_or_salvage(typeid)
 
-if __name__=='__main__':
-	main()
+def foo():
+	pass
+
+p = Process(target=foo)
+p.start()
+#if __name__=='__main__':
+#	main()

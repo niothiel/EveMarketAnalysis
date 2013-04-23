@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+{% block content %}
+<form action="" method="POST" class="form-horizontal">
+    <fieldset>
+        <legend>Test Legend</legend>
+        <div class="control-group">
+            {{ form.ranking.label(class_='control-label') }}
+            <div class="controls">
+                {{ form.ranking() }}
+            </div>
+        </div>
+        <div id="chris-fields">
+            <div class="control-group">
+                {{ form.investment.label(class_='control-label') }}
+                <div class="controls">
+                    {{ form.investment }}
+                </div>
+            </div>
+            <div class="control-group">
+                {{ form.volume_moved.label(class_='control-label') }}
+                <div class="controls">
+                    {{ form.volume_moved }}
+                </div>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="{{ form.minprice.name }}">Price</label>
+            <div class="controls">
+                {{ form.minprice(class_="input-small") }} - {{ form.maxprice(class_="input-small") }}
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="{{ form.minprice.name }}">Price</label>
+            <div class="controls">
+                {{ form.minprice(class_="input-small") }} - {{ form.maxprice(class_="input-small") }}
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="{{ form.minprofit.name }}">Profit</label>
+            <div class="controls">
+                {{ form.minprofit(class_="input-small") }} - {{ form.maxprofit(class_="input-small") }}
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="{{ form.minvolume.name }}">Volume</label>
+            <div class="controls">
+                {{ form.minvolume(class_="input-small") }} - {{ form.maxvolume(class_="input-small") }}
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">Categories</label>
+            <div class="controls">
+                {% for field in form %}
+                    {% if field.type == "BooleanField" %}
+                        <label class="checkbox">
+                            {{ field }}{{ field.label.text }}
+                        </label>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="form-actions">
+            <input class="btn btn-primary" type="submit" value="Submit">
+        </div>
+    </fieldset>
+</form>
+
+{% if prices %}
+Data Updated: <strong>{{ momentjs(time_updated).fromNow() }}</strong>
+<table class="table table-condensed table-bordered table-hover" id="prices-table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Buy</th>
+            <th>Sell</th>
+            <th>Profit (%)</th>
+            <th>Volume</th>
+            <th>Rank</th>
+        </tr>
+    </thead>
+
+    {% for price in prices %}
+    <tr>
+        <td>
+            <!--<img src="{{ price.img_url }}">-->
+            {{ price.name }}
+        </td>
+        <td class="rightCell">{{ '%.1f' % price.buy.max }}</td>
+        <td class="rightCell">{{ '%.1f' % price.sell.min }}</td>
+        <td class="rightCell">{{ '%.1f' % (price.profit() * 100) }}</td>
+        <td class="rightCell">{{ price.all.volume }}</td>
+        <td class="rightCell">{{ '%.3f' % price.rank }}</td>
+    </tr>
+    {% endfor %}
+</table><br>
+{% endif %}
+<script>
+    $(function(){
+        $('#profit-slider').slider()
+    })
+
+    $(document).ready(function(){
+        $('#prices-table').dataTable({
+            "aoColumns": [
+                    null,
+                    { "sType": "numeric"},
+                    null,
+                    null,
+                    null,
+                    null
+            ]
+        });
+
+        $('#ranking').change(function() {
+            if ($(this).val() == 'chrisrank') {
+                $('#chris-fields').show();
+            }
+            else {
+                $('#chris-fields').hide();
+            }
+        })
+
+        $('#ranking').change();
+    });
+</script>
+
+{% endblock %}

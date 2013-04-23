@@ -23,6 +23,7 @@ data/*.pickle
 .idea/*
 .idea
 *.db
+web/static/img/eve/*
 
 
 # External tool builders

@@ -1,32 +1,4 @@
 {% extends "base.html" %}
 {% block content %}
-<form action="" method="POST" name="options">
-    <p>
-        Name: <br>
-        Sort: <br>
-        {{form.sort()}}<br>
-    </p>
-    <p><input class="btn btn-primary" type="submit" value="Submit"></p>
-
-    {% if prices %}
-    <table class="table table-condensed table-bordered table-hover">
-        <tr>
-            <th>Name</th>
-            <th>Buy</th>
-            <th>Sell</th>
-            <th>Profit</th>
-            <th>Volume</th>
-        </tr>
-        {% for price in prices %}
-        <tr>
-            <td>{{ price.name }}</td>
-            <td>{{ price.buy.max }}</td>
-            <td>{{ price.sell.min }}</td>
-            <td>{{ '%.1f%%' % (price.profit() * 100) }}</td>
-            <td>{{ price.all.volume }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-    {% endif %}
-</form>
+<h1>Testing....</h1>
 {% endblock %}
