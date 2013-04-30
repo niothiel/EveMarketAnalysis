@@ -1,12 +1,12 @@
-EveMarketAnalysis
-=================
+Eve Market Analysis Tools
+=========================
 
 A not-so-small (anymore) analysis tool that I am developing to help find profitable items to trade in Eve Online.
 
 It is my first foray into web development with python, and any kind of significant database work.
 
-Requirements:
-
+Setup
+-----
 * sqlalchemy
 * flask
 * flask-wtf
@@ -17,6 +17,20 @@ There is a virtual environment set up under env/ so you don't have to worry abou
 You WILL, however, need the Eve static data in sqlite form. This should contain all the tables from the dump, and reside as /data/eve.db.
 
 Hint: You can probably find the sqlite version of the dump here: http://pozniak.pl/wp/?page_id=530
+
+Run
+---
+After having run through the setup (Make sure you have the Eve sqlite database!), use one of the options below.
+
+### On Windows
+Run the included "RUN.BAT" file.
+
+### On Linux
+Open a shell in this directory, then run:
+```
+env/Scrips/activate
+python run.py
+```
 
 Design Notes
 ------------
