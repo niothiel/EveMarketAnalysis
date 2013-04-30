@@ -1,5 +1,5 @@
-Eve Market Analysis Tools
-=========================
+Eve Market Analysis
+===================
 
 A not-so-small (anymore) analysis tool that I am developing to help find profitable items to trade in Eve Online.
 
@@ -31,6 +31,8 @@ Open a shell in this directory, then run:
 env/Scrips/activate
 python run.py
 ```
+
+Once the program is started, you can navigate to http://localhost:5000 to check it out. Note that the price information for the trader will not be available until all of the price data has been pulled, which usually takes ~9 minutes due to Eve Central's service being slow.
 
 Design Notes
 ------------
