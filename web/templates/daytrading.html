@@ -2,11 +2,17 @@
 {% block content %}
 <form action="" method="POST" class="form-horizontal">
     <fieldset>
-        <legend>Test Legend</legend>
+        <legend>Market Form</legend>
         <div class="control-group">
             {{ form.ranking.label(class_='control-label') }}
             <div class="controls">
                 {{ form.ranking() }}
+            </div>
+        </div>
+        <div class="control-group">
+            {{ form.tradehub.label(class_='control-label') }}
+            <div class="controls">
+                {{ form.tradehub() }}
             </div>
         </div>
         <div id="chris-fields">
@@ -21,12 +27,6 @@
                 <div class="controls">
                     {{ form.volume_moved }}
                 </div>
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label" for="{{ form.minprice.name }}">Price</label>
-            <div class="controls">
-                {{ form.minprice(class_="input-small") }} - {{ form.maxprice(class_="input-small") }}
             </div>
         </div>
         <div class="control-group">
@@ -75,6 +75,9 @@ Data Updated: <strong>{{ momentjs(time_updated).fromNow() }}</strong>
             <th>Sell</th>
             <th>Profit (%)</th>
             <th>Volume</th>
+            {% if prices[0].investment is not none %}
+            <th>Investment (%)</th>
+            {% endif %}
             <th>Rank</th>
         </tr>
     </thead>
@@ -89,6 +92,9 @@ Data Updated: <strong>{{ momentjs(time_updated).fromNow() }}</strong>
         <td class="rightCell">{{ '%.1f' % price.sell.min }}</td>
         <td class="rightCell">{{ '%.1f' % (price.profit() * 100) }}</td>
         <td class="rightCell">{{ price.all.volume }}</td>
+        {% if price.investment is not none %}
+        <td class="rightCell">{{ '%.2f' % price.investment }}</td>
+        {% endif %}
         <td class="rightCell">{{ '%.3f' % price.rank }}</td>
     </tr>
     {% endfor %}
@@ -107,6 +113,9 @@ Data Updated: <strong>{{ momentjs(time_updated).fromNow() }}</strong>
                     null,
                     null,
                     null,
+                    {% if prices is not none and prices[0].investment is not none %}
+                    null,
+                    {% endif %}
                     null
             ]
         });

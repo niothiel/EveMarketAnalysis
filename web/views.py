@@ -93,10 +93,12 @@ def daytrading():
 		# Check to make sure the data's been loaded
 		if PriceService.prices:
 			prices = PriceService.prices.copy()
+			prices = prices[form.tradehub.data]
 			prices = [prices[id] for id in typeids_to_search]
 
 			for price in prices:
 				price.img_url = '/static/img/eve/%d_32.png' % price.id
+				price.investment = None
 
 				if form.ranking.data == 'profitbyvol':
 					price.rank = price.profit() * price.all.volume
@@ -116,9 +118,13 @@ def daytrading():
 						price.rank = price.all.volume * float(form.volume_moved.data) * profit
 					price.rank /= 1000000
 
+					price.investment = required_investment / form.investment.data * 100
+					if price.investment > 100:
+						price.investment = 100
+
 			prices = [price for price in prices if filter_price(price, form)]
-			prices = sorted(prices, key=lambda price: price.rank)
-			prices = prices[:min(2000, len(prices))]
+			prices = sorted(prices, key=lambda price: price.rank, reverse=True)
+			prices = prices[:min(500, len(prices))]
 	return render_template('daytrading.html',
 		title = 'Daytrading',
 		form = form,

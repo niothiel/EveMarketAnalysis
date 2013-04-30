@@ -3,18 +3,23 @@ import time
 import threading
 from evecentral import EveCentral
 
+trade_hubs = [
+	'Jita',
+    'Amarr',
+    'Rens',
+    'Dodixie',
+    'Hek'
+]
+
 class PriceService:
 	prices = None
 	thread = None
 	time_updated = None
 
 	@classmethod
-	def start(cls, time_interval=15 * 60):
-		if PriceService.thread is None:
-			PriceService.thread = PriceService.PriceThread(time_interval)
-
-		if not PriceService.thread.is_alive():
-			PriceService.thread.start()
+	def start(cls, time_interval=7 * 60):
+		PriceService.thread = PriceService.PriceThread(time_interval)
+		PriceService.thread.start()
 
 	@classmethod
 	def stop(cls):
@@ -29,8 +34,17 @@ class PriceService:
 			print 'Thread Started!'
 			while True:
 				try:
-					temp_prices = EveCentral.getPrices()
-				except:
+					#temp_prices = EveCentral.getPrices()
+					temp_prices = {}
+					for hub in trade_hubs:
+						print 'Getting prices in:', hub
+						start = datetime.datetime.now()
+						temp_prices[hub] = EveCentral.getPrices(system=hub)
+						print 'Finished in:', (datetime.datetime.now() - start)
+
+				except Exception as e:
+					print 'Error getting data from prices...', e
+					exit(1)
 					time.sleep(2 * 60)
 					continue
 				PriceService.prices = temp_prices   # Atomic, thread-safe update... hopefully.

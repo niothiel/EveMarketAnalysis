@@ -1,4 +1,5 @@
 from flask.ext.wtf import Form, IntegerField, TextField, BooleanField, RadioField, SelectField
+from market.priceservice import trade_hubs
 from flask.ext.wtf import Required
 
 class MarketSelectForm(Form):
@@ -7,6 +8,10 @@ class MarketSelectForm(Form):
 	    ('profitdivvol', 'Profit / Volume'),
 	    ('chrisrank', 'Chris\'s Ranking')
 	])
+	tradehub = SelectField('Trade Hub', choices=zip(trade_hubs, trade_hubs))
+	#tradehub = SelectField('Trade Hub', choices=[
+	#	('Jita', 'Jita')
+	#])
 	investment = IntegerField('Investment (Millions)', default=50)
 	volume_moved = IntegerField('Volume Moved (%)', default=10)
 	minprice = IntegerField('Minimum Price', default=1)

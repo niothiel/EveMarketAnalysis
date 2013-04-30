@@ -86,12 +86,15 @@ class EveCentral:
 		toRequest = set(culledRequest)
 
 		# Hit the cache for some fish and see if we can get any yummmm.
+		# Disable the cache for now.
+		"""
 		for id in toRequest:
 			price = EveCentral.cache.get(id)
 			if price:
 				priceMap[price.id] = price
 				requested.add(id)
 		toRequest = toRequest.difference(requested)
+		"""
 
 		while len(toRequest):
 			requrl = basequeryurl
@@ -106,7 +109,7 @@ class EveCentral:
 					break
 
 			requrl = requrl[:-1]
-			print len(requrl), requrl
+			#print len(requrl), requrl
 			toRequest = toRequest.difference(requested)
 
 			# Finally request the stuff we need
