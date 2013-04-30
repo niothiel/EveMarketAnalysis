@@ -10,7 +10,13 @@ Requirements:
 * sqlalchemy
 * flask
 * flask-wtf
+* pyzmq
 * Eve Static Data
+
+There is a virtual environment set up under env/ so you don't have to worry about using any dependencies.
+You WILL, however, need the Eve static data in sqlite form. This should contain all the tables from the dump, and reside as /data/eve.db.
+
+Hint: You can probably find the sqlite version of the dump here: http://pozniak.pl/wp/?page_id=530
 
 Design Notes
 ------------
