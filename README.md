@@ -32,7 +32,7 @@ env/Scrips/activate
 python run.py
 ```
 
-Once the program is started, you can navigate to http://localhost:5000 to check it out. Note that the price information for the trader will not be available until all of the price data has been pulled, which usually takes ~9 minutes due to Eve Central's service being slow.
+Once the program is started, you can navigate to [http://localhost:5000](http://localhost:5000) to check it out. Note that the price information for the trader will not be available until all of the price data has been pulled, which usually takes ~9 minutes due to Eve Central's service being slow.
 
 Design Notes
 ------------
