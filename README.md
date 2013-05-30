@@ -8,10 +8,11 @@ It is my first foray into web development with python, and any kind of significa
 
 Setup
 -----
-Make sure you have the following installed on your system:
+Make sure you have the following installed on your system, and that both python and virtualenv are in your PATH:
 * Python 2.7
 * virtualenv
 * pip
+
 Directions for installing these is beyond the scope of this README, if you need any help please contact me directly.
 
 Next, open up a terminal to the folder with the source code and execute the following:
