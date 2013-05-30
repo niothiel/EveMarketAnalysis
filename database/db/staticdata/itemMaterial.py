@@ -2,7 +2,7 @@ from sqlalchemy import Column, String, Integer, Boolean, ForeignKey, Table, Floa
 from sqlalchemy.orm import relation, mapper
 
 from database.db import gamedata_meta
-from database.types import ItemMaterial, Item
+from database.gamedata import ItemMaterial, Item
 
 itemmaterials_table = Table("invtypematerials", gamedata_meta,
 	Column("typeID", Integer, ForeignKey("invtypes.typeID"), primary_key=True),

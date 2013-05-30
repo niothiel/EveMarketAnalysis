@@ -3,7 +3,7 @@ from sqlalchemy.orm import relation, mapper, backref
 from sqlalchemy.ext.associationproxy import association_proxy
 
 from database.db import gamedata_meta
-from database.types import Blueprint, Item
+from database.gamedata import Blueprint, Item
 
 blueprints_table = Table("invblueprinttypes", gamedata_meta,
 	Column("blueprintTypeID", Integer, ForeignKey("invtypes.typeID"), primary_key = True),

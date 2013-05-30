@@ -1,27 +1,8 @@
-#===============================================================================
-# Copyright (C) 2010 Diego Duclos
-#
-# This file is part of database.
-#
-# database is free software: you can redistribute it and/or modify
-# it under the terms of the GNU Lesser General Public License as published by
-# the Free Software Foundation, either version 2 of the License, or
-# (at your option) any later version.
-#
-# database is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Lesser General Public License for more details.
-#
-# You should have received a copy of the GNU Lesser General Public License
-# along with database.  If not, see <http://www.gnu.org/licenses/>.
-#===============================================================================
-
 from database.db import gamedata_session
 from database.db.staticdata.metaGroup import metatypes_table, items_table
 from sqlalchemy.sql import and_, or_, select, func
 from sqlalchemy.orm import join, exc
-from database.types import Item, Category, Group, MarketGroup, AttributeInfo, MetaData, MetaGroup, Region, SolarSystem
+from database.gamedata import Item, Category, Group, MarketGroup, AttributeInfo, MetaData, MetaGroup, Region, SolarSystem
 from database.db.util import processEager, processWhere
 import database.config
 
