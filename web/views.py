@@ -5,7 +5,7 @@ from flask import render_template, flash, redirect, request
 from web import app
 from forms import MarketSelectForm
 from market.priceservice import PriceService
-from eos.db.gamedata.queries import getMarketGroupItems
+from database.db.staticdata.queries import getMarketGroupItems
 
 # TODO: I'm a bad person for writing it like this.
 itemcategory_map_filename = 'data/itemcategory_map.pickle'

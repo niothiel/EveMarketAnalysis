@@ -1,30 +1,10 @@
-#===============================================================================
-# Copyright (C) 2010 Diego Duclos
-# Copyright (C) 2011 Anton Vorobyov
-#
-# This file is part of eos.
-#
-# eos is free software: you can redistribute it and/or modify
-# it under the terms of the GNU Lesser General Public License as published by
-# the Free Software Foundation, either version 2 of the License, or
-# (at your option) any later version.
-#
-# eos is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Lesser General Public License for more details.
-#
-# You should have received a copy of the GNU Lesser General Public License
-# along with eos.  If not, see <http://www.gnu.org/licenses/>.
-#===============================================================================
-
 import time
 import urllib2
 from xml.dom import minidom
 
 from sqlalchemy.orm import reconstructor
 
-import eos.db
+import database.db
 
 class Price(object):
     # Price validity period, 24 hours
@@ -121,7 +101,7 @@ class Price(object):
 
         for typeID in priceMap:
             # Get item object
-            item = eos.db.getItem(typeID)
+            item = database.db.getItem(typeID)
             # We're not going to request items only with market group, as eve-central
             # doesn't provide any data for items not on the market
             # Items w/o market group will be added to noData in the very end
@@ -169,7 +149,7 @@ class Price(object):
                 # from URL itself
                 requrl = requrl.replace("&", "?", 1)
                 # Make the request object
-                request = urllib2.Request(requrl, headers={"User-Agent" : "eos"})
+                request = urllib2.Request(requrl, headers={"User-Agent" : "database"})
                 # Attempt to send request and process it
                 try:
                     if proxy is not None:
@@ -213,8 +193,8 @@ class Price(object):
     @classmethod
     def fetchC0rporation(cls, priceMap, rqtime=time.time(), proxy=None):
         """Use c0rporation.com price service provider"""
-        # it must be here, otherwise eos doesn't load miscData in time
-        from eos.types import MiscData
+        # it must be here, otherwise database doesn't load miscData in time
+        from database.types import MiscData
         # Set-container for requested items w/o any data returned
         noData = set()
         # Container for items which had errors during fetching
@@ -225,11 +205,11 @@ class Price(object):
         eveCentralUpdate = {}
         # Check when we updated prices last time
         fieldName = "priceC0rpTime"
-        lastUpdatedField = eos.db.getMiscData(fieldName)
+        lastUpdatedField = database.db.getMiscData(fieldName)
         # If this field isn't available, create and add it to session
         if lastUpdatedField is None:
             lastUpdatedField = MiscData(fieldName)
-            eos.db.add(lastUpdatedField)
+            database.db.add(lastUpdatedField)
         # Convert field value to float, assigning it zero on any errors
         try:
             lastUpdated = float(lastUpdatedField.fieldValue)
@@ -252,10 +232,10 @@ class Price(object):
         # Check when price fetching failed last time
         fieldName = "priceC0rpFailed"
         # If it doesn't exist, add this one to the session too
-        lastFailedField = eos.db.getMiscData(fieldName)
+        lastFailedField = database.db.getMiscData(fieldName)
         if lastFailedField is None:
             lastFailedField = MiscData(fieldName)
-            eos.db.add(lastFailedField)
+            database.db.add(lastFailedField)
         # Convert field value to float, assigning it none on any errors
         try:
             lastFailed = float(lastFailedField.fieldValue)
@@ -277,7 +257,7 @@ class Price(object):
         # Our request URL
         requrl = "http://prices.c0rporation.com/faction.xml"
         # Generate request
-        request = urllib2.Request(requrl, headers={"User-Agent" : "eos"})
+        request = urllib2.Request(requrl, headers={"User-Agent" : "database"})
         # Attempt to send request and process returned data
         try:
             if proxy is not None:
@@ -308,19 +288,19 @@ class Price(object):
                             priceobj = priceMap[typeID]
                         # If we don't, request it from database
                         else:
-                            priceobj = eos.db.getPrice(typeID)
+                            priceobj = database.db.getPrice(typeID)
                         # If everything failed
                         if priceobj is None:
                             # Create price object ourselves
                             priceobj = Price(typeID)
                             # And let database know that we'd like to keep it
-                            eos.db.add(priceobj)
+                            database.db.add(priceobj)
                         # Finally, fill object with data
                         priceobj.price = medprice
                         priceobj.time = rqtime
                         priceobj.failed = None
                         # Check if item has market group assigned
-                        item = eos.db.getItem(typeID)
+                        item = database.db.getItem(typeID)
                         if item is not None and item.marketGroupID:
                             eveCentralUpdate[typeID] = priceobj
             # If any items need to be re-requested from EVE-Central, do so

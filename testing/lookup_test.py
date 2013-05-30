@@ -1,7 +1,7 @@
-from eos.db.gamedata.queries import *
-import eos
+from database.db.staticdata.queries import *
+import database
 
-session = eos.db.gamedata_session
+session = database.db.gamedata_session
 
 def print_pricing_info(item_name):
 	#item = session.query(Item).filter(Item.name == item_name).one()

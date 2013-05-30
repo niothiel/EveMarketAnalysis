@@ -1,11 +1,10 @@
 from market.marketbuilder import getItems
-from eos.db.gamedata.queries import *
-import eos
-from eos.types import *
-from market.evecentral import EveCentral
+from database.db.staticdata.queries import *
+import database
+from database.types import *
 from multiprocessing import *
 
-session = eos.db.gamedata_session
+session = database.db.gamedata_session
 
 def get_required_mats(item_typeid):
 	orig_item = getItem(item_typeid)
@@ -78,7 +77,7 @@ def get_jita_assets():
 	return assets_jita
 
 def get_bottom_level_marketgroup(marketGroup):
-	session = eos.db.gamedata_session
+	session = database.db.gamedata_session
 
 	children = session.query(MarketGroup).filter(MarketGroup.parentGroupID == marketGroup.ID)
 	if not children.count():
@@ -90,8 +89,8 @@ def get_bottom_level_marketgroup(marketGroup):
 		return l
 
 def main():
-	from eos.db.gamedata.queries import *
-	session = eos.db.gamedata_session
+	from database.db.staticdata.queries import *
+	session = database.db.gamedata_session
 	import cProfile
 	cProfile.run('getMarketGroupItems(\'Blueprints\')', sort=1)
 	#cProfile.run('[group.items for group in get_bottom_level_marketgroup(getMarketGroup(4))]', sort=1)
@@ -101,16 +100,16 @@ def main():
 	for item in items:
 		print item.name
 
-	import eos.eveapi
-	api = eos.eveapi.EVEAPIConnection()
+	import market.eveapi_eos
+	api = market.eveapi_eos.EVEAPIConnection()
 	auth = api.auth(keyID=1483700, vCode='tKvQgldcNC5XjFYCFy4IV7W5tliQVKAmkyPSl2xw7kqF6Rx9bUM4PrmmD8CtxrhW')
 
 	chars = auth.account.Characters()
 	print chars.characters
 	print dir(chars.characters)
 
-	from eos.db.gamedata.queries import *
-	session = eos.db.gamedata_session
+	from database.db.staticdata.queries import *
+	session = database.db.gamedata_session
 
 	print session.query(Item).all()
 	marketGroup = getMarketGroup(4)
