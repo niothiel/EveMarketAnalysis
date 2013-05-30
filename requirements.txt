@@ -1,0 +1,8 @@
+Flask==0.9
+Flask-WTF==0.8.3
+Jinja2==2.7
+MarkupSafe==0.18
+SQLAlchemy==0.8.1
+WTForms==1.0.4
+Werkzeug==0.8.3
+pyzmq==13.1.0
