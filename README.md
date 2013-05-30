@@ -2,33 +2,62 @@ Eve Market Analysis
 ===================
 
 A not-so-small (anymore) analysis tool that I am developing to help find profitable items to trade in Eve Online.
+It is currently focused on day-trading with plans to add arbitage trading much like Eve-Central.
 
 It is my first foray into web development with python, and any kind of significant database work.
 
 Setup
 -----
-* sqlalchemy
-* flask
-* flask-wtf
-* pyzmq
-* Eve Static Data
+Make sure you have the following installed on your system:
+* Python 2.7
+* virtualenv
+* pip
+Directions for installing these is beyond the scope of this README, if you need any help please contact me directly.
 
-There is a virtual environment set up under env/ so you don't have to worry about using any dependencies.
-You WILL, however, need the Eve static data in sqlite form. This should contain all the tables from the dump, and reside as /data/eve.db.
+Next, open up a terminal to the folder with the source code and execute the following:
+### On Windows
+```
+# Create a virtual environment.
+virtualenv env
 
-Hint: You can probably find the sqlite version of the dump here: http://pozniak.pl/wp/?page_id=530
+# Activate the virtual environment.
+env\Scripts\activate.bat
+
+# Install required dependencies.
+pip install -r requirements.txt
+```
+
+### On Linux
+```
+# Create a virtual environment.
+virtualenv env
+
+# Activate the virtual environment.
+source env/Scripts/activate
+
+# Install required dependencies.
+pip install -r requirements.txt
+```
+
+Finally, you will need the latest eve static data in SQLITE form. This should contain all the tables from the CCP Fan Toolkit located [here](http://community.eveonline.com/community/fansites/toolkit/)
+
+Hint: You can probably find the right sqlite database here: http://pozniak.pl/wp/?page_id=530
 
 Run
 ---
 After having run through the setup (Make sure you have the Eve sqlite database!), use one of the options below.
 
 ### On Windows
-Run the included "RUN.BAT" file.
+Open a shell in this directory, then run:
+```
+env\Scripts\activate.bat
+python run.py
+```
 
 ### On Linux
 Open a shell in this directory, then run:
 ```
-env/Scrips/activate
+source env/Scrips/activate
 python run.py
 ```
 
@@ -36,6 +65,7 @@ Once the program is started, you can navigate to [http://localhost:5000](http://
 
 Design Notes
 ------------
+Here I have the (rough) roadmap for where I want this project to go.
 
 Goal:
 	Get rich in Eve Online through market trading.

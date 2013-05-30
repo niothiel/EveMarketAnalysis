@@ -171,4 +171,4 @@ data/*
 .idea/*
 .idea
 web/static/img/eve/*
-config.py
+env/*
