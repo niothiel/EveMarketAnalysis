@@ -12,7 +12,7 @@ from pprint import pprint
 def _get_valid_ids():
 	session = database.db.gamedata_session
 	valid_ids = []
-	for item in session.query(database.types.Item).all():
+	for item in session.query(database.gamedata.Item).all():
 		if item.marketGroupID:
 			valid_ids.append(int(item.typeID))
 

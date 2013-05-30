@@ -15,3 +15,8 @@ class momentjs:
 
 	def fromNow(self):
 		return self.render("fromNow()")
+
+	# TODO: Fix this. Even though the code is right, the templating engine comes back with a "class instance has no
+	# instance named '__call__', maybe it was the change over to new versions?
+	def __call__(self, *args, **kwargs):
+		return momentjs(args[0])
