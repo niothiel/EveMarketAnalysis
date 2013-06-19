@@ -2,6 +2,7 @@ import datetime
 import decimal
 import urllib2
 from urllib import urlencode
+from datetime import datetime
 
 def chunks(l, n):
 	""" Yield successive n-sized chunks from l.
@@ -79,3 +80,28 @@ def floorFloat(value):
 	# representation errors
 	result = int(decimal.Decimal(value).to_integral_value(rounding=decimal.ROUND_DOWN))
 	return result
+
+def downloadFile(url, destination):
+	import urllib2
+	u = urllib2.urlopen(url)
+	with open(destination, 'wb') as f:
+		meta = u.info()
+		file_size = int(meta.getheaders("Content-Length")[0])
+		print "Downloading: %s, %.1f MB" % (url.split('/')[-1], file_size / 1024.0 / 1024.0)
+
+		file_size_dl = 0
+		block_sz = 8192
+
+		print_time = datetime.now()
+		while True:
+			buffer = u.read(block_sz)
+			if not buffer:
+				break
+
+			file_size_dl += len(buffer)
+			f.write(buffer)
+
+			if (datetime.now() - print_time).total_seconds() > 1:
+				status = "[%3.2f%%]\r" % (file_size_dl * 100. / file_size)
+				print status
+				print_time = datetime.now()
