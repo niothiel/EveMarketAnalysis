@@ -3,7 +3,7 @@ from database.db.staticdata.metaGroup import metatypes_table, items_table
 from sqlalchemy.sql import and_, or_, select, func
 from sqlalchemy.orm import join, exc
 from database.gamedata import Item, Category, Group, MarketGroup, AttributeInfo, MetaData, MetaGroup, Region, SolarSystem
-from database.db.util import processEager, processWhere
+from database.db.util2 import processEager, processWhere
 import database.config
 
 configVal = getattr(database.config, "gamedataCache", None)

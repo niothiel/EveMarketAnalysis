@@ -4,11 +4,11 @@ import threading
 from evecentral import EveCentral
 
 trade_hubs = [
-	'Jita',
-    'Amarr',
-    'Rens',
-    'Dodixie',
-    'Hek'
+	'Jita'
+    #'Amarr',
+    #'Rens',
+    #'Dodixie',
+    #'Hek'
 ]
 
 class PriceService:

@@ -1,47 +1,13 @@
 import zlib
 import zmq
 import json
-from sqlalchemy import *
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.ext.declarative import declarative_base
 from datetime import datetime
 from util import parse_isodate
 
-db = create_engine('sqlite:///emdr.db', echo=False)
-session = sessionmaker(bind=db)()
+from database.emdr import session, Order, History
 
-Base = declarative_base()
-
-class Order(Base):
-	__tablename__ = 'orders'
-	orderID = Column(Integer, primary_key=True)     # The order's unique key
-	typeID = Column(Integer)
-	regionID = Column(Integer)
-	generatedAt = Column(DateTime)
-
-	price = Column(Float)                           # Price of the order
-	volRemaining = Column(Integer)                  # Remaining volume in the order
-	range = Column(Integer)                         # Range the order extends (in jumps)
-	volEntered = Column(Integer)                    # Starting volume of the order
-	minVolume = Column(Integer)                     # Minimum volume that can be ordered
-	bid = Column(Boolean)                           # Whether the order is a bid: True if it's a buy order
-	issueDate = Column(DateTime)                    # Date and time that the order was issued
-	duration = Column(Integer)                      # The amount of days the order will be active
-	stationID = Column(Integer)                     # Station in which the order was placed
-	solarSystemID = Column(Integer)                 # Solar system where the order was placed (NULLABLE).
-
-class History(Base):
-	__tablename__ = 'history'
-	typeID = Column(Integer, primary_key=True)
-	regionID = Column(Integer, primary_key=True)
-	generatedAt = Column(DateTime)
-
-	date = Column(DateTime, primary_key=True)       # Date/Time the history was issued
-	orders = Column(Integer)                        # Number of orders
-	low = Column(Float)                             # Lowest price of the orders
-	high = Column(Float)                            # Highest price of the orders
-	average = Column(Float)                         # Average price of the orders
-	quantity = Column(Integer)                      # Quantity of items in the orders
+buy_orders = 0
+sell_orders = 0
 
 def processOrdersPacket(market_data):
 	for rowset in market_data['rowsets']:
@@ -54,6 +20,15 @@ def processOrdersPacket(market_data):
 			vals = zip(market_data['columns'], row)
 			for k, v in vals:
 				setattr(order, k, v)
+
+			global buy_orders
+			global sell_orders
+			if order.bid == 1:
+				buy_orders += 1
+			else:
+				sell_orders += 1
+
+			print 'buy:', buy_orders, 'sell:', sell_orders
 
 			order.issueDate = parse_isodate(order.issueDate)
 			stored_order = None
@@ -71,7 +46,7 @@ def processOrdersPacket(market_data):
 
 def processHistoryPacket(market_data):
 	for rowset in market_data['rowsets']:
-		for row in rowset:
+		for row in rowset['rows']:
 			history = History()
 			history.typeID = rowset['typeID']
 			history.regionID = rowset['regionID']
@@ -84,7 +59,8 @@ def processHistoryPacket(market_data):
 			history.date = parse_isodate(history.date)
 			stored_history = None
 			try:
-				stored_history = session.query(History).filter(History.date==history.date).one()
+				stored_history = session.query(History).filter(\
+					History.date==history.date, History.typeID==history.typeID, History.regionID==history.regionID).one()
 			except:
 				session.add(history)
 				return
@@ -93,8 +69,7 @@ def processHistoryPacket(market_data):
 				history = session.merge(history)
 				session.add(history)
 
-def main():
-	Base.metadata.create_all(db)
+def emdr_service():
 	context = zmq.Context()
 	subscriber = context.socket(zmq.SUB)
 
@@ -135,4 +110,4 @@ def main():
 		session.commit()
 
 if __name__ == '__main__':
-	main()
+	emdr_service()

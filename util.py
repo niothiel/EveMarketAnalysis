@@ -2,7 +2,7 @@ import datetime
 import decimal
 import urllib2
 from urllib import urlencode
-from datetime import datetime
+from datetime import datetime, timedelta
 
 def chunks(l, n):
 	""" Yield successive n-sized chunks from l.
@@ -32,11 +32,11 @@ def htmlFromUrl(url, params = {}):
 def parse_isodate(date_str):
 	# u'2013-03-29T18:00:07+00:00'
 	# Parse the date minus UTC offset.
-	dt = datetime.datetime.strptime(date_str[:-6], '%Y-%m-%dT%H:%M:%S')
+	dt = datetime.strptime(date_str[:-6], '%Y-%m-%dT%H:%M:%S')
 
 	# Parse UTC offset
 	hours, mins = date_str[-5:].split(':')
-	td = datetime.timedelta(hours=int(hours), minutes=int(mins))
+	td = timedelta(hours=int(hours), minutes=int(mins))
 
 	# Correct for offset
 	if date_str[-6] == '+':

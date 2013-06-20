@@ -3,11 +3,7 @@ import re
 from sqlalchemy.orm import reconstructor
 
 from eqBase import EqBase
-
-try:
-    from collections import OrderedDict
-except ImportError:
-    from gui.utils.compat import OrderedDict
+from collections import OrderedDict
 
 class Blueprint(EqBase):
     pass
