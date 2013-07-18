@@ -1,8 +1,8 @@
 from sqlalchemy import Column, String, Integer, ForeignKey, Boolean, Table
 from sqlalchemy.orm import relation, mapper, synonym, deferred
 
-from database.db import gamedata_meta
-from database.gamedata import Category, Icon
+from database.static import gamedata_meta
+from database.static.gamedata import Category, Icon
 
 categories_table = Table("invcategories", gamedata_meta,
                          Column("categoryID", Integer, primary_key = True),

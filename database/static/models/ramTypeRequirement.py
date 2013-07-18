@@ -1,8 +1,8 @@
-from sqlalchemy import Column, String, Integer, Boolean, ForeignKey, Table, Float
+from sqlalchemy import Column, Integer, Boolean, ForeignKey, Table, Float
 from sqlalchemy.orm import relation, mapper
 
-from database.db import gamedata_meta
-from database.gamedata import RamType, Item
+from database.static import gamedata_meta
+from database.static.gamedata import RamType, Item
 
 ramtyperequirements_table = Table("ramtyperequirements", gamedata_meta,
 	Column("typeID", Integer, ForeignKey("invtypes.typeID"), primary_key=True),

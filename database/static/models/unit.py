@@ -1,8 +1,8 @@
 from sqlalchemy import Column, Table, Integer, String
 from sqlalchemy.orm import mapper, synonym
 
-from database.db import gamedata_meta
-from database.gamedata import Unit
+from database.static import gamedata_meta
+from database.static.gamedata import Unit
 
 groups_table = Table("dgmunits", gamedata_meta,
                      Column("unitID", Integer, primary_key = True),

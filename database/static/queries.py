@@ -1,12 +1,12 @@
-from database.db import gamedata_session
-from database.db.staticdata.metaGroup import metatypes_table, items_table
-from sqlalchemy.sql import and_, or_, select, func
+from database.static import gamedata_session
+from database.static.staticdata.metaGroup import metatypes_table, items_table
+from sqlalchemy.sql import and_, or_, select
 from sqlalchemy.orm import join, exc
-from database.gamedata import Item, Category, Group, MarketGroup, AttributeInfo, MetaData, MetaGroup, Region, SolarSystem
-from database.db.util2 import processEager, processWhere
-import database.config
+from database.static.gamedata import Item, Category, Group, MarketGroup, AttributeInfo, MetaData, MetaGroup, Region, SolarSystem
+from database.static.util2 import processEager, processWhere
+import config
 
-configVal = getattr(database.config, "gamedataCache", None)
+configVal = getattr(config, "gamedataCache", None)
 if configVal is True:
 	def cachedQuery(amount, *keywords):
 		def deco(function):
@@ -29,7 +29,7 @@ if configVal is True:
 		return deco
 
 elif callable(configVal):
-	cachedQuery = database.config.gamedataCache
+	cachedQuery = config.gamedataCache
 else:
 	def cachedQuery(amount, *keywords):
 		def deco(function):

@@ -1,8 +1,8 @@
 from sqlalchemy import Column, String, Integer, Boolean, ForeignKey, Table
 from sqlalchemy.orm import relation, mapper, synonym, deferred
 
-from database.db import gamedata_meta
-from database.gamedata import Group, Icon, Category
+from database.static import gamedata_meta
+from database.static.gamedata import Group, Icon, Category
 
 groups_table = Table("invgroups", gamedata_meta,
                      Column("groupID", Integer, primary_key = True),

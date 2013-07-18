@@ -3,8 +3,8 @@ from sqlalchemy.orm import relation, mapper, synonym, deferred
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.orm.collections import attribute_mapped_collection
 
-from database.db import gamedata_meta
-from database.gamedata import Attribute, Blueprint, Item, MetaType, Group
+from database.static import gamedata_meta
+from database.static.gamedata import Attribute, Item, MetaType, Group
 
 items_table = Table("invtypes", gamedata_meta,
                     Column("typeID", Integer, primary_key = True),

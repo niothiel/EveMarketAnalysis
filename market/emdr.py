@@ -4,8 +4,11 @@ import json
 from datetime import datetime
 from util import parse_isodate
 
+from hotqueue import HotQueue
+
 from database.emdr import session, Order, History
 
+order_ids = set()
 buy_orders = 0
 sell_orders = 0
 
@@ -23,15 +26,20 @@ def processOrdersPacket(market_data):
 
 			global buy_orders
 			global sell_orders
-			if order.bid == 1:
-				buy_orders += 1
-			else:
-				sell_orders += 1
 
-			print 'buy:', buy_orders, 'sell:', sell_orders
+			if order.orderID not in order_ids:
+				if order.bid:
+					buy_orders += 1
+				else:
+					sell_orders += 1
 
+			print 'Buy:', buy_orders, 'Sell:', sell_orders
+
+			order_ids.add(order.orderID)
+			return
 			order.issueDate = parse_isodate(order.issueDate)
 			stored_order = None
+
 			# If there is no order with that id, just add it to DB.
 			try:
 				stored_order = session.query(Order).filter(Order.orderID==order.orderID).one()
@@ -74,7 +82,7 @@ def emdr_service():
 	subscriber = context.socket(zmq.SUB)
 
 	# Connect to the first publicly available relay.
-	subscriber.connect('tcp://relay-us-central-1.eve-emdr.com:8050')
+	subscriber.connect('tcp://relay-us-east-1.eve-emdr.com:8050')
 	# Disable filtering.
 	subscriber.setsockopt(zmq.SUBSCRIBE, "")
 
@@ -109,5 +117,19 @@ def emdr_service():
 
 		session.commit()
 
+def emdr_service_2():
+	queue = HotQueue("emdr-messages", host='10.10.10.10', port=6379, db=0)
+	for message in queue.consume():
+		market_json = zlib.decompress(message)
+		market_data = json.loads(market_json)
+
+		if market_data['resultType'] == 'orders':
+			processOrdersPacket(market_data)
+		#elif market_data['resultType'] == 'history':
+		#	processHistoryPacket(market_data)
+
+		#print 'Consumed Message!'
+
 if __name__ == '__main__':
-	emdr_service()
+	#emdr_service()
+	emdr_service_2()

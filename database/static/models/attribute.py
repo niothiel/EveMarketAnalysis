@@ -1,8 +1,8 @@
 from sqlalchemy import Table, Column, Integer, Float, Unicode, ForeignKey, String, Boolean
 from sqlalchemy.orm import relation, mapper, synonym, deferred
 from sqlalchemy.ext.associationproxy import association_proxy
-from database.db import gamedata_meta
-from database.gamedata import Attribute, AttributeInfo, Icon, Unit
+from database.static import gamedata_meta
+from database.static.gamedata import Attribute, AttributeInfo, Icon, Unit
 
 typeattributes_table = Table("dgmtypeattribs", gamedata_meta,
                          Column("value", Float),

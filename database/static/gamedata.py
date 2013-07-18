@@ -2,7 +2,7 @@ import re
 
 from sqlalchemy.orm import reconstructor
 
-from eqBase import EqBase
+from database.eqBase import EqBase
 from collections import OrderedDict
 
 class Blueprint(EqBase):
@@ -20,9 +20,9 @@ class Item(EqBase):
         info = getattr(cls, "MOVE_ATTR_INFO", None)
         if info is None:
             cls.MOVE_ATTR_INFO = info = []
-            import database.db
+            import database.static
             for id in cls.MOVE_ATTRS:
-                info.append(database.db.getAttributeInfo(id))
+                info.append(database.static.getAttributeInfo(id))
 
         return info
 
@@ -66,7 +66,7 @@ class Item(EqBase):
     def requiredSkills(self):
         if self.__requiredSkills is None:
             # This import should be here to make sure it's fully initialized
-            from database import db
+            from database import static
             requiredSkills = OrderedDict()
             self.__requiredSkills = requiredSkills
             # Map containing attribute IDs we may need for required skills
@@ -77,7 +77,7 @@ class Item(EqBase):
             # { attributeID : attributeValue }
             skillAttrs = {}
             # Get relevant attribute values from db (required skill IDs and levels) for our item
-            for attrInfo in db.directAttributeRequest((self.ID,), tuple(combinedAttrIDs)):
+            for attrInfo in static.directAttributeRequest((self.ID,), tuple(combinedAttrIDs)):
                 attrID = attrInfo[1]
                 attrVal = attrInfo[2]
                 skillAttrs[attrID] = attrVal
@@ -88,7 +88,7 @@ class Item(EqBase):
                     skillID = int(skillAttrs[srqIDAtrr])
                     skillLvl = skillAttrs[srqLvlAttr]
                     # Fetch item from database and fill map
-                    item = db.getItem(skillID)
+                    item = static.getItem(skillID)
                     requiredSkills[item] = skillLvl
         return self.__requiredSkills
 

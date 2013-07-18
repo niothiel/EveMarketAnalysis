@@ -1,9 +1,8 @@
-from sqlalchemy import Column, String, Integer, Boolean, ForeignKey, Table, Float
+from sqlalchemy import Column, Integer, ForeignKey, Table
 from sqlalchemy.orm import relation, mapper, backref
-from sqlalchemy.ext.associationproxy import association_proxy
 
-from database.db import gamedata_meta
-from database.gamedata import Blueprint, Item
+from database.static import gamedata_meta
+from database.static.gamedata import Blueprint, Item
 
 blueprints_table = Table("invblueprinttypes", gamedata_meta,
 	Column("blueprintTypeID", Integer, ForeignKey("invtypes.typeID"), primary_key = True),

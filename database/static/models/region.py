@@ -1,8 +1,8 @@
-from sqlalchemy import Column, String, Integer, Boolean, ForeignKey, Table, Float
-from sqlalchemy.orm import relation, mapper, synonym
+from sqlalchemy import Column, String, Integer, Table
+from sqlalchemy.orm import mapper, synonym
 
-from database.db import gamedata_meta
-from database.gamedata import Region
+from database.static import gamedata_meta
+from database.static.gamedata import Region
 
 regions_table = Table("mapregions", gamedata_meta,
 	Column("regionID", Integer, primary_key = True),

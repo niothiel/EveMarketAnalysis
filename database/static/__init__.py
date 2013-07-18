@@ -39,10 +39,10 @@ gamedata_meta.bind = staticdata_engine
 gamedata_session = sessionmaker(bind=staticdata_engine, autoflush=False, expire_on_commit=False)()
 
 #Import all the definitions for all our database stuff
-from database.db.staticdata import *
+from database.static.staticdata import *
 
 #Import queries
-from database.db.staticdata.queries import getItem, searchItems, getVariations, getItemsByCategory, directAttributeRequest, \
+from database.static.staticdata.queries import getItem, searchItems, getVariations, getItemsByCategory, directAttributeRequest, \
 									getMarketGroup, getGroup, getCategory, getAttributeInfo, getMetaData, getMetaGroup
 
 print 'Eos DB Initialized.'

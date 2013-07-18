@@ -1,8 +1,8 @@
 from sqlalchemy import Column, String, Integer, Table
 from sqlalchemy.orm import mapper, synonym, deferred
 
-from database.db import gamedata_meta
-from database.gamedata import Icon
+from database.static import gamedata_meta
+from database.static.gamedata import Icon
 
 icons_table = Table("icons", gamedata_meta,
                     Column("iconID", Integer, primary_key = True),

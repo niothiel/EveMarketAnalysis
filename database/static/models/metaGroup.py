@@ -1,8 +1,8 @@
 from sqlalchemy import Table, Column, Integer, ForeignKey, String
 from sqlalchemy.orm import relation, mapper, synonym
-from database.db import gamedata_meta
-from database.db.staticdata.item import items_table
-from database.gamedata import MetaGroup, Item, MetaType
+from database.static import gamedata_meta
+from database.static.models.item import items_table
+from database.static.gamedata import MetaGroup, Item, MetaType
 from sqlalchemy.ext.associationproxy import association_proxy
 
 metagroups_table = Table("invmetagroups", gamedata_meta,

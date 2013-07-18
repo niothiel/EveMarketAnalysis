@@ -1,8 +1,8 @@
-from sqlalchemy import Column, String, Integer, Boolean, ForeignKey, Table, Float
+from sqlalchemy import Column, Integer, ForeignKey, Table
 from sqlalchemy.orm import relation, mapper
 
-from database.db import gamedata_meta
-from database.gamedata import ItemMaterial, Item
+from database.static import gamedata_meta
+from database.static.gamedata import ItemMaterial, Item
 
 itemmaterials_table = Table("invtypematerials", gamedata_meta,
 	Column("typeID", Integer, ForeignKey("invtypes.typeID"), primary_key=True),
