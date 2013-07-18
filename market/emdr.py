@@ -1,10 +1,11 @@
+import sys
 import zlib
 import zmq
-import json
-from datetime import datetime
+import simplejson
 from util import parse_isodate
+import traceback
 
-from hotqueue import HotQueue
+import multiprocessing
 
 from database.emdr import session, Order, History
 
@@ -12,7 +13,35 @@ order_ids = set()
 buy_orders = 0
 sell_orders = 0
 
+"""
 def processOrdersPacket(market_data):
+	global order_ids
+	global buy_orders
+	global sell_orders
+
+	columns = market_data['columns']
+	for rowset in market_data['rowsets']:
+		for row in rowset['rows']:
+			rowdict = dict(zip(columns, row))
+
+			if rowdict['orderID'] not in order_ids:
+				order_ids.add(rowdict['orderID'])
+
+				if rowdict['bid']:
+					buy_orders += 1
+				else:
+					sell_orders += 1
+			if len(order_ids) % 10 == 0:
+				try:
+					print 'Buy:', buy_orders, 'Sell:', sell_orders, 'Ratio (Sell/Buy):', float(sell_orders) / buy_orders
+				except:
+					pass
+"""
+def processOrdersPacket(market_data):
+	global buy_orders
+	global sell_orders
+	global order_ids
+
 	for rowset in market_data['rowsets']:
 		for row in rowset['rows']:
 			order = Order()
@@ -24,31 +53,32 @@ def processOrdersPacket(market_data):
 			for k, v in vals:
 				setattr(order, k, v)
 
-			global buy_orders
-			global sell_orders
-
 			if order.orderID not in order_ids:
+				order_ids.add(order.orderID)
 				if order.bid:
 					buy_orders += 1
 				else:
 					sell_orders += 1
 
-			print 'Buy:', buy_orders, 'Sell:', sell_orders
+				if len(order_ids) % 10 == 0:
+					try:
+						pass
+						print 'Buy:', buy_orders, 'Sell:', sell_orders, 'Ratio (Sell/Buy):', float(sell_orders) / buy_orders
+					except:
+						pass
 
-			order_ids.add(order.orderID)
-			return
 			order.issueDate = parse_isodate(order.issueDate)
 			stored_order = None
 
 			# If there is no order with that id, just add it to DB.
-			try:
-				stored_order = session.query(Order).filter(Order.orderID==order.orderID).one()
-			except:
-				session.add(order)
-				return
+			stored_order_query = session.query(Order).filter(Order.orderID==order.orderID)
 
-			# If there is, check the dates of the one in the database vs the ones we have now and update.
-			if stored_order.generatedAt < order.generatedAt:
+			if stored_order_query.count() == 0:
+				session.add(order)
+			elif stored_order_query.count() > 1:
+				print 'Orderid not unique!', order.orderID
+				exit(1)
+			elif stored_order_query.first().generatedAt < order.generatedAt:
 				order = session.merge(order)
 				session.add(order)
 
@@ -82,54 +112,66 @@ def emdr_service():
 	subscriber = context.socket(zmq.SUB)
 
 	# Connect to the first publicly available relay.
-	subscriber.connect('tcp://relay-us-east-1.eve-emdr.com:8050')
+	subscriber.connect('tcp://relay-us-central-1.eve-emdr.com:8050')
 	# Disable filtering.
 	subscriber.setsockopt(zmq.SUBSCRIBE, "")
 
-	print 'Relay started, waiting for data...'
+	# Initialize the input data queue for the processes, as well as the output result queue.
+	manager = multiprocessing.Manager()
+	emdr_queue = manager.Queue()
+	result_queue = manager.Queue()
 
-	#f = open('emdr_data.txt', 'w')
-	total_length = 0
-	start = datetime.now()
-	max_read = 0
+	# Spawn five processes to take care of our beautiful firehouse of data.
+	#for x in range(5):
+	#	multiprocessing.Process(target=worker, args=(emdr_queue, result_queue)).start()
+
+	print 'Relay started, waiting for data...'
 	while True:
+		# Enqueue the messages as they come in
+		#emdr_queue.put(subscriber.recv())
+
 		# Receive raw market JSON strings.
 		market_json = zlib.decompress(subscriber.recv())
-		#print 'Read... ', len(market_json)
-		length = len(market_json)
-		if length > max_read:
-			max_read = length
-			print max_read
-		total_length += len(market_json)
+
 		# Un-serialize the JSON data to a Python dict.
-		market_data = json.loads(market_json)
+		market_data = simplejson.loads(market_json)
 
-		#dt = datetime.now() - start
-		#dt = dt.total_seconds()
-		#print 'Data Rate:', (total_length / 1024.0 / dt), 'KB/s'
-
-		# Dump the market data to stdout. Or, you know, do more fun
-		# things here.
-		if market_data['resultType'] == 'orders':
-			processOrdersPacket(market_data)
-		elif market_data['resultType'] == 'history':
-			processHistoryPacket(market_data)
-
-		session.commit()
-
-def emdr_service_2():
-	queue = HotQueue("emdr-messages", host='10.10.10.10', port=6379, db=0)
-	for message in queue.consume():
-		market_json = zlib.decompress(message)
-		market_data = json.loads(market_json)
-
+		# Parse all of the data
 		if market_data['resultType'] == 'orders':
 			processOrdersPacket(market_data)
 		#elif market_data['resultType'] == 'history':
 		#	processHistoryPacket(market_data)
+		session.commit()
 
-		#print 'Consumed Message!'
+		#while True:
+		#	try:
+		#		print result_queue.get(block=False)
+		#	except:
+		#		break
+
+
+def worker(queue, done_queue):
+	while True:
+		try:
+			# Receive raw market JSON strings.
+			market_json = zlib.decompress(queue.get())
+
+			# Un-serialize the JSON data to a Python dict.
+			market_data = simplejson.loads(market_json)
+
+			# Parse all of the data
+			if market_data['resultType'] == 'orders':
+				processOrdersPacket(market_data)
+			#elif market_data['resultType'] == 'history':
+			#	processHistoryPacket(market_data)
+			session.commit()
+		except:
+			# Need to do more debugging here as this occurs in a separate process and it can get kind of sketchy
+			print 'Error in a worker thread!', sys.exc_info()
+			print traceback.print_tb(sys.exc_info()[2], None, sys.stdout)
+			sys.stdout.flush()
+			exit(1)
 
 if __name__ == '__main__':
-	#emdr_service()
-	emdr_service_2()
+	emdr_service()
+	#emdr_service_2()

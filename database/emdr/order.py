@@ -1,9 +1,10 @@
 from database.emdr import Base
-from sqlalchemy import Boolean, Column, DateTime, Float, Integer
+from sqlalchemy import Boolean, Column, DateTime, Float, Integer, BigInteger
 
 class Order(Base):
 	__tablename__ = 'orders'
-	orderID = Column(Integer, primary_key=True)     # The order's unique key
+	orderID = Column(BigInteger, primary_key=True,
+					 autoincrement=False)           # The order's unique key
 	typeID = Column(Integer)
 	regionID = Column(Integer)
 	generatedAt = Column(DateTime)
