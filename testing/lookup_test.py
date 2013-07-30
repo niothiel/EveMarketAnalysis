@@ -1,4 +1,4 @@
-from database.db.staticdata.queries import *
+from database.static.queries import *
 import database
 
 session = database.db.gamedata_session

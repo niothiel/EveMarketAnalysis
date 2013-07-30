@@ -1,10 +1,8 @@
-from market.marketbuilder import getItems
-from database.db.staticdata.queries import *
+from database.static.queries import *
 import database
-from database.types import *
-from multiprocessing import *
 
-session = database.db.gamedata_session
+#session = database.db.gamedata_session
+session = None
 
 def get_required_mats(item_typeid):
 	orig_item = getItem(item_typeid)
@@ -89,7 +87,7 @@ def get_bottom_level_marketgroup(marketGroup):
 		return l
 
 def main():
-	from database.db.staticdata.queries import *
+	from database.static.queries import *
 	session = database.db.gamedata_session
 	import cProfile
 	cProfile.run('getMarketGroupItems(\'Blueprints\')', sort=1)
@@ -108,7 +106,6 @@ def main():
 	print chars.characters
 	print dir(chars.characters)
 
-	from database.db.staticdata.queries import *
 	session = database.db.gamedata_session
 
 	print session.query(Item).all()
@@ -128,10 +125,28 @@ def main():
 		typeid = asset['typeID']
 		sell_or_salvage(typeid)
 
-def foo():
-	pass
+def test():
+	from market.eft_fit import get_items
+	from web.views import _price_eft_items
+	items = get_items("""[Wolf, PROFLEET]
+Gyrostabilizer II
+Tracking Enhancer II
+Tracking Enhancer II
+Adaptive Nano Plating II
+Internal Force Field Array I
+Experimental 1MN Afterburner I
+Phased Muon Sensor Disruptor I, Scan Resolution Dampening Script
+280mm Howitzer Artillery II, Republic Fleet Fusion S
+280mm Howitzer Artillery II, Republic Fleet Fusion S
+280mm Howitzer Artillery II, Republic Fleet Fusion S
+280mm Howitzer Artillery II, Republic Fleet Fusion S
+[empty high slot]
+Small Projectile Collision Accelerator II
+Small Ancillary Current Router I""")
 
-p = Process(target=foo)
-p.start()
+	priced = _price_eft_items(items)
+
+import cProfile
+cProfile.run('test()', None, 2)
 #if __name__=='__main__':
 #	main()
