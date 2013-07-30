@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% if eft_prices is defined %}
+<legend>Ship: {{ eft_prices['ship'] }}, Fit: {{ eft_prices['name'] }}</legend>
+
+<strong>Itemized Listing</strong><br>
+<table class="table table-condensed table-bordered table-hover" id="prices-table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+
+    {% for item in eft_prices['items'] %}
+    <tr>
+        <td>{{ item['name'] }}</td>
+        <td class="rightCell">
+            {% if item['price'] %}
+                {{ numFormat(item['price']) }}
+            {% else %}
+                Unavailable
+            {% endif %}
+        </td>
+        <td class="rightCell">{{ item['quantity'] }}</td>
+        <td class="rightCell">
+            {% if item['total'] %}
+                {{ numFormat(item['total']) }}
+            {% else %}
+                Unavailable
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<p class="text-right text-error lead">Total Cost: {{ numFormat(eft_prices['total']) }}</p>
+
+{% else %}
+<legend>EFT Pricing Tool</legend>
+<div class="row">
+    <div class="span8">
+        <form action="" method="POST">
+            <fieldset>
+                {{ form.eft_text(class_='span8', rows=15, placeholder='Paste a fit from EFT here.') }}
+                <div class="form-actions">
+                    <input class="btn btn-primary" type="submit" value="Submit">
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <div class="span4">
+        This is a tool useful if you want to quickly price a fit that you've worked out or someone gave you.
+        Simply paste the fit into the textbox on the left, hit submit, and you will get both itemized pricing and the total
+        price of the modules.<br>
+        <br>
+        Note that this tool currently uses up-to date sell order pricing from Jita, and does NOT include Charges or Ammo.
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}

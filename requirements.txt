@@ -5,4 +5,9 @@ MarkupSafe==0.18
 SQLAlchemy==0.8.1
 WTForms==1.0.4
 Werkzeug==0.8.3
+gevent==0.13.8
+greenlet==0.4.1
+hotqueue==0.2.7
 pyzmq==13.1.0
+redis==2.7.6
+simplejson==3.3.0

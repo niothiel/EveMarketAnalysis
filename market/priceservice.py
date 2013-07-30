@@ -1,7 +1,7 @@
 import datetime
 import time
 import threading
-from evecentral import EveCentral
+#from evecentral import EveCentral
 
 trade_hubs = [
 	'Jita'

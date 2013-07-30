@@ -18,6 +18,9 @@ def formatIsk(price):
 
 	return '%.1fM' % (price / 1000000)
 
+def numFormat(number):
+	return "{:,}".format(number)
+
 def htmlFromUrl(url, params = {}):
 	if params <> {}:
 		if url[-1] <> '?':

@@ -1,18 +1,18 @@
 import urllib2
 import xml.etree.ElementTree as ET
+from pprint import pprint
 
 import database
-from database.db.staticdata.queries import getSystem, getRegion, getItem
+from database.static.queries import getSystem, getRegion, getItem
 from cache import GenericCache
 from util import formatIsk
 
-from pprint import pprint
 
 # TODO: This takes a long time on startup, need to fix.
 def _get_valid_ids():
-	session = database.db.gamedata_session
+	session = database.static.gamedata_session
 	valid_ids = []
-	for item in session.query(database.gamedata.Item).all():
+	for item in session.query(database.static.gamedata.Item).all():
 		if item.marketGroupID:
 			valid_ids.append(int(item.typeID))
 
@@ -139,7 +139,7 @@ class EveCentral:
 		return priceMap
 
 def generate_valid_typeids():
-	session = database.db.gamedata_session
+	session = database.static.gamedata_session
 	with open('data/valid_typeids.txt', 'w') as fout:
 		for item in session.query(database.types.Item).all():
 			if item.marketGroupID:

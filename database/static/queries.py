@@ -1,5 +1,5 @@
 from database.static import gamedata_session
-from database.static.staticdata.metaGroup import metatypes_table, items_table
+from database.static.models.metaGroup import metatypes_table, items_table
 from sqlalchemy.sql import and_, or_, select
 from sqlalchemy.orm import join, exc
 from database.static.gamedata import Item, Category, Group, MarketGroup, AttributeInfo, MetaData, MetaGroup, Region, SolarSystem
@@ -64,6 +64,8 @@ def getItem(lookfor, eager=None):
 		else:
 			# Item names are unique, so we can use first() instead of one()
 			item = gamedata_session.query(Item).options(*processEager(eager)).filter(Item.name == lookfor).first()
+			if not item:
+				return None
 			itemNameMap[lookfor] = item.ID
 	else:
 		raise TypeError("Need integer or string as argument")

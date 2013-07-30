@@ -28,6 +28,8 @@ env\Scripts\activate.bat
 pip install -r requirements.txt
 ```
 
+Windows installations will complain at you for some things not available in PIP.
+
 ### On Linux
 ```
 # Create a virtual environment.
@@ -43,6 +45,19 @@ pip install -r requirements.txt
 Finally, you will need the latest eve static data in SQLITE form. This should contain all the tables from the CCP Fan Toolkit located [here](http://community.eveonline.com/community/fansites/toolkit/)
 
 Hint: You can probably find the right sqlite database here: http://pozniak.pl/wp/?page_id=530
+
+Also, you must have an instance of MySQL installed somewhere, and the credentials set correctly in config.py.
+
+After the first run, to get best performance, you should create an index on the orders table using the following command (inside mysql):
+
+```
+CREATE INDEX typeregion ON orders (typeID, regionID);
+```
+
+# TODO: Fix mysql bug: 'Deadlock found when trying to get lock;
+# http://stackoverflow.com/questions/2332768/how-to-avoid-mysql-deadlock-found-when-trying-to-get-lock-try-restarting-trans
+
+Optional: MySQL by default has a query cache that can provide stale results to the user, therefore it is STRONGLY recommended that you disable the query cache by setting query_cache_size in the mysql config to 0.
 
 Run
 ---

@@ -1,11 +1,13 @@
-import os
 import pickle
 
-from flask import render_template, flash, redirect, request
+import os
+from flask import render_template, request
 from web import app
-from forms import MarketSelectForm
+from forms import MarketSelectForm, EFTPriceForm
 from market.priceservice import PriceService
-from database.db.staticdata.queries import getMarketGroupItems
+from database.static.queries import getMarketGroupItems
+from market.eft_fit import get_items
+from database.emdr.queries import get_item_statistics
 
 # TODO: I'm a bad person for writing it like this.
 itemcategory_map_filename = 'data/itemcategory_map.pickle'
@@ -141,3 +143,34 @@ def marketscan():
 	return render_template('marketscan.html',
 		igb = igb,
 		trusted = trusted)
+
+@app.route('/eftprice', methods=['GET', 'POST'])
+def eftprice():
+	form = EFTPriceForm()
+
+	if form.validate_on_submit():
+		items = get_items(form.eft_text.data)
+		priced_items = _price_eft_items(items)
+		return render_template('eftprice.html',
+		                       eft_prices=priced_items)
+
+	return render_template('eftprice.html',
+	                       form = form)
+
+def _price_eft_items(items_dict):
+	total_price = 0
+	for item in items_dict['items']:
+		typeid = item['typeid']
+		statistics = get_item_statistics(typeid, system='Jita')
+
+		# Check to see if we actually have a price for this
+		if 'sell' in statistics:
+			item['price'] = statistics['sell']['min']
+			item['total'] = item['price'] * item['quantity']
+			total_price += item['total']
+		else:
+			item['price'] = None
+			item['total'] = None
+
+	items_dict['total'] = total_price
+	return items_dict

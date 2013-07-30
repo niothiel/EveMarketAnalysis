@@ -1,4 +1,4 @@
-from flask.ext.wtf import Form, IntegerField, TextField, BooleanField, RadioField, SelectField
+from flask.ext.wtf import Form, IntegerField, TextField, TextAreaField, BooleanField, RadioField, SelectField
 from market.priceservice import trade_hubs
 from flask.ext.wtf import Required
 
@@ -30,3 +30,6 @@ class MarketSelectForm(Form):
 	cat_modules = BooleanField('Modules', default=True)
 	cat_rigs = BooleanField('Rigs', default=True)
 	cat_skillbooks = BooleanField('Skillbooks', default=True)
+
+class EFTPriceForm(Form):
+	eft_text = TextAreaField('EFT Text Area')

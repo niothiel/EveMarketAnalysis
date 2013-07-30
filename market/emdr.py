@@ -68,6 +68,7 @@ def processOrdersPacket(market_data):
 						pass
 
 			order.issueDate = parse_isodate(order.issueDate)
+			order.price = float(order.price)
 			stored_order = None
 
 			# If there is no order with that id, just add it to DB.
